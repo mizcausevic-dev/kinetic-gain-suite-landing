@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kinetic Gain Protocol Suite — ten open JSON specs for the answer-engine and agent era</title>
+  <meta name="description" content="A family of ten open JSON specifications for AI governance: five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech (Tutor Cards, Student AI Disclosure, Classroom AI AUP), one HealthTech (Clinical AI Disclosure), one cross-cutting (AI Incident Card). One unified MCP server. One unified visualizer. Four live properties." />
+  <meta name="theme-color" content="#10b981" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Kinetic Gain Protocol Suite — ten open AI governance specs" />
+  <meta property="og:description" content="Open governance protocols for the answer-engine and agent era. Two regulated verticals covered (EdTech, HealthTech). One MCP server, one visualizer, four live properties." />
+  <meta property="og:url" content="https://suite.kineticgain.com/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="/" class="brand" aria-label="Kinetic Gain Protocol Suite home">
+        <span class="brand-mark" aria-hidden="true">⌬</span>
+        <span class="brand-text">
+          <strong>Kinetic Gain Protocol Suite</strong>
+          <small>10 open specs · 2 regulated verticals · 4 live properties</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#map">Map</a>
+        <a href="#specs">Specs</a>
+        <a href="#tooling">Tooling</a>
+        <a href="#properties">Live</a>
+        <a class="cta" href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite" target="_blank" rel="noreferrer">GitHub ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <span class="pill">v0.1 draft across all ten specs</span>
+        <h1>Open governance protocols<br /><em>for the agent era.</em></h1>
+        <p class="lede">
+          A family of <strong>ten open JSON specifications</strong> for declaring what an AI system is,
+          what it does, what it refuses, what evidence it carries, what regulatory class it falls
+          under, and what happens when it fails. Five core specs · two regulated-vertical extensions
+          (EdTech, HealthTech) · one cross-cutting incident-disclosure spec. One MCP server, one
+          visualizer, four live properties. All AGPL-3.0.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite" target="_blank" rel="noreferrer">View on GitHub</a>
+          <a class="btn btn-secondary" href="https://mizcausevic-dev.github.io/kinetic-gain-visualizer/" target="_blank" rel="noreferrer">Open the visualizer</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="stat-num">10</span><span class="stat-label">Open specs</span></div>
+          <div class="stat"><span class="stat-num">34</span><span class="stat-label">MCP tools</span></div>
+          <div class="stat"><span class="stat-num">2</span><span class="stat-label">Regulated verticals</span></div>
+          <div class="stat"><span class="stat-num">4</span><span class="stat-label">Live properties</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="map" class="block">
+      <div class="block-inner">
+        <h2>The suite at a glance</h2>
+        <p class="prose">
+          Each spec carries a top-level <code>&lt;name&gt;_version</code> field. The unified visualizer
+          auto-detects which spec a document is in by inspecting that field. The MCP server exposes
+          fetch / validate / inspect / cross-spec-join tools for the seven runtime specs.
+        </p>
+
+        <div class="layers">
+          <div class="layer">
+            <div class="layer-label">Core · Answer engine + agent layer</div>
+            <div class="layer-cards">
+              <a class="layer-card layer-card--blue" href="https://github.com/mizcausevic-dev/aeo-protocol-spec" target="_blank" rel="noreferrer">
+                <h4>AEO Protocol</h4>
+                <p>Entity declaration at <code>/.well-known/aeo.json</code></p>
+              </a>
+              <a class="layer-card layer-card--emerald" href="https://github.com/mizcausevic-dev/prompt-provenance-spec" target="_blank" rel="noreferrer">
+                <h4>Prompt Provenance</h4>
+                <p>Versioned, lineaged, reviewable LLM prompts</p>
+              </a>
+              <a class="layer-card layer-card--violet" href="https://github.com/mizcausevic-dev/agent-cards-spec" target="_blank" rel="noreferrer">
+                <h4>Agent Cards</h4>
+                <p>Capability + refusal disclosure for AI agents</p>
+              </a>
+              <a class="layer-card layer-card--amber" href="https://github.com/mizcausevic-dev/ai-evidence-format-spec" target="_blank" rel="noreferrer">
+                <h4>AI Evidence Format</h4>
+                <p>Structured citations for LLM-generated claims</p>
+              </a>
+              <a class="layer-card layer-card--rose" href="https://github.com/mizcausevic-dev/mcp-tool-card-spec" target="_blank" rel="noreferrer">
+                <h4>MCP Tool Cards</h4>
+                <p>Per-tool disclosure for MCP servers</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="layer-arrow">↓ vertical extensions ↓</div>
+
+          <div class="layer">
+            <div class="layer-label">EdTech trio · vendor / district / student</div>
+            <div class="layer-cards">
+              <a class="layer-card layer-card--teal" href="https://github.com/mizcausevic-dev/ai-tutor-card-spec" target="_blank" rel="noreferrer">
+                <h4>AI Tutor Cards</h4>
+                <p>What an AI tutor does <em>(vendor-side)</em></p>
+              </a>
+              <a class="layer-card layer-card--fuchsia" href="https://github.com/mizcausevic-dev/classroom-ai-aup-spec" target="_blank" rel="noreferrer">
+                <h4>Classroom AI AUP</h4>
+                <p>What AI use is permitted <em>(district / school / course)</em></p>
+              </a>
+              <a class="layer-card layer-card--indigo" href="https://github.com/mizcausevic-dev/student-ai-disclosure-spec" target="_blank" rel="noreferrer">
+                <h4>Student AI Disclosure</h4>
+                <p>What the student actually did <em>(per artifact)</em></p>
+              </a>
+            </div>
+            <p class="layer-note">A grader, LMS, or compliance checker joins all three: <em>"Is this submission allowed?"</em> → O(1) lookup.</p>
+          </div>
+
+          <div class="layer">
+            <div class="layer-label">HealthTech extension · vendor-side disclosure</div>
+            <div class="layer-cards">
+              <a class="layer-card layer-card--cyan" href="https://github.com/mizcausevic-dev/clinical-ai-disclosure-spec" target="_blank" rel="noreferrer">
+                <h4>Clinical AI Disclosure</h4>
+                <p>HIPAA / FDA / SaMD posture · bias audits · EHR (FHIR / CDS Hooks)</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="layer-arrow">↓ when things break ↓</div>
+
+          <div class="layer">
+            <div class="layer-label">Cross-cutting · vendor-published, references all</div>
+            <div class="layer-cards">
+              <a class="layer-card layer-card--red" href="https://github.com/mizcausevic-dev/ai-incident-card-spec" target="_blank" rel="noreferrer">
+                <h4>AI Incident Card</h4>
+                <p>Post-incident disclosure — the <em>"CVE for AI agents"</em>. References every other affected document.</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="specs" class="block block-tinted">
+      <div class="block-inner">
+        <h2>All ten specs</h2>
+        <div class="spec-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Spec</th>
+                <th>What it declares</th>
+                <th>Detect via</th>
+                <th>Well-known path</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="https://github.com/mizcausevic-dev/aeo-protocol-spec">AEO Protocol</a></td>
+                <td>Entity declaration · authoritative claims · citation preferences</td>
+                <td><code>aeo_version</code></td>
+                <td><code>/.well-known/aeo.json</code></td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/mizcausevic-dev/prompt-provenance-spec">Prompt Provenance</a></td>
+                <td>Versioned, lineaged, reviewable LLM prompt records</td>
+                <td><code>provenance_version</code></td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/mizcausevic-dev/agent-cards-spec">Agent Cards</a></td>
+                <td>Declarative agent capability + refusal disclosure</td>
+                <td><code>agent_card_version</code></td>
+                <td><code>/.well-known/agents/&lt;id&gt;.json</code></td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/mizcausevic-dev/ai-evidence-format-spec">AI Evidence Format</a></td>
+                <td>Structured citations for LLM-generated claims</td>
+                <td><code>evidence_version</code></td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/mizcausevic-dev/mcp-tool-card-spec">MCP Tool Cards</a></td>
+                <td>Per-tool disclosure for MCP servers</td>
+                <td><code>tool_card_version</code></td>
+                <td><code>/.well-known/mcp-tools/&lt;name&gt;.json</code></td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/mizcausevic-dev/ai-tutor-card-spec">AI Tutor Cards</a> <span class="tag tag-edu">EdTech</span></td>
+                <td>EdTech vendor-side · pedagogy · FERPA/COPPA/GDPR posture</td>
+                <td><code>tutor_card_version</code></td>
+                <td><code>/.well-known/tutors/&lt;id&gt;.json</code></td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/mizcausevic-dev/student-ai-disclosure-spec">Student AI Disclosure</a> <span class="tag tag-edu">EdTech</span></td>
+                <td>Student-side · roles · prompt evidence · artifact-hash binding</td>
+                <td><code>disclosure_version</code></td>
+                <td>— (travels with artifact)</td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/mizcausevic-dev/classroom-ai-aup-spec">Classroom AI AUP</a> <span class="tag tag-edu">EdTech</span></td>
+                <td>District / school / course AI policy</td>
+                <td><code>aup_version</code></td>
+                <td><code>/.well-known/ai-aup.json</code></td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/mizcausevic-dev/clinical-ai-disclosure-spec">Clinical AI Disclosure</a> <span class="tag tag-health">HealthTech</span></td>
+                <td>HIPAA / FDA / SaMD posture · bias audits · EHR integration</td>
+                <td><code>clinical_ai_card_version</code></td>
+                <td><code>/.well-known/clinical-ai/&lt;id&gt;.json</code></td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/mizcausevic-dev/ai-incident-card-spec">AI Incident Card</a> <span class="tag tag-x">cross-cutting</span></td>
+                <td>"CVE for AI agents" · references every other document</td>
+                <td><code>incident_card_version</code></td>
+                <td><code>/.well-known/ai-incidents/&lt;id&gt;.json</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="tooling" class="block">
+      <div class="block-inner">
+        <h2>Two front doors</h2>
+        <p class="prose">
+          The unified visualizer is the <strong>read-side</strong> (human) entry point. The unified MCP
+          server is the <strong>tool-side</strong> (agent) entry point. Ten specs, two front doors.
+        </p>
+        <div class="grid grid-2">
+          <a class="card-feature card-feature--blue" href="https://mizcausevic-dev.github.io/kinetic-gain-visualizer/" target="_blank" rel="noreferrer">
+            <div class="card-feature-eyebrow">VISUALIZER · web</div>
+            <h3>kinetic-gain-visualizer</h3>
+            <p>Auto-detects the spec from the top-level <code>*_version</code> field and renders the appropriate procurement-grade view. <strong>Eight renderers shipped</strong>; Clinical AI + AI Incident Card landing next.</p>
+            <ul class="card-feature-list">
+              <li><strong>Visualize</strong> — auto-detected procurement-grade UI</li>
+              <li><strong>Editor</strong> — paste any spec document</li>
+              <li><strong>Architecture</strong> — the 10-spec map</li>
+              <li><strong>Tools</strong> — searchable 34-tool MCP catalog</li>
+            </ul>
+            <span class="card-feature-link">Open visualizer →</span>
+          </a>
+          <a class="card-feature card-feature--emerald" href="https://github.com/mizcausevic-dev/mcp-kinetic-gain" target="_blank" rel="noreferrer">
+            <div class="card-feature-eyebrow">MCP SERVER · stdio</div>
+            <h3>mcp-kinetic-gain</h3>
+            <p><strong>34 tools across 8 specs</strong>, v0.4.0, git-tagged. One Claude Desktop / Cursor / MCP-client config entry. The headline tool <code>aup_check_compliance</code> joins an AUP + Student AI Disclosure into a single allow/deny call.</p>
+            <ul class="card-feature-list">
+              <li><strong>61 tests pass</strong> · typecheck clean · build clean</li>
+              <li><strong>v0.5 in queue</strong> — Clinical AI tools + AI Incident Card tools (→ 9 specs / ~42 tools)</li>
+            </ul>
+            <span class="card-feature-link">View on GitHub →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="properties" class="block block-dark">
+      <div class="block-inner">
+        <h2>Four live properties</h2>
+        <p class="prose">
+          Every property is React 19 + TypeScript or hand-written static HTML, AGPL/Apache-2.0,
+          push-to-deploy via GitHub Actions FTPS to Hostinger.
+        </p>
+        <div class="grid grid-2">
+          <a class="card card-dark" href="https://aeo.kineticgain.com" target="_blank" rel="noreferrer">
+            <div class="card-eyebrow">aeo.kineticgain.com</div>
+            <h3>AEO Visualizer</h3>
+            <p>Dedicated visualizer for AEO Protocol declarations. The original Kinetic Gain property.</p>
+            <span class="link">Open ↗</span>
+          </a>
+          <a class="card card-dark" href="https://tutor.kineticgain.com" target="_blank" rel="noreferrer">
+            <div class="card-eyebrow">tutor.kineticgain.com</div>
+            <h3>AI Tutor Cards</h3>
+            <p>EdTech vertical landing — vendor disclosure for AI tutors with FERPA/COPPA/GDPR posture.</p>
+            <span class="link">Open ↗</span>
+          </a>
+          <a class="card card-dark" href="https://clinical.kineticgain.com" target="_blank" rel="noreferrer">
+            <div class="card-eyebrow">clinical.kineticgain.com</div>
+            <h3>Clinical AI Disclosure</h3>
+            <p>HealthTech vertical landing — HIPAA / FDA / SaMD posture, bias audits, EHR integration.</p>
+            <span class="link">Open ↗</span>
+          </a>
+          <a class="card card-dark" href="https://bench.kineticgain.com" target="_blank" rel="noreferrer">
+            <div class="card-eyebrow">bench.kineticgain.com</div>
+            <h3>prompt-injection-bench</h3>
+            <p>Visual harness: paste a JSONL transcript, see pass rates by category and severity. Agent-Card refusal-taxonomy back-references.</p>
+            <span class="link">Open ↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-inner block-narrow">
+        <h2>Author</h2>
+        <p class="prose">
+          <strong>Miz Causevic</strong> — Director / Principal Platform Engineering, Boston, MA. ~30 years across IBM, CyberArk, Alteryx, Digital.ai, Gryphon.ai. The entire suite is authored under <a href="https://github.com/mizcausevic-dev" target="_blank" rel="noreferrer">github.com/mizcausevic-dev</a> in the open. All ten specs are AGPL-3.0 for normative text with unrestricted implementation freedom. Issues and pull requests welcome on any individual spec repo; cross-spec concerns happen on the <a href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite" target="_blank" rel="noreferrer">meta-repo</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <small>© 2026 Miz Causevic · <a href="https://kineticgain.com" target="_blank" rel="noreferrer">kineticgain.com</a> · <a href="https://github.com/mizcausevic-dev" target="_blank" rel="noreferrer">GitHub</a> · <a href="https://www.linkedin.com/in/mirzacausevic/" target="_blank" rel="noreferrer">LinkedIn</a> · <a href="https://medium.com/@mizcausevic/" target="_blank" rel="noreferrer">Medium</a></small>
+      <small class="code">suite.kineticgain.com · Kinetic Gain Protocol Suite</small>
+    </div>
+  </footer>
+</body>
+</html>
