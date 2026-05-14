@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kinetic Gain Protocol Suite — ten open JSON specs for the answer-engine and agent era</title>
-  <meta name="description" content="A family of ten open JSON specifications for AI governance: five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech (Tutor Cards, Student AI Disclosure, Classroom AI AUP), one HealthTech (Clinical AI Disclosure), one cross-cutting (AI Incident Card). One unified MCP server. One unified visualizer. Four live properties." />
+  <meta name="description" content="A family of ten open JSON specifications for AI governance: five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech (Tutor Cards, Student AI Disclosure, Classroom AI AUP), one HealthTech (Clinical AI Disclosure), one cross-cutting (AI Incident Card). One unified MCP server + CLI (mcp-kinetic-gain v0.5.1, 43 tools, on npm). One hosted validator at validator.kineticgain.com. 22 live subdomains." />
   <meta name="theme-color" content="#10b981" />
 
   <meta property="og:type" content="website" />
@@ -229,29 +229,29 @@
       <div class="block-inner">
         <h2>Two front doors</h2>
         <p class="prose">
-          The unified visualizer is the <strong>read-side</strong> (human) entry point. The unified MCP
-          server is the <strong>tool-side</strong> (agent) entry point. Ten specs, two front doors.
+          The hosted validator is the <strong>buyer-side</strong> entry point — paste a vendor's JSON, get a procurement-grade report. The unified MCP server is the <strong>agent-side</strong> entry point — every spec becomes a callable tool. Ten specs, two front doors.
         </p>
         <div class="grid grid-2">
-          <a class="card-feature card-feature--blue" href="https://mizcausevic-dev.github.io/kinetic-gain-visualizer/" target="_blank" rel="noreferrer">
-            <div class="card-feature-eyebrow">VISUALIZER · web</div>
-            <h3>kinetic-gain-visualizer</h3>
-            <p>Auto-detects the spec from the top-level <code>*_version</code> field and renders the appropriate procurement-grade view. <strong>Eight renderers shipped</strong>; Clinical AI + AI Incident Card landing next.</p>
+          <a class="card-feature card-feature--blue" href="https://validator.kineticgain.com/" target="_blank" rel="noreferrer">
+            <div class="card-feature-eyebrow">VALIDATOR · web</div>
+            <h3>validator.kineticgain.com</h3>
+            <p>Paste any Suite JSON in the browser and get a procurement-grade validation report. Auto-detects which of the ten specs the document belongs to via its <code>*_version</code> field, then validates against the canonical JSON Schema 2020-12. Errors surface as inline markers in a Monaco editor with line numbers.</p>
+            <pre style="background: rgba(0,0,0,.4); padding: 10px 14px; border-radius: 8px; margin: 12px 0; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>open https://validator.kineticgain.com</code></pre>
             <ul class="card-feature-list">
-              <li><strong>Visualize</strong> — auto-detected procurement-grade UI</li>
-              <li><strong>Editor</strong> — paste any spec document</li>
-              <li><strong>Architecture</strong> — the 10-spec map</li>
-              <li><strong>Tools</strong> — searchable 34-tool MCP catalog</li>
+              <li><strong>10 schemas bundled</strong> — no network at validation time</li>
+              <li><strong>Inline error markers</strong> with jump-to-line</li>
+              <li><strong>Companion</strong>: full <a href="https://github.com/mizcausevic-dev/kinetic-gain-visualizer" style="color:inherit;">React visualizer</a> with 10 procurement-grade renderers</li>
             </ul>
-            <span class="card-feature-link">Open visualizer →</span>
+            <span class="card-feature-link">Open validator →</span>
           </a>
           <a class="card-feature card-feature--emerald" href="https://github.com/mizcausevic-dev/mcp-kinetic-gain" target="_blank" rel="noreferrer">
             <div class="card-feature-eyebrow">MCP SERVER · stdio</div>
             <h3>mcp-kinetic-gain</h3>
-            <p><strong>34 tools across 8 specs</strong>, v0.4.0, git-tagged. One Claude Desktop / Cursor / MCP-client config entry. The headline tool <code>aup_check_compliance</code> joins an AUP + Student AI Disclosure into a single allow/deny call.</p>
+            <p><strong>43 tools across all 10 specs</strong>, v0.5.1, published on npm with provenance. One Claude Desktop / Cursor / MCP-client config entry. Two headline cross-spec tools: <code>aup_check_compliance</code> (AUP + Student AI Disclosure → allow/deny) and <code>incident_index_fetch</code> (aggregates a vendor's public incident registry). v0.5.1 adds a CLI mode for local validation outside any MCP host.</p>
+            <pre style="background: rgba(0,0,0,.4); padding: 10px 14px; border-radius: 8px; margin: 12px 0; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>npx -y mcp-kinetic-gain validate &lt;files...&gt;</code></pre>
             <ul class="card-feature-list">
-              <li><strong>61 tests pass</strong> · typecheck clean · build clean</li>
-              <li><strong>v0.5 in queue</strong> — Clinical AI tools + AI Incident Card tools (→ 9 specs / ~42 tools)</li>
+              <li><strong>86 tests pass</strong> · typecheck clean · build clean</li>
+              <li>Live on npm: <code>mcp-kinetic-gain</code> · auto-published on tag via GitHub Actions</li>
             </ul>
             <span class="card-feature-link">View on GitHub →</span>
           </a>
@@ -261,10 +261,9 @@
 
     <section id="properties" class="block block-dark">
       <div class="block-inner">
-        <h2>Four live properties</h2>
+        <h2>Featured properties</h2>
         <p class="prose">
-          Every property is React 19 + TypeScript or hand-written static HTML, AGPL/Apache-2.0,
-          push-to-deploy via GitHub Actions FTPS to Hostinger.
+          Four of the <strong>twenty-two live subdomains</strong> under kineticgain.com. Every property is React 19 + TypeScript or hand-written static HTML, MIT/AGPL/Apache-2.0, push-to-deploy via GitHub Actions FTPS to Hostinger. The full constellation is listed at <a href="https://kineticgain.com/#suite" style="color: inherit; text-decoration: underline;">kineticgain.com/#suite</a>.
         </p>
         <div class="grid grid-2">
           <a class="card card-dark" href="https://aeo.kineticgain.com" target="_blank" rel="noreferrer">
@@ -299,7 +298,7 @@
       <div class="block-inner block-narrow">
         <h2>Author</h2>
         <p class="prose">
-          <strong>Miz Causevic</strong> — Director / Principal Platform Engineering, Boston, MA. ~30 years across IBM, CyberArk, Alteryx, Digital.ai, Gryphon.ai. The entire suite is authored under <a href="https://github.com/mizcausevic-dev" target="_blank" rel="noreferrer">github.com/mizcausevic-dev</a> in the open. All ten specs are AGPL-3.0 for normative text with unrestricted implementation freedom. Issues and pull requests welcome on any individual spec repo; cross-spec concerns happen on the <a href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite" target="_blank" rel="noreferrer">meta-repo</a>.
+          <strong>Miz Causevic</strong> — Director / Principal Platform Engineering, Boston, MA. ~30 years across IBM, CyberArk, Alteryx, Digital.ai, Gryphon.ai. The entire suite is authored under <a href="https://github.com/mizcausevic-dev" target="_blank" rel="noreferrer">github.com/mizcausevic-dev</a> in the open. All ten specs are MIT-licensed for maximum implementation freedom; reference implementations like the unified MCP server (<a href="https://github.com/mizcausevic-dev/mcp-kinetic-gain" target="_blank" rel="noreferrer">mcp-kinetic-gain</a>) are AGPL-3.0. Issues and pull requests welcome on any individual spec repo; cross-spec concerns happen on the <a href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite" target="_blank" rel="noreferrer">meta-repo</a>.
         </p>
       </div>
     </section>
