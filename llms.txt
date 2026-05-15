@@ -1,31 +1,40 @@
 # Kinetic Gain Protocol Suite
 
-> Canonical front door for the entire 10-spec open AI governance suite.
+> Canonical front door for the entire 11-spec open AI governance suite + 15-repo implementation stack.
 
-The official landing page for the Kinetic Gain Protocol Suite. 10 open JSON specifications spanning entity declaration, prompt lineage, agent disclosure, citation evidence, tool disclosure, plus an EdTech trio (vendor / district / student), a HealthTech extension, and a cross-cutting incident-disclosure spec. One unified MCP server (34 tools), one unified visualizer (8 renderers), 20 live properties.
+The official landing page for the Kinetic Gain Protocol Suite. **11 open JSON specifications** spanning entity declaration, prompt lineage, agent disclosure, citation evidence, tool disclosure, plus an EdTech trio (vendor / district / student), a HealthTech extension, a cross-cutting vendor-side incident-disclosure spec, and a cross-cutting buyer-side procurement Decision Card. **One unified MCP server (60 tools, v0.6.0), one unified visualizer (11 renderers), 22 live subdomains, plus a 15-repo Suite Implementation Stack** (procurement-decision-api, policy-as-code-engine, audit-stream-py, hash-attestation-rs, aeo-validator-service, aeo-graph-explorer-rs, slo-budget-tracker, reliability-toolkit-rs, feature-flag-rs, request-shadow-rs, data-contract-registry, csv-data-quality-rs, incident-correlation-rs, mcp-reliability-toolkit, mcp-decision-intelligence) with four cross-ecosystem hooks.
 
 ## Identity
 
 - **Subdomain**: [suite.kineticgain.com](https://suite.kineticgain.com/)
 - **Spec repo**: [github.com/mizcausevic-dev/kinetic-gain-protocol-suite](https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite)
-- **Buyer audience**: Recruiters · Investors · Generalist visitors · Procurement reviewers
+- **Buyer audience**: Recruiters · Investors · Generalist visitors · Procurement reviewers · SREs · Data teams · MCP integrators
 - **Category**: Hub — canonical front door
-- **License**: AGPL-3.0 for spec text; Apache-2.0 for the landing site
+- **License**: AGPL-3.0 for spec text; Apache-2.0 for the landing site; MIT for the 15-repo implementation stack
 - **Deployment**: GitHub Actions FTP CI/CD on push to main
 
 ## Pages
 
-- [/](https://suite.kineticgain.com/): Kinetic Gain Protocol Suite — Canonical front door for the entire 10-spec open AI governance suite.
+- [/](https://suite.kineticgain.com/): Kinetic Gain Protocol Suite — Canonical front door for the entire 11-spec open AI governance suite + 15-repo implementation stack.
+- [/docs/nist-rmf-crosswalk.md](https://suite.kineticgain.com/docs/nist-rmf-crosswalk.md): NIST AI RMF crosswalk v0.2 — maps every spec AND the implementation tooling to specific NIST AI RMF subcategories.
 
 ## Part of the Kinetic Gain Protocol Suite
 
-A family of **10 open JSON specifications** for the answer-engine and agent era — five core (AEO, Prompt Provenance, Agent Cards, AI Evidence Format, MCP Tool Cards), a three-spec EdTech trio (Tutor Cards / Student AI Disclosure / Classroom AI AUP), a HealthTech extension (Clinical AI Disclosure), and a cross-cutting Incident Card. **Two regulated verticals covered.**
+A family of **11 open JSON specifications** for the answer-engine and agent era — five core (AEO, Prompt Provenance, Agent Cards, AI Evidence Format, MCP Tool Cards), a three-spec EdTech trio (Tutor Cards / Student AI Disclosure / Classroom AI AUP), a HealthTech extension (Clinical AI Disclosure), a cross-cutting vendor-side Incident Card, and a cross-cutting buyer-side AI Procurement Decision Card. **Two regulated verticals covered. Bilateral (vendor disclosures + buyer decisions).**
 
 - **Front door**: [suite.kineticgain.com](https://suite.kineticgain.com/)
 - **Quickstart hub**: [docs.kineticgain.com](https://docs.kineticgain.com/)
-- **Unified MCP server** (34 tools, 8 specs, v0.4.0): [github.com/mizcausevic-dev/mcp-kinetic-gain](https://github.com/mizcausevic-dev/mcp-kinetic-gain)
-- **Unified visualizer** (8 renderers): [github.com/mizcausevic-dev/kinetic-gain-visualizer](https://github.com/mizcausevic-dev/kinetic-gain-visualizer)
-- **Meta-repo**: [github.com/mizcausevic-dev/kinetic-gain-protocol-suite](https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite)
+- **Unified MCP server** (60 tools across 11 specs + 5 cross-cutting op categories, v0.6.0): [github.com/mizcausevic-dev/mcp-kinetic-gain](https://github.com/mizcausevic-dev/mcp-kinetic-gain)
+- **Unified visualizer** (11 renderers): [github.com/mizcausevic-dev/kinetic-gain-visualizer](https://github.com/mizcausevic-dev/kinetic-gain-visualizer)
+- **Meta-repo + Suite × Implementations catalog**: [github.com/mizcausevic-dev/kinetic-gain-protocol-suite](https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite)
+- **NIST AI RMF crosswalk v0.2**: [suite.kineticgain.com/docs/nist-rmf-crosswalk.md](https://suite.kineticgain.com/docs/nist-rmf-crosswalk.md)
+
+## Implementation Stack (cross-ecosystem hooks)
+
+1. `procurement-decision-api` → Suite docs (Suite × Decision Intelligence bridge)
+2. `policy-as-code-engine` → `procurement-decision-api` (Decision Card → runtime PolicyBundle)
+3. `data-contract-registry` → `procurement-decision-api` (Decision Card → contract Owner extraction)
+4. `csv-data-quality-rs` → `data-contract-registry` (streaming CSV validator)
 
 ## Author
 

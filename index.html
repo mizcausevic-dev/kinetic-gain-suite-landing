@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kinetic Gain Protocol Suite — eleven open JSON specs for the answer-engine and agent era</title>
-  <meta name="description" content="A family of eleven open JSON specifications for AI governance: five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech (Tutor Cards, Student AI Disclosure, Classroom AI AUP), one HealthTech (Clinical AI Disclosure), two cross-cutting (AI Incident Card + AI Procurement Decision Card). One unified MCP server + CLI (mcp-kinetic-gain v0.5.2, 47 tools, on npm). One hosted validator at validator.kineticgain.com. 22 live subdomains." />
+  <meta name="description" content="A family of eleven open JSON specifications for AI governance: five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech (Tutor Cards, Student AI Disclosure, Classroom AI AUP), one HealthTech (Clinical AI Disclosure), two cross-cutting (AI Incident Card + AI Procurement Decision Card). One unified MCP server + CLI (mcp-kinetic-gain v0.6.0, 60 tools, on npm). 15-repo implementation stack: procurement-decision-api, policy-as-code-engine, audit-stream-py, hash-attestation-rs, and more. 22 live subdomains." />
   <meta name="theme-color" content="#10b981" />
 
   <meta property="og:type" content="website" />
@@ -32,6 +32,7 @@
         <a href="#map">Map</a>
         <a href="#specs">Specs</a>
         <a href="#tooling">Tooling</a>
+        <a href="#implementations">Implementations</a>
         <a href="#nist">NIST</a>
         <a href="#properties">Live</a>
         <a class="cta" href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite" target="_blank" rel="noreferrer">GitHub ↗</a>
@@ -57,8 +58,8 @@
         </div>
         <div class="stats">
           <div class="stat"><span class="stat-num">11</span><span class="stat-label">Open specs</span></div>
-          <div class="stat"><span class="stat-num">47</span><span class="stat-label">MCP tools</span></div>
-          <div class="stat"><span class="stat-num">2</span><span class="stat-label">Regulated verticals</span></div>
+          <div class="stat"><span class="stat-num">60</span><span class="stat-label">MCP tools</span></div>
+          <div class="stat"><span class="stat-num">15</span><span class="stat-label">Implementation repos</span></div>
           <div class="stat"><span class="stat-num">22</span><span class="stat-label">Live subdomains</span></div>
         </div>
       </div>
@@ -240,7 +241,7 @@
       <div class="block-inner">
         <h2>Two front doors</h2>
         <p class="prose">
-          The hosted validator is the <strong>buyer-side</strong> entry point — paste a vendor's JSON, get a procurement-grade report. The unified MCP server is the <strong>agent-side</strong> entry point — every spec becomes a callable tool. Ten specs, two front doors.
+          The hosted validator is the <strong>buyer-side</strong> entry point — paste a vendor's JSON, get a procurement-grade report. The unified MCP server is the <strong>agent-side</strong> entry point — every spec becomes a callable tool. Eleven specs, two front doors.
         </p>
         <div class="grid grid-2">
           <a class="card-feature card-feature--blue" href="https://validator.kineticgain.com/" target="_blank" rel="noreferrer">
@@ -258,11 +259,12 @@
           <a class="card-feature card-feature--emerald" href="https://github.com/mizcausevic-dev/mcp-kinetic-gain" target="_blank" rel="noreferrer">
             <div class="card-feature-eyebrow">MCP SERVER · stdio</div>
             <h3>mcp-kinetic-gain</h3>
-            <p><strong>47 tools across all 11 specs</strong>, v0.5.2, published on npm with provenance. One Claude Desktop / Cursor / MCP-client config entry. Two headline cross-spec tools: <code>aup_check_compliance</code> (AUP + Student AI Disclosure → allow/deny) and <code>incident_index_fetch</code> (aggregates a vendor's public incident registry). v0.5.2 adds AI Procurement Decision Card support (buyer-side artifact) on top of v0.5.1's CLI mode.</p>
+            <p><strong>60 tools across all 11 specs + 5 cross-cutting operation categories</strong>, v0.6.0, published on npm with provenance. One Claude Desktop / Cursor / MCP-client config entry. Headline cross-spec tools: <code>aup_check_compliance</code> (AUP + Student AI Disclosure → allow/deny), <code>decision_card_to_policy_bundle</code> (Decision Card → runtime PolicyBundle preview), <code>attestation_verify</code> (ed25519 signatures over canonical hashes), <code>audit_chain_verify</code> (walks a hash-chained governance event log), <code>suite_doc_drift</code> (structural diff between two doc versions). v0.6.0 adds 13 implementation-tooling preview tools that wrap the 15-repo implementation stack at preview scale — read-only, deterministic, no HTTP round trip.</p>
             <pre style="background: rgba(0,0,0,.4); padding: 10px 14px; border-radius: 8px; margin: 12px 0; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>npx -y mcp-kinetic-gain validate &lt;files...&gt;</code></pre>
             <ul class="card-feature-list">
-              <li><strong>96 tests pass</strong> · typecheck clean · build clean</li>
+              <li><strong>126 tests pass</strong> · typecheck clean · build clean</li>
               <li>Live on npm: <code>mcp-kinetic-gain</code> · auto-published on tag via GitHub Actions</li>
+              <li>Sibling MCP servers: <code>mcp-reliability-toolkit</code> · <code>mcp-decision-intelligence</code></li>
             </ul>
             <span class="card-feature-link">View on GitHub →</span>
           </a>
@@ -270,11 +272,67 @@
       </div>
     </section>
 
+    <section id="implementations" class="block block-tinted">
+      <div class="block-inner">
+        <h2>Suite × Implementations — the 15-repo stack</h2>
+        <p class="prose">
+          The Suite is a set of specs. <strong>The implementation stack is the software that consumes them.</strong> Fifteen open-source repos across Tiers A–E, all CI-green, semver-tagged at v0.1.0, MIT-licensed. Four cross-ecosystem hooks chain them into one composable system: procurement-decision-api drafts Decision Cards from Suite docs → policy-as-code-engine turns conditions into runtime gates → data-contract-registry extracts owners from the same Decision Card → csv-data-quality-rs validates produced CSVs against the contract.
+        </p>
+        <div class="grid grid-2">
+          <a class="card-feature card-feature--blue" href="https://github.com/mizcausevic-dev/procurement-decision-api" target="_blank" rel="noreferrer">
+            <div class="card-feature-eyebrow">DECISION INTELLIGENCE · Python</div>
+            <h3>procurement-decision-api</h3>
+            <p>FastAPI service that drafts AI Procurement Decision Cards from a buyer rubric and a set of vendor Suite documents (AEO + agent-card + tool-card + ai-evidence + …). <strong>The first cross-ecosystem bridge in the portfolio</strong> — Suite × Decision Intelligence.</p>
+            <ul class="card-feature-list">
+              <li>Companions: <code>policy-as-code-engine</code> (runtime enforcement) · <code>data-contract-registry</code> (owner extraction)</li>
+              <li>NIST RMF: GOVERN 5.1, MAP 3.1, MEASURE 2.5, MANAGE 1.2 (Full)</li>
+            </ul>
+            <span class="card-feature-link">View on GitHub →</span>
+          </a>
+          <a class="card-feature card-feature--emerald" href="https://github.com/mizcausevic-dev/audit-stream-py" target="_blank" rel="noreferrer">
+            <div class="card-feature-eyebrow">GOVERNANCE EVENT STREAM · Python · SSE</div>
+            <h3>audit-stream-py</h3>
+            <p>Append-only governance event stream for the whole portfolio. Hash-chained for tamper-evidence; Server-Sent Events for live tailing; REST for queries. <strong>Every other portfolio repo is a producer</strong> — decision_card_drafted, policy_bundle_registered, watch_drifted, attestation_verified, contract_promoted, incident_filed.</p>
+            <ul class="card-feature-list">
+              <li>18 event kinds across 8 producer repos · GET /verify walks the chain end-to-end</li>
+              <li>Platform Reliability Stack repo #10 — the 10+ target hit</li>
+            </ul>
+            <span class="card-feature-link">View on GitHub →</span>
+          </a>
+        </div>
+        <div class="grid grid-2" style="margin-top: 20px;">
+          <a class="card-feature card-feature--blue" href="https://github.com/mizcausevic-dev/aeo-graph-explorer-rs" target="_blank" rel="noreferrer">
+            <div class="card-feature-eyebrow">AEO REFERENCE STACK LAYER 5 · Rust</div>
+            <h3>aeo-graph-explorer-rs</h3>
+            <p>HTTP graph-query service over <code>aeo-crawler</code> JSON-Lines output. axum + petgraph, atomic <code>POST /ingest</code>, exposes <code>/nodes</code> · <code>/neighbors</code> · <code>/shortest-path</code> · <code>/find-by-claim</code>. <strong>The fifth layer of the AEO Reference Stack — 3→5 layers gap closed.</strong></p>
+            <ul class="card-feature-list">
+              <li>SDKs → CLI → Crawler → Validator service → Graph explorer</li>
+              <li>Companion: <code>aeo-validator-service</code> (drift detection across watches)</li>
+            </ul>
+            <span class="card-feature-link">View on GitHub →</span>
+          </a>
+          <a class="card-feature card-feature--emerald" href="https://github.com/mizcausevic-dev/hash-attestation-rs" target="_blank" rel="noreferrer">
+            <div class="card-feature-eyebrow">SUITE PRIMITIVE · Rust · ed25519</div>
+            <h3>hash-attestation-rs</h3>
+            <p>Sign + verify Suite documents with ed25519 over the same canonical-hash convention every other Suite repo uses. <strong>The missing "this AEO actually came from the vendor" layer.</strong> Vendors sign, publish a well-known public key URL, consumers verify before they trust the document.</p>
+            <ul class="card-feature-list">
+              <li>Composes with <code>aeo-validator-service</code> (tamper events) and <code>procurement-decision-api</code> (signed Decision Cards)</li>
+              <li>NIST RMF: MAP 2.2 (provenance), MEASURE 2.8 (transparency)</li>
+            </ul>
+            <span class="card-feature-link">View on GitHub →</span>
+          </a>
+        </div>
+        <p class="prose" style="margin-top: 24px;">
+          Full catalog of all 15 repos — grouped by buyer (procurement reviewer · AEO consumer · data team · SRE · MCP integrator) — is in the <a href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite#-suite--implementations">Suite × Implementations</a> section of the meta-repo README.
+        </p>
+      </div>
+    </section>
+
     <section id="nist" class="block">
       <div class="block-inner">
         <h2>NIST AI RMF crosswalk</h2>
         <p class="prose">
-          Federal and enterprise procurement teams operating under <a href="https://www.whitehouse.gov/wp-content/uploads/2024/03/M-24-10-Advancing-Governance-Innovation-and-Risk-Management-for-Agency-Use-of-Artificial-Intelligence.pdf" target="_blank" rel="noreferrer">OMB Memorandum M-24-10</a> can use this crosswalk to map every Suite spec to specific <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noreferrer">NIST AI RMF</a> subcategories. The <strong>AI Procurement Decision Card</strong> (spec #11) is the natural carrier for RMF-aligned procurement outcomes — its <code>criteria.rubric</code> field can record per-subcategory pass / partial / fail results for any vendor review.
+          Federal and enterprise procurement teams operating under <a href="https://www.whitehouse.gov/wp-content/uploads/2024/03/M-24-10-Advancing-Governance-Innovation-and-Risk-Management-for-Agency-Use-of-Artificial-Intelligence.pdf" target="_blank" rel="noreferrer">OMB Memorandum M-24-10</a> can use this crosswalk to map every Suite spec — <strong>and the 15-repo implementation stack</strong> — to specific <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noreferrer">NIST AI RMF</a> subcategories. The <strong>AI Procurement Decision Card</strong> (spec #11) is the natural carrier for RMF-aligned procurement outcomes — its <code>criteria.rubric</code> field can record per-subcategory pass / partial / fail results for any vendor review. <strong>Crosswalk v0.2</strong> (2026-05-15) adds Section 7 mapping the implementation tooling to NIST subcategories it actively operationalizes — <code>policy-as-code-engine</code> converts MANAGE 1.3 from policy text to runtime gate; <code>audit-stream-py</code> closes the GOVERN 1.5 record-keeping leg; <code>aeo-validator-service</code> + <code>slo-budget-tracker</code> close MEASURE 3.1 continuous-monitoring.
         </p>
         <div class="hero-cta" style="margin-top: 24px;">
           <a class="btn btn-primary" href="https://github.com/mizcausevic-dev/kinetic-gain-suite-landing/blob/main/docs/nist-rmf-crosswalk.md" target="_blank" rel="noreferrer">Read the crosswalk →</a>
