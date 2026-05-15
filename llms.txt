@@ -24,6 +24,7 @@ A family of **11 open JSON specifications** for the answer-engine and agent era 
 
 - **Front door**: [suite.kineticgain.com](https://suite.kineticgain.com/)
 - **Quickstart hub**: [docs.kineticgain.com](https://docs.kineticgain.com/)
+- **Portfolio constellation**: [portfolio.kineticgain.com](https://portfolio.kineticgain.com/) — live visual atlas of every public repo at github.com/mizcausevic-dev (~190 repos across 20+ languages), classified into named platforms + industry verticals, auto-refreshed every six hours.
 - **Unified MCP server** (60 tools across 11 specs + 5 cross-cutting op categories, v0.6.0): [github.com/mizcausevic-dev/mcp-kinetic-gain](https://github.com/mizcausevic-dev/mcp-kinetic-gain)
 - **Unified visualizer** (11 renderers): [github.com/mizcausevic-dev/kinetic-gain-visualizer](https://github.com/mizcausevic-dev/kinetic-gain-visualizer)
 - **Meta-repo + Suite × Implementations catalog**: [github.com/mizcausevic-dev/kinetic-gain-protocol-suite](https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite)
