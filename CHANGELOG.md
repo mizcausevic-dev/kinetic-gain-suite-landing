@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented here.
 
+## [1.1.1] - 2026-05-15
+
+### Fixed
+- Audit-stream fan-in diagram updated to reflect actual wired event kinds (the earlier 1.1.0 labels were aspirational and didn't match the code in some places — `procurement-decision-api` only emits `decision_card_drafted`, not three kinds; `aeo-validator-service` emits `watch_created` / `watch_drifted` / `watch_validity_flipped`, not `aeo_validation_*`).
+- Producer count corrected to **seven** (added `hash-attestation` and `aeo-graph-explorer` which were already in the implementation stack but missing from the fan-in diagram). Event-kind count now 17.
+- `<meta description>`, `llms.txt`, and the fan-in caption all updated to match.
+
 ## [1.1.0] - 2026-05-15
 
 ### Added

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kinetic Gain Protocol Suite — eleven open JSON specs for the answer-engine and agent era</title>
-  <meta name="description" content="A family of eleven open JSON specifications for AI governance: five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech (Tutor Cards, Student AI Disclosure, Classroom AI AUP), one HealthTech (Clinical AI Disclosure), two cross-cutting (AI Incident Card + AI Procurement Decision Card). One unified MCP server + CLI (mcp-kinetic-gain v0.6.0, 60 tools, on npm). 15-repo implementation stack with a shared audit-stream spine — 13 governance event kinds across 5 producers (Python + Rust) feeding one hash-chained, tamper-evident log. 22 live subdomains." />
+  <meta name="description" content="A family of eleven open JSON specifications for AI governance: five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech (Tutor Cards, Student AI Disclosure, Classroom AI AUP), one HealthTech (Clinical AI Disclosure), two cross-cutting (AI Incident Card + AI Procurement Decision Card). One unified MCP server + CLI (mcp-kinetic-gain v0.6.0, 60 tools, on npm). 15-repo implementation stack with a shared audit-stream spine — 17 governance event kinds across 7 producers (Python + Rust) feeding one hash-chained, tamper-evident log. 22 live subdomains." />
   <meta name="theme-color" content="#10b981" />
 
   <meta property="og:type" content="website" />
@@ -331,18 +331,20 @@
 
     <section id="audit-stream" class="block">
       <div class="block-inner">
-        <h2>The audit-stream spine — one log, five producers, two ecosystems</h2>
+        <h2>The audit-stream spine — one log, seven producers, two ecosystems</h2>
         <p class="prose">
-          Every governance moment in the portfolio writes to the same hash-chained log. Decision Cards drafted, AEO docs validated, policy bundles deployed, requests denied at runtime, data contracts broken in CI, incidents correlated to remediation plans — <strong>one tamper-evident narrative</strong> an auditor can replay end-to-end. Producers fail safely: if <code>audit-stream-py</code> is down, governance still happens, the event is just logged to stderr instead of the chain. Same opt-in env-var contract (<code>AUDIT_STREAM_URL</code>) across all five.
+          Every governance moment in the portfolio writes to the same hash-chained log. Decision Cards drafted, AEO watches drifted, policy bundles deployed, requests denied at runtime, data contracts broken in CI, signatures verified or tampered, AEO graphs ingested, incidents correlated to remediation plans — <strong>one tamper-evident narrative</strong> an auditor can replay end-to-end. Producers fail safely: if <code>audit-stream-py</code> is down, governance still happens, the event is just logged to stderr instead of the chain. Same opt-in env-var contract (<code>AUDIT_STREAM_URL</code>) across all seven.
         </p>
         <div class="mermaid-frame">
           <pre class="mermaid">
 flowchart LR
-    PDA["procurement-decision-api<br/>Python · FastAPI"] -->|"decision_card_drafted<br/>decision_card_published<br/>decision_card_revoked"| AS
-    AVS["aeo-validator-service<br/>Python · FastAPI"] -->|"aeo_validation_passed<br/>aeo_validation_failed"| AS
+    PDA["procurement-decision-api<br/>Python · FastAPI"] -->|"decision_card_drafted"| AS
+    AVS["aeo-validator-service<br/>Python · FastAPI"] -->|"watch_created<br/>watch_drifted<br/>watch_validity_flipped"| AS
     PCE["policy-as-code-engine<br/>Python · FastAPI"] -->|"policy_bundle_registered<br/>request_allowed<br/>request_denied"| AS
     DCR["data-contract-registry<br/>Python · FastAPI"] -->|"contract_promoted<br/>contract_deprecated<br/>contract_compatibility_failed"| AS
-    ICR["incident-correlation<br/>Rust · library"] -->|"incident_correlated"| AS
+    HA["hash-attestation<br/>Rust · crypto library"] -->|"attestation_signed<br/>attestation_verified<br/>attestation_failed"| AS
+    ICR["incident-correlation<br/>Rust · graph library"] -->|"incident_correlated<br/>incident_correlation_failed"| AS
+    AGE["aeo-graph-explorer<br/>Rust · axum service"] -->|"graph_ingested<br/>graph_ingest_failed"| AS
 
     AS{{"audit-stream-py<br/>hash-chained · tamper-evident<br/>SSE live tail · REST query · GET /verify"}}
 
@@ -353,13 +355,13 @@ flowchart LR
     classDef producer fill:#0b3b3a,stroke:#10b981,color:#e6fffa,stroke-width:1.5px;
     classDef spine fill:#10b981,stroke:#34d399,color:#022c22,stroke-width:2px;
     classDef consumer fill:#1e293b,stroke:#475569,color:#cbd5e1,stroke-width:1px;
-    class PDA,AVS,PCE,DCR,ICR producer;
+    class PDA,AVS,PCE,DCR,HA,ICR,AGE producer;
     class AS spine;
     class CON1,CON2,CON3 consumer;
           </pre>
         </div>
         <p class="prose" style="margin-top: 24px;">
-          <strong>13 event kinds across 5 producers</strong>, all funneling into one verifiable chain. The Rust producer ships behind a Cargo feature (<code>--features audit-stream</code>) so the graph crate stays sync and HTTP-free for consumers who don't need it. Adding a sixth producer is a 30-line module: copy the pattern, pick your event kinds, point at <code>AUDIT_STREAM_URL</code>.
+          <strong>17 event kinds across 7 producers</strong>, all funneling into one verifiable chain. The Rust libraries ship behind a Cargo feature (<code>--features audit-stream</code>) so consumers who don't need emission can strip out the HTTP dep. Adding an eighth producer is a 60-line module: copy the pattern, pick your event kinds, point at <code>AUDIT_STREAM_URL</code>.
         </p>
       </div>
     </section>
