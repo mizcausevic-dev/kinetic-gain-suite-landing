@@ -1,6 +1,6 @@
 # Kinetic Gain Protocol Suite × NIST AI Risk Management Framework — Crosswalk
 
-> Document version **0.1** · published 2026-05-14 · MIT-licensed
+> Document version **0.2** · published 2026-05-14 · updated 2026-05-15 with implementation-tooling alignment (new section 7) · MIT-licensed
 
 This document maps each of the eleven [Kinetic Gain Protocol Suite](https://suite.kineticgain.com/) specifications to the corresponding NIST AI Risk Management Framework (AI RMF 1.0) functions, categories, and subcategories. It is intended for federal/enterprise procurement teams, vendor compliance leads, and AI auditors who need a concrete, document-level answer to *"which RMF controls does this set of vendor declarations actually address?"*
 
@@ -19,8 +19,9 @@ The crosswalk is honest about gaps. Many RMF subcategories cover **operational p
 - For each of the four NIST AI RMF functions (**GOVERN**, **MAP**, **MEASURE**, **MANAGE**), which Kinetic Gain Suite specs publish the relevant evidence.
 - For each of the eleven Suite specs, which NIST subcategories it satisfies in whole or in part.
 - A concrete recommendation for using the **AI Procurement Decision Card** (spec #11) to record RMF-aligned procurement outcomes in machine-readable form.
+- **(Section 7, new in v0.2)** Which NIST subcategories the **fifteen-repo implementation stack** actively *operationalizes* — converting Suite disclosure into runtime enforcement, drift detection, tamper-evident audit trail, and mechanical remediation planning. Several Section-4 "Partial" cells move closer to "Full" when the implementation stack is deployed alongside the specs.
 
-**Coverage at a glance:**
+**Coverage at a glance — specs only (sections 4–6):**
 
 | NIST function | Subcategories the Suite addresses (full or partial) | Suite specs involved |
 |---|---|---|
@@ -29,7 +30,16 @@ The crosswalk is honest about gaps. Many RMF subcategories cover **operational p
 | MEASURE | 6+ | AI Evidence, Clinical AI Card, Prompt Provenance, Incident Card |
 | MANAGE | 7+ | Incident Card, Decision Card, Agent Card, Classroom AUP |
 
-The Suite is strongest at GOVERN and MAP (disclosure-heavy functions), reasonable at MEASURE (where it provides artifact carriers for test results), and explicitly limited at MANAGE (which requires operational tooling beyond static documents). Specific gaps are itemized in section 5.
+**Coverage at a glance — with the implementation stack (section 7):**
+
+| NIST function | Additional subcategories operationalized by deployed tooling | Headline implementation repos |
+|---|---|---|
+| GOVERN | 1.5 (record-keeping via audit-stream), 6.2 (transparency via MCP servers) | `audit-stream-py`, `mcp-*` servers |
+| MAP | 4.1 (graph-based risk mapping) | `aeo-graph-explorer-rs`, `incident-correlation-rs` |
+| MEASURE | 1.1 (mechanical contract validation), 2.3 (production diff), 3.1 (continuous drift detection) | `csv-data-quality-rs`, `request-shadow-rs`, `aeo-validator-service`, `slo-budget-tracker` |
+| MANAGE | 1.3 (runtime enforcement, not just policy text), 2.3 (mechanical remediation planning) | `policy-as-code-engine`, `incident-correlation-rs`, `feature-flag-rs` |
+
+The Suite is strongest at GOVERN and MAP (disclosure-heavy functions), reasonable at MEASURE (where it provides artifact carriers for test results), and explicitly limited at MANAGE (which requires operational tooling beyond static documents). **The implementation stack reduces the MEASURE and MANAGE gaps materially.** Section 7 quantifies which "Partial" cells move closer to "Full" when the stack is deployed; section 8 itemizes the gaps that remain regardless.
 
 ---
 
@@ -242,7 +252,76 @@ The Decision Card's standard fields (`buyer`, `subject.documents_reviewed`, `cri
 
 ---
 
-## 7. Gaps and explicit limitations
+## 7. Implementation tooling: from disclosure to enforcement
+
+The crosswalk above (sections 4–6) treats the Suite as a pure disclosure layer. That's the right framing for the *specs*. But the Kinetic Gain implementation stack — **fifteen open-source repos that consume Suite documents** — converts a number of "Partial" cells in the spec-side crosswalk into operational practice. This section maps those repos to the NIST subcategories they actively address at runtime.
+
+All fifteen implementation repos are MIT-licensed, semver-tagged at v0.1.0, with CI-green test suites. They compose: every repo reads or writes Suite documents, and four explicit **cross-ecosystem hooks** chain them together.
+
+### 7.1 The implementation stack
+
+| Repo | Lang | Role |
+|---|---|---|
+| [`procurement-decision-api`](https://github.com/mizcausevic-dev/procurement-decision-api) | Python · FastAPI | Drafts Decision Cards from buyer rubric + vendor Suite docs. |
+| [`policy-as-code-engine`](https://github.com/mizcausevic-dev/policy-as-code-engine) | Python · FastAPI | Runtime gate; converts Decision Card conditions into deny-by-default rules. |
+| [`audit-stream-py`](https://github.com/mizcausevic-dev/audit-stream-py) | Python · FastAPI · SSE | Append-only governance event stream, hash-chained for tamper-evidence. |
+| [`hash-attestation-rs`](https://github.com/mizcausevic-dev/hash-attestation-rs) | Rust · ed25519 | Sign + verify Suite documents over the canonical-hash convention. |
+| [`aeo-validator-service`](https://github.com/mizcausevic-dev/aeo-validator-service) | Python · FastAPI | Always-on validator with content-hash drift tracking. |
+| [`aeo-graph-explorer-rs`](https://github.com/mizcausevic-dev/aeo-graph-explorer-rs) | Rust · axum · petgraph | HTTP graph-query service over AEO crawls. |
+| [`incident-correlation-rs`](https://github.com/mizcausevic-dev/incident-correlation-rs) | Rust · petgraph | Walks the Suite graph from an Incident Card to a remediation plan. |
+| [`data-contract-registry`](https://github.com/mizcausevic-dev/data-contract-registry) | Python · FastAPI | Schema registry with semver + compatibility checks. |
+| [`csv-data-quality-rs`](https://github.com/mizcausevic-dev/csv-data-quality-rs) | Rust · tokio · csv | Streaming CSV validator against a registered contract. |
+| [`slo-budget-tracker`](https://github.com/mizcausevic-dev/slo-budget-tracker) | Python · Prometheus | SLO + error-budget with multi-window burn-rate alerts. |
+| [`reliability-toolkit-rs`](https://github.com/mizcausevic-dev/reliability-toolkit-rs) | Rust · Tokio | Rate limiter · circuit breaker · retry · bulkhead. |
+| [`feature-flag-rs`](https://github.com/mizcausevic-dev/feature-flag-rs) | Rust · Tokio | Server-side flags with sticky percentage rollouts. |
+| [`request-shadow-rs`](https://github.com/mizcausevic-dev/request-shadow-rs) | Rust · Tokio | Async request mirroring with structured divergence diff. |
+| [`mcp-kinetic-gain`](https://github.com/mizcausevic-dev/mcp-kinetic-gain) · [`mcp-reliability-toolkit`](https://github.com/mizcausevic-dev/mcp-reliability-toolkit) · [`mcp-decision-intelligence`](https://github.com/mizcausevic-dev/mcp-decision-intelligence) | TypeScript · MCP SDK | Three Claude-callable surfaces for Suite, reliability, and decision intelligence. |
+
+### 7.2 Implementation repo × NIST subcategory
+
+| Implementation | Operationalizes | What it adds beyond the disclosure layer |
+|---|---|---|
+| **procurement-decision-api** | GOVERN 5.1, MAP 3.1, MAP 5.2, MEASURE 2.5, MANAGE 1.2 | The service that *produces* the Decision Card. Inputs: buyer rubric + vendor Suite docs. Output: a signed determination. Closes the per-review portion of GOVERN 5.1 and MANAGE 1.2. |
+| **policy-as-code-engine** | MANAGE 1.3 (runtime), MANAGE 3.2 | Headline: `POST /bundles/from-decision-card` turns every Decision Card `condition` into a deny-by-default runtime gate. Converts MANAGE 1.3 from "we wrote down the conditions" to "every request validates them." |
+| **audit-stream-py** | GOVERN 1.5 (record-keeping), MEASURE 3.1 | Append-only, hash-chained event stream. Records every Decision Card draft, policy denial, contract promotion, watch drift, incident filing. The audit-trail leg of GOVERN that pure-disclosure documents can't reach. |
+| **hash-attestation-rs** | MAP 2.2, MEASURE 2.8 | ed25519 signatures over the canonical hash of any Suite document. The "this AEO actually came from the vendor" layer. Tightens MAP 2.2's "knowledge limits and assumptions" with *non-repudiable* identity of who claimed what. |
+| **aeo-validator-service** | MEASURE 3.1, MANAGE 3.1 | Always-on validator with content-hash drift tracking. When a vendor's published AEO / agent-card / tool-card changes, the service emits a structured `DriftReport`. The continuous-monitoring piece MEASURE 3.1 calls for and the disclosure layer doesn't carry. |
+| **aeo-graph-explorer-rs** | MAP 1.2, MAP 4.1 | HTTP graph-query service over the AEO crawl. `GET /shortest-path?from=&to=` lets auditors answer "does a citation chain connect entity X to entity Y?" without re-walking the graph. Cross-org dependency mapping in seconds. |
+| **incident-correlation-rs** | MAP 4.1, MANAGE 2.3, MANAGE 3.1 | Walks the Suite graph from an `IncidentCard` and emits a structured remediation plan: which agent-cards depend on the affected tool, which Decision Cards approved the affected vendor, which AEO entities reference the affected entity. Makes MANAGE 2.3 ("respond to and recover from previously unknown risks") mechanical. |
+| **data-contract-registry** | GOVERN 1.4, MAP 1.2 | Data-side analog of the Suite's governance model. Semver-versioned contracts, backward/forward compatibility checks, declared owners. Cross-ecosystem hook to `procurement-decision-api`: owners extracted from Decision Card's `buyer` + `decision_maker`. |
+| **csv-data-quality-rs** | MEASURE 1.1, MEASURE 2.3 | Streaming CSV validator against a registered contract. Producers prove their output matches the contract — mechanical proof, not "we wrote a test." |
+| **slo-budget-tracker** | MEASURE 3.1, MANAGE 3.1 | SLO + error-budget library with multi-window burn-rate alerts. Pair with Incident Card filing to detect emerging deployment risks before they cross MANAGE 2.3's "previously unknown" threshold. |
+| **reliability-toolkit-rs** | MEASURE 2.7 (security/resilience) | Rate limiter + circuit breaker + retry + bulkhead in Rust async. Operational resilience primitives. |
+| **feature-flag-rs** | MANAGE 1.3 (staged rollout) | Sticky percentage rollouts (SHA-256 bucketing, no RNG). Per-rule rollout control supports MANAGE 1.3's "conditions of use" with concrete flag semantics. |
+| **request-shadow-rs** | MEASURE 2.3 | Async request mirroring + structured response diff. Production performance comparison against a candidate — direct evidence for MEASURE 2.3's "measured against specified objectives." |
+| **mcp-\* servers** | GOVERN 6.2 (transparency) | Three Claude-callable surfaces making Suite operations and reliability math observable to LLM-driven assistants. |
+
+### 7.3 Which Section-4 "Partial" cells get reduced when the implementation stack is deployed
+
+| Subcategory | Spec-layer coverage (Section 4) | Adds when implementation deployed |
+|---|---|---|
+| **GOVERN 5.1** — continuous policy review | Partial (Decision Card `effective_until` forces re-review) | **Closer to Full** via `procurement-decision-api` (scheduled review workflow) + `audit-stream-py` (re-review event records). |
+| **MEASURE 3.1** — deployment monitoring | Partial (Incident Card carries monitoring outcomes only) | **Closer to Full** via `aeo-validator-service` (continuous drift detection) + `slo-budget-tracker` (SLO-based monitoring). |
+| **MANAGE 1.3** — plan responses to risks | Full at the spec layer (Decision Card carries conditions) | **Full + enforced** via `policy-as-code-engine`. Conditions stop being aspirational text; they become deny-by-default gates. |
+| **MANAGE 2.3** — respond to / recover from previously unknown risks | Partial (Incident Card records post-hoc response) | **Closer to Full** via `incident-correlation-rs` (mechanical remediation planning) + `audit-stream-py` (response timeline as a tamper-evident record). |
+| **MANAGE 3.1** — risk + benefit monitoring | Partial (vendor incident registry only) | **Closer to Full** with `audit-stream-py` as the buyer-side tamper-evident registry alongside vendor disclosures. |
+
+The Suite remains a **disclosure** framework; the implementation stack adds the operational tooling that procurement, compliance, and SRE teams would otherwise have to build themselves. **The two layers compose** — every implementation repo reads or writes Suite documents — but they're independently deployable.
+
+### 7.4 What the implementation stack still doesn't address
+
+Honest about gaps. No implementation repo claims to address these:
+
+- **GOVERN 3.2** (AI risk management training) — workforce program, not software.
+- **GOVERN 3.x** broadly (workforce diversity, accessible AI literacy) — operational.
+- **MANAGE 2.1** (resource allocation to prioritized risks) — the audit stream records *what happened*, but doesn't allocate budget.
+- **MANAGE 4.x** (continuous improvement loops) — scheduled re-review (Decision Card `effective_until` + audit-stream notifications) gets close, but the actual *improvement practice* is organizational.
+
+Section 8 below covers these gaps in detail.
+
+---
+
+## 8. Gaps and explicit limitations
 
 We are honest about what this crosswalk does **not** address. Buyers should not treat Suite-compliance as RMF-compliance.
 
@@ -282,7 +361,7 @@ The 4 GAI risks not represented above (CBRN, dangerous content, environmental, o
 
 ---
 
-## 8. How to use this crosswalk in procurement workflows
+## 9. How to use this crosswalk in procurement workflows
 
 ### For federal procurement teams (OMB M-24-10-aligned)
 
@@ -311,9 +390,9 @@ The 4 GAI risks not represented above (CBRN, dangerous content, environmental, o
 
 ---
 
-## 9. Versioning, feedback, and updates
+## 10. Versioning, feedback, and updates
 
-- **This document is v0.1**, dated 2026-05-14.
+- **This document is v0.2**, dated 2026-05-15 (was v0.1 / 2026-05-14; v0.2 adds Section 7 covering the fifteen-repo implementation stack).
 - **License**: MIT.
 - **Repository**: [kinetic-gain-suite-landing/docs/nist-rmf-crosswalk.md](https://github.com/mizcausevic-dev/kinetic-gain-suite-landing/blob/main/docs/nist-rmf-crosswalk.md)
 - **Issues / contributions**: Open issues against the [kinetic-gain-protocol-suite meta-repo](https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite) tagged `nist-rmf`.
@@ -322,7 +401,9 @@ When NIST publishes AI RMF 1.1 or a new Generative AI Profile revision, this cro
 
 ---
 
-## Appendix A: Quick-reference table
+## Appendix A: Quick-reference tables
+
+### A.1 Spec × NIST subcategory
 
 | Spec | GOVERN | MAP | MEASURE | MANAGE |
 |---|---|---|---|---|
@@ -339,6 +420,29 @@ When NIST publishes AI RMF 1.1 or a new Generative AI Profile revision, this cro
 | **AI Procurement Decision Card** | 1.2, 2.1, 5.1 | 3.1, 5.2 | — | **1.2, 1.3**, 2.3, 3.2 |
 
 Bold = "Full" coverage. Others = "Partial" or "Adjacent".
+
+### A.2 Implementation repo × NIST subcategory
+
+Companion to A.1 — what the deployed implementation tooling operationalizes at runtime. See Section 7 for full notes.
+
+| Implementation | GOVERN | MAP | MEASURE | MANAGE |
+|---|---|---|---|---|
+| `procurement-decision-api` | 5.1 | 3.1, 5.2 | 2.5 | **1.2** |
+| `policy-as-code-engine` | — | — | — | **1.3**, 3.2 |
+| `audit-stream-py` | **1.5** | — | 3.1 | — |
+| `hash-attestation-rs` | — | 2.2 | 2.8 | — |
+| `aeo-validator-service` | — | — | 3.1 | 3.1 |
+| `aeo-graph-explorer-rs` | — | 1.2, 4.1 | — | — |
+| `incident-correlation-rs` | — | 4.1 | — | 2.3, 3.1 |
+| `data-contract-registry` | 1.4 | 1.2 | — | — |
+| `csv-data-quality-rs` | — | — | 1.1, 2.3 | — |
+| `slo-budget-tracker` | — | — | 3.1 | 3.1 |
+| `reliability-toolkit-rs` | — | — | 2.7 | — |
+| `feature-flag-rs` | — | — | — | **1.3** |
+| `request-shadow-rs` | — | — | 2.3 | — |
+| `mcp-*` servers | 6.2 | — | — | — |
+
+Bold = primary operationalization (the repo is the headline carrier of that subcategory's enforcement layer).
 
 ---
 
