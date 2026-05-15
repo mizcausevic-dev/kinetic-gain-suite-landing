@@ -230,6 +230,25 @@ code {
 .block-inner { max-width: 1200px; margin: 0 auto; }
 .block-narrow { max-width: 800px; }
 
+/* Mermaid host: dark frame so the emerald spine pops, centered, scrolls
+   horizontally on small viewports rather than overflowing. */
+.mermaid-frame {
+  margin: 2rem 0 1rem;
+  padding: 1.75rem 1.25rem;
+  background: var(--slate-900);
+  border: 1px solid var(--slate-800);
+  border-radius: 14px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.mermaid-frame .mermaid {
+  background: transparent;
+  margin: 0 auto;
+  min-width: 600px;
+  text-align: center;
+}
+.mermaid-frame .mermaid svg { max-width: 100%; height: auto; }
+
 h2 {
   font-size: clamp(1.6rem, 3.2vw, 2.2rem);
   font-weight: 700;

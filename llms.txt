@@ -36,6 +36,18 @@ A family of **11 open JSON specifications** for the answer-engine and agent era 
 3. `data-contract-registry` → `procurement-decision-api` (Decision Card → contract Owner extraction)
 4. `csv-data-quality-rs` → `data-contract-registry` (streaming CSV validator)
 
+## Audit-stream spine (one log, five producers, two ecosystems)
+
+Every governance moment in the portfolio writes to one hash-chained, tamper-evident log via `audit-stream-py`. Producers fail safely — if the stream is down, governance still happens, the event is logged to stderr instead of the chain. Same opt-in env-var contract (`AUDIT_STREAM_URL`) across the whole spine.
+
+- `procurement-decision-api` → `decision_card_drafted`, `decision_card_published`, `decision_card_revoked` (Python)
+- `aeo-validator-service` → `aeo_validation_passed`, `aeo_validation_failed` (Python)
+- `policy-as-code-engine` → `policy_bundle_registered`, `request_allowed`, `request_denied` (Python)
+- `data-contract-registry` → `contract_promoted`, `contract_deprecated`, `contract_compatibility_failed` (Python)
+- `incident-correlation` → `incident_correlated` (Rust, `--features audit-stream`)
+
+**13 event kinds across 5 producers**, all feeding one verifiable chain. `audit-stream-py` exposes SSE live tail, REST query, and `GET /verify` to walk the chain end-to-end for compliance evidence.
+
 ## Author
 
 - **Miz Causevic** · Director / Principal Platform Engineering · Boston, MA

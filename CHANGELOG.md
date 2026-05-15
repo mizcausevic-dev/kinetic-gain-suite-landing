@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented here.
 
+## [1.1.0] - 2026-05-15
+
+### Added
+- New **"Audit-stream spine"** section between Implementations and NIST: explains the shared hash-chained log every governance moment in the portfolio writes to, plus a Mermaid fan-in diagram showing all 5 producers (4 Python FastAPI services + 1 Rust library) and the 13 event kinds they emit. Mermaid runtime is loaded async at end-of-body so it never blocks first paint.
+- Nav link "Audit spine" between Implementations and NIST.
+- `llms.txt` gains a dedicated "Audit-stream spine" section enumerating producers, event kinds, and language ecosystems for LLM consumers.
+
+### Changed
+- `<meta name="description">` and `og:description` now mention the audit-stream spine and the 5-producer/Python+Rust footprint, so SERP snippets and link unfurls reflect the architectural story, not just the spec count.
+
 ## [1.0.0] - 2026-05-12
 
 ### Released
