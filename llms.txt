@@ -53,6 +53,6 @@ Every governance moment in the portfolio writes to one hash-chained, tamper-evid
 
 ## Author
 
-- **Miz Causevic** · Director / Principal Platform Engineering · Boston, MA
+- **Miz Causevic** · Enterprise Technologist · Boston, MA
 - [github.com/mizcausevic-dev](https://github.com/mizcausevic-dev) · [linkedin.com/in/mirzacausevic](https://www.linkedin.com/in/mirzacausevic/) · [kineticgain.com](https://kineticgain.com/) · [medium.com/@mizcausevic](https://medium.com/@mizcausevic/)
 - ~30 years across IBM, CyberArk, Alteryx, Digital.ai, Gryphon.ai
