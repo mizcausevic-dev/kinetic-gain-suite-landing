@@ -4,12 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kinetic Gain Protocol Suite — eleven open JSON specs for the answer-engine and agent era</title>
-  <meta name="description" content="A family of eleven open JSON specifications for AI governance: five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech (Tutor Cards, Student AI Disclosure, Classroom AI AUP), one HealthTech (Clinical AI Disclosure), two cross-cutting (AI Incident Card + AI Procurement Decision Card). One unified MCP server + CLI (mcp-kinetic-gain v0.6.0, 60 tools, on npm). 15-repo implementation stack with a shared audit-stream spine — 17 governance event kinds across 7 producers (Python + Rust) feeding one hash-chained, tamper-evident log. 22 live subdomains." />
+  <meta name="description" content="A family of eleven open JSON specifications for AI governance: five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech (Tutor Cards, Student AI Disclosure, Classroom AI AUP), one HealthTech (Clinical AI Disclosure), two cross-cutting (AI Incident Card + AI Procurement Decision Card). One unified MCP server + CLI (mcp-kinetic-gain v0.6.0, 60 tools, on npm). 15-repo implementation stack with a shared audit-stream spine — 20+ governance event kinds across 11 producers (Python, Rust, PL/pgSQL, PHP, Azure Functions) feeding one hash-chained, tamper-evident log. 23 live subdomains." />
   <meta name="theme-color" content="#10b981" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Kinetic Gain Protocol Suite — eleven open AI governance specs" />
-  <meta property="og:description" content="Open governance protocols for the answer-engine and agent era. Two regulated verticals covered (EdTech, HealthTech) plus a cross-cutting buyer-side spec. Shared audit-stream spine: 5 producers across Python + Rust feed one hash-chained log. One MCP server, one hosted validator, 22 live subdomains." />
+  <meta property="og:description" content="Open governance protocols for the answer-engine and agent era. Two regulated verticals covered (EdTech, HealthTech) plus a cross-cutting buyer-side spec. Shared audit-stream spine: 11 producers across Python, Rust, PL/pgSQL, PHP, and Azure feed one hash-chained log. One MCP server, one hosted validator, 23 live subdomains." />
   <meta property="og:url" content="https://suite.kineticgain.com/" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,7 +25,7 @@
         <span class="brand-mark" aria-hidden="true">⌬</span>
         <span class="brand-text">
           <strong>Kinetic Gain Protocol Suite</strong>
-          <small>11 open specs · 2 regulated verticals · 22 live subdomains</small>
+          <small>11 open specs · 2 regulated verticals · 23 live subdomains</small>
         </span>
       </a>
       <nav class="nav-links" aria-label="Primary">
@@ -52,7 +52,7 @@
           what it does, what it refuses, what evidence it carries, what regulatory class it falls
           under, and what happens when it fails. Five core specs · two regulated-vertical extensions
           (EdTech, HealthTech) · two cross-cutting specs (incident + procurement decision). One MCP server, one
-          hosted validator, 22 live subdomains. Specs MIT, reference implementations AGPL-3.0.
+          hosted validator, 23 live subdomains. Specs MIT, reference implementations AGPL-3.0.
         </p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite" target="_blank" rel="noreferrer">View on GitHub</a>
@@ -62,7 +62,7 @@
           <div class="stat"><span class="stat-num">11</span><span class="stat-label">Open specs</span></div>
           <div class="stat"><span class="stat-num">60</span><span class="stat-label">MCP tools</span></div>
           <div class="stat"><span class="stat-num">15</span><span class="stat-label">Implementation repos</span></div>
-          <div class="stat"><span class="stat-num">22</span><span class="stat-label">Live subdomains</span></div>
+          <div class="stat"><span class="stat-num">23</span><span class="stat-label">Live subdomains</span></div>
         </div>
       </div>
     </section>
@@ -278,7 +278,7 @@
       <div class="block-inner">
         <h2>Suite × Implementations — the 15-repo stack</h2>
         <p class="prose">
-          The Suite is a set of specs. <strong>The implementation stack is the software that consumes them.</strong> Fifteen open-source repos across Tiers A–E, all CI-green, semver-tagged at v0.1.0, MIT-licensed. Four cross-ecosystem hooks chain them into one composable system: procurement-decision-api drafts Decision Cards from Suite docs → policy-as-code-engine turns conditions into runtime gates → data-contract-registry extracts owners from the same Decision Card → csv-data-quality-rs validates produced CSVs against the contract.
+          The Suite is a set of specs. <strong>The implementation stack is the software that consumes them.</strong> Open-source repos across Tiers A–E, all CI-green, semver-tagged at v0.1.0, MIT-licensed. Five cross-ecosystem hooks chain them into one composable system: procurement-decision-api drafts Decision Cards from Suite docs → policy-as-code-engine turns conditions into runtime gates → data-contract-registry extracts owners from the same Decision Card → csv-data-quality-rs validates produced CSVs row-by-row → sql-contract-enforcer compiles the same contract into cross-dialect table DDL. And the Decision Card now enforces at three runtime layers: the MCP tool call (<code>mcp-permission-broker</code>), the Azure OpenAI call (<code>azure-openai-governance-bridge</code>), and the database table (<code>sql-contract-enforcer</code>).
         </p>
         <div class="grid grid-2">
           <a class="card-feature card-feature--blue" href="https://github.com/mizcausevic-dev/procurement-decision-api" target="_blank" rel="noreferrer">
@@ -332,9 +332,9 @@
 
     <section id="audit-stream" class="block">
       <div class="block-inner">
-        <h2>The audit-stream spine — one log, seven producers, two ecosystems</h2>
+        <h2>The audit-stream spine — one log, eleven producers, five runtimes</h2>
         <p class="prose">
-          Every governance moment in the portfolio writes to the same hash-chained log. Decision Cards drafted, AEO watches drifted, policy bundles deployed, requests denied at runtime, data contracts broken in CI, signatures verified or tampered, AEO graphs ingested, incidents correlated to remediation plans — <strong>one tamper-evident narrative</strong> an auditor can replay end-to-end. Producers fail safely: if <code>audit-stream-py</code> is down, governance still happens, the event is just logged to stderr instead of the chain. Same opt-in env-var contract (<code>AUDIT_STREAM_URL</code>) across all seven.
+          Every governance moment in the portfolio writes to the same hash-chained log. Decision Cards drafted, AEO watches drifted, policy bundles deployed, requests denied at runtime, MCP + Azure OpenAI tool invocations gated, Postgres rows changed, WordPress content published, data contracts broken in CI, signatures verified or tampered, AEO graphs ingested, incidents correlated to remediation plans — <strong>one tamper-evident narrative</strong> an auditor can replay end-to-end. Producers fail safely: if <code>audit-stream-py</code> is down, governance still happens, the event is just logged to stderr instead of the chain. Same opt-in env-var contract (<code>AUDIT_STREAM_URL</code>) across all eleven, spanning Python, Rust, PL/pgSQL, PHP, and Azure Functions.
         </p>
         <div class="mermaid-frame">
           <pre class="mermaid">
@@ -346,6 +346,9 @@ flowchart LR
     HA["hash-attestation<br/>Rust · crypto library"] -->|"attestation_signed<br/>attestation_verified<br/>attestation_failed"| AS
     ICR["incident-correlation<br/>Rust · graph library"] -->|"incident_correlated<br/>incident_correlation_failed"| AS
     AGE["aeo-graph-explorer<br/>Rust · axum service"] -->|"graph_ingested<br/>graph_ingest_failed"| AS
+    MPB["mcp-permission-broker +<br/>azure-openai-governance-bridge<br/>Python · runtime gates"] -->|"tool_invocation_allowed<br/>tool_invocation_denied<br/>tool_invocation_required_approval"| AS
+    PGX["pg-audit-stream-extension<br/>PL/pgSQL · pg_notify"] -->|"table CRUD events"| AS
+    WPA["wp-kinetic-gain-audit<br/>PHP · WordPress/MySQL"] -->|"content_published<br/>plugin_activated<br/>user_role_changed"| AS
 
     AS{{"audit-stream-py<br/>hash-chained · tamper-evident<br/>SSE live tail · REST query · GET /verify"}}
 
@@ -356,13 +359,13 @@ flowchart LR
     classDef producer fill:#0b3b3a,stroke:#10b981,color:#e6fffa,stroke-width:1.5px;
     classDef spine fill:#10b981,stroke:#34d399,color:#022c22,stroke-width:2px;
     classDef consumer fill:#1e293b,stroke:#475569,color:#cbd5e1,stroke-width:1px;
-    class PDA,AVS,PCE,DCR,HA,ICR,AGE producer;
+    class PDA,AVS,PCE,DCR,HA,ICR,AGE,MPB,PGX,WPA producer;
     class AS spine;
     class CON1,CON2,CON3 consumer;
           </pre>
         </div>
         <p class="prose" style="margin-top: 24px;">
-          <strong>17 event kinds across 7 producers</strong>, all funneling into one verifiable chain. The Rust libraries ship behind a Cargo feature (<code>--features audit-stream</code>) so consumers who don't need emission can strip out the HTTP dep. Adding an eighth producer is a 60-line module: copy the pattern, pick your event kinds, point at <code>AUDIT_STREAM_URL</code>.
+          <strong>20+ event kinds across 11 producers</strong>, all funneling into one verifiable chain. The Rust libraries ship behind a Cargo feature (<code>--features audit-stream</code>) so consumers who don't need emission can strip out the HTTP dep. The data-tier producers prove the reach: <code>pg-audit-stream-extension</code> catches direct DML the app path would miss, and <code>wp-kinetic-gain-audit</code> brings the same tamper-evident chain to any WordPress estate. Adding the next producer is a ~60-line module: copy the pattern, pick your event kinds, point at <code>AUDIT_STREAM_URL</code>.
         </p>
       </div>
     </section>
@@ -384,7 +387,7 @@ flowchart LR
       <div class="block-inner">
         <h2>Featured properties</h2>
         <p class="prose">
-          Four of the <strong>twenty-two live subdomains</strong> under kineticgain.com. Every property is React 19 + TypeScript or hand-written static HTML, MIT/AGPL/Apache-2.0, push-to-deploy via GitHub Actions FTPS to Hostinger. The full constellation is listed at <a href="https://kineticgain.com/#suite" style="color: inherit; text-decoration: underline;">kineticgain.com/#suite</a>.
+          Five of the <strong>twenty-three live subdomains</strong> under kineticgain.com. Every property is React 19 + TypeScript or hand-written static HTML, MIT/AGPL/Apache-2.0, push-to-deploy via GitHub Actions FTPS to Hostinger. The full constellation is listed at <a href="https://kineticgain.com/#suite" style="color: inherit; text-decoration: underline;">kineticgain.com/#suite</a>.
         </p>
         <div class="grid grid-2">
           <a class="card card-dark" href="https://aeo.kineticgain.com" target="_blank" rel="noreferrer">
@@ -409,6 +412,12 @@ flowchart LR
             <div class="card-eyebrow">bench.kineticgain.com</div>
             <h3>prompt-injection-bench</h3>
             <p>Visual harness: paste a JSONL transcript, see pass rates by category and severity. Agent-Card refusal-taxonomy back-references.</p>
+            <span class="link">Open ↗</span>
+          </a>
+          <a class="card card-dark" href="https://pulse.kineticgain.com" target="_blank" rel="noreferrer">
+            <div class="card-eyebrow">pulse.kineticgain.com</div>
+            <h3>AI Procurement Pulse</h3>
+            <p>Quarterly research index of vendor AI governance disclosure across the open internet. Issue #1 "The Zero Baseline" is live — 0.0% of 37 domains publish yet.</p>
             <span class="link">Open ↗</span>
           </a>
         </div>
