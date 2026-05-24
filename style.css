@@ -521,3 +521,49 @@ h2 {
 .footer-inner small { font-size: 0.8rem; }
 .footer-inner a { color: var(--slate-600); }
 .footer-inner a:hover { color: var(--slate-900); }
+
+/* ============================================================
+   Dark theme — matches the redesigned AEO + unified visualizers
+   ============================================================ */
+html, body { background: #070b16; color: var(--slate-300); }
+a { color: var(--emerald-400); }
+a:hover { color: var(--emerald-300); }
+code { background: var(--slate-800); color: var(--slate-200); }
+h2 { color: #fff; }
+.prose { color: var(--slate-400); }
+.block-tinted { background: #0a1120; }
+.layer { background: rgba(15, 23, 42, 0.55); border-color: var(--slate-800); }
+.layer-card { background: rgba(2, 6, 23, 0.6); color: var(--slate-200); }
+.layer-card h4 { color: #fff; }
+.layer-card p { color: var(--slate-400); }
+.layer-note { background: rgba(2, 6, 23, 0.5); color: var(--slate-400); }
+.spec-table { background: rgba(15, 23, 42, 0.55); border-color: var(--slate-800); }
+.spec-table th { background: var(--slate-900); color: var(--slate-400); }
+.spec-table th, .spec-table td { border-bottom-color: var(--slate-800); }
+.spec-table td { color: var(--slate-300); }
+.spec-table tbody tr:hover { background: rgba(30, 41, 59, 0.45); }
+.card-feature { background: rgba(15, 23, 42, 0.55); border-color: var(--slate-800); color: var(--slate-300); }
+.card-feature h3 { color: #fff; }
+.card-feature p { color: var(--slate-400); }
+.card-feature-list { color: var(--slate-300); }
+.card { background: rgba(15, 23, 42, 0.55); border-color: var(--slate-800); }
+.card h3 { color: #fff; }
+.card p { color: var(--slate-400); }
+.footer { background: #0a1120; border-top-color: var(--slate-800); }
+.footer-inner { color: var(--slate-500); }
+.footer-inner a { color: var(--slate-400); }
+.footer-inner a:hover { color: #fff; }
+.tag-edu    { background: rgba(20, 184, 166, 0.15); color: #5eead4; }
+.tag-health { background: rgba(6, 182, 212, 0.15); color: #67e8f9; }
+.tag-x      { background: rgba(239, 68, 68, 0.15); color: #fca5a5; }
+
+/* Full-constellation link cluster (pillar → all spokes) */
+.constellation { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem; }
+@media (max-width: 800px) { .constellation { grid-template-columns: 1fr; } }
+.constellation h3 { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--emerald-400); font-family: var(--font-mono); margin: 0 0 1rem; }
+.cluster-list { list-style: none; padding: 0; margin: 0; }
+.cluster-list li { padding: 0.55rem 0; border-bottom: 1px solid var(--slate-800); }
+.cluster-list li:last-child { border-bottom: none; }
+.cluster-list a { color: var(--slate-200); font-weight: 600; font-size: 0.95rem; }
+.cluster-list a:hover { color: #fff; text-decoration: none; }
+.cluster-list .sub { display: block; color: var(--slate-500); font-size: 0.78rem; font-family: var(--font-mono); margin-top: 0.15rem; }
