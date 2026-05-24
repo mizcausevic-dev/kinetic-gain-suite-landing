@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kinetic Gain Protocol Suite — eleven open JSON specs for the answer-engine and agent era</title>
-  <meta name="description" content="A family of eleven open JSON specifications for AI governance: five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech (Tutor Cards, Student AI Disclosure, Classroom AI AUP), one HealthTech (Clinical AI Disclosure), two cross-cutting (AI Incident Card + AI Procurement Decision Card). One unified MCP server + CLI (mcp-kinetic-gain v0.6.0, 60 tools, on npm). 15-repo implementation stack with a shared audit-stream spine — 20+ governance event kinds across 11 producers (Python, Rust, PL/pgSQL, PHP, Azure Functions) feeding one hash-chained, tamper-evident log. 24 live subdomains." />
+  <meta name="description" content="A family of eleven open JSON specifications for AI governance: five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech (Tutor Cards, Student AI Disclosure, Classroom AI AUP), one HealthTech (Clinical AI Disclosure), two cross-cutting (AI Incident Card + AI Procurement Decision Card). One unified MCP server + CLI (mcp-kinetic-gain v0.7.1, 63 tools, on npm). 15-repo implementation stack with a shared audit-stream spine — 20+ governance event kinds across 11 producers (Python, Rust, PL/pgSQL, PHP, Azure Functions) feeding one hash-chained, tamper-evident log. 24 live subdomains." />
   <meta name="theme-color" content="#10b981" />
 
   <meta property="og:type" content="website" />
@@ -60,7 +60,7 @@
         </div>
         <div class="stats">
           <div class="stat"><span class="stat-num">11</span><span class="stat-label">Open specs</span></div>
-          <div class="stat"><span class="stat-num">60</span><span class="stat-label">MCP tools</span></div>
+          <div class="stat"><span class="stat-num">63</span><span class="stat-label">MCP tools</span></div>
           <div class="stat"><span class="stat-num">15</span><span class="stat-label">Implementation repos</span></div>
           <div class="stat"><span class="stat-num">24</span><span class="stat-label">Live subdomains</span></div>
         </div>
@@ -261,7 +261,7 @@
           <a class="card-feature card-feature--emerald" href="https://github.com/mizcausevic-dev/mcp-kinetic-gain" target="_blank" rel="noreferrer">
             <div class="card-feature-eyebrow">MCP SERVER · stdio</div>
             <h3>mcp-kinetic-gain</h3>
-            <p><strong>60 tools across all 11 specs + 5 cross-cutting operation categories</strong>, v0.6.0, published on npm with provenance. One Claude Desktop / Cursor / MCP-client config entry. Headline cross-spec tools: <code>aup_check_compliance</code> (AUP + Student AI Disclosure → allow/deny), <code>decision_card_to_policy_bundle</code> (Decision Card → runtime PolicyBundle preview), <code>attestation_verify</code> (ed25519 signatures over canonical hashes), <code>audit_chain_verify</code> (walks a hash-chained governance event log), <code>suite_doc_drift</code> (structural diff between two doc versions). v0.6.0 adds 13 implementation-tooling preview tools that wrap the 15-repo implementation stack at preview scale — read-only, deterministic, no HTTP round trip.</p>
+            <p><strong>63 tools across all 11 specs + 5 cross-cutting operation categories</strong>, v0.7.1, published on npm with provenance. One Claude Desktop / Cursor / MCP-client config entry. Headline cross-spec tools: <code>aup_check_compliance</code> (AUP + Student AI Disclosure → allow/deny), <code>decision_card_to_policy_bundle</code> (Decision Card → runtime PolicyBundle preview), <code>attestation_verify</code> (ed25519 signatures over canonical hashes), <code>audit_chain_verify</code> (walks a hash-chained governance event log), <code>suite_doc_drift</code> (structural diff between two doc versions). v0.6.0 adds 13 implementation-tooling preview tools that wrap the 15-repo implementation stack at preview scale — read-only, deterministic, no HTTP round trip. v0.7.0 then adds live audit-stream tools so an agent can emit, query, and verify governance events from chat.</p>
             <pre style="background: rgba(0,0,0,.4); padding: 10px 14px; border-radius: 8px; margin: 12px 0; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>npx -y mcp-kinetic-gain validate &lt;files...&gt;</code></pre>
             <ul class="card-feature-list">
               <li><strong>126 tests pass</strong> · typecheck clean · build clean</li>
