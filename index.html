@@ -4,12 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kinetic Gain Protocol Suite — eleven open JSON specs for the answer-engine and agent era</title>
-  <meta name="description" content="A family of eleven open JSON specifications for AI governance: five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech (Tutor Cards, Student AI Disclosure, Classroom AI AUP), one HealthTech (Clinical AI Disclosure), two cross-cutting (AI Incident Card + AI Procurement Decision Card). One unified MCP server + CLI (mcp-kinetic-gain v0.6.0, 60 tools, on npm). 15-repo implementation stack with a shared audit-stream spine — 20+ governance event kinds across 11 producers (Python, Rust, PL/pgSQL, PHP, Azure Functions) feeding one hash-chained, tamper-evident log. 23 live subdomains." />
+  <meta name="description" content="A family of eleven open JSON specifications for AI governance: five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech (Tutor Cards, Student AI Disclosure, Classroom AI AUP), one HealthTech (Clinical AI Disclosure), two cross-cutting (AI Incident Card + AI Procurement Decision Card). One unified MCP server + CLI (mcp-kinetic-gain v0.6.0, 60 tools, on npm). 15-repo implementation stack with a shared audit-stream spine — 20+ governance event kinds across 11 producers (Python, Rust, PL/pgSQL, PHP, Azure Functions) feeding one hash-chained, tamper-evident log. 24 live subdomains." />
   <meta name="theme-color" content="#10b981" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Kinetic Gain Protocol Suite — eleven open AI governance specs" />
-  <meta property="og:description" content="Open governance protocols for the answer-engine and agent era. Two regulated verticals covered (EdTech, HealthTech) plus a cross-cutting buyer-side spec. Shared audit-stream spine: 11 producers across Python, Rust, PL/pgSQL, PHP, and Azure feed one hash-chained log. One MCP server, one hosted validator, 23 live subdomains." />
+  <meta property="og:description" content="Open governance protocols for the answer-engine and agent era. Two regulated verticals covered (EdTech, HealthTech) plus a cross-cutting buyer-side spec. Shared audit-stream spine: 11 producers across Python, Rust, PL/pgSQL, PHP, and Azure feed one hash-chained log. One MCP server, one hosted validator, 24 live subdomains." />
   <meta property="og:url" content="https://suite.kineticgain.com/" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,7 +25,7 @@
         <span class="brand-mark" aria-hidden="true">⌬</span>
         <span class="brand-text">
           <strong>Kinetic Gain Protocol Suite</strong>
-          <small>11 open specs · 2 regulated verticals · 23 live subdomains</small>
+          <small>11 open specs · 2 regulated verticals · 24 live subdomains</small>
         </span>
       </a>
       <nav class="nav-links" aria-label="Primary">
@@ -52,7 +52,7 @@
           what it does, what it refuses, what evidence it carries, what regulatory class it falls
           under, and what happens when it fails. Five core specs · two regulated-vertical extensions
           (EdTech, HealthTech) · two cross-cutting specs (incident + procurement decision). One MCP server, one
-          hosted validator, 23 live subdomains. Specs MIT, reference implementations AGPL-3.0.
+          hosted validator, 24 live subdomains. Specs MIT, reference implementations AGPL-3.0.
         </p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite" target="_blank" rel="noreferrer">View on GitHub</a>
@@ -62,7 +62,7 @@
           <div class="stat"><span class="stat-num">11</span><span class="stat-label">Open specs</span></div>
           <div class="stat"><span class="stat-num">60</span><span class="stat-label">MCP tools</span></div>
           <div class="stat"><span class="stat-num">15</span><span class="stat-label">Implementation repos</span></div>
-          <div class="stat"><span class="stat-num">23</span><span class="stat-label">Live subdomains</span></div>
+          <div class="stat"><span class="stat-num">24</span><span class="stat-label">Live subdomains</span></div>
         </div>
       </div>
     </section>
@@ -387,8 +387,11 @@ flowchart LR
       <div class="block-inner">
         <h2>Featured properties</h2>
         <p class="prose">
-          Five of the <strong>twenty-three live subdomains</strong> under kineticgain.com. Every property is React 19 + TypeScript or hand-written static HTML, MIT/AGPL/Apache-2.0, push-to-deploy via GitHub Actions FTPS to Hostinger. The full constellation is listed at <a href="https://kineticgain.com/#suite" style="color: inherit; text-decoration: underline;">kineticgain.com/#suite</a>.
+          Six of the <strong>twenty-four live subdomains</strong> under kineticgain.com. Every property is React 19 + TypeScript or hand-written static HTML, MIT/AGPL/Apache-2.0, push-to-deploy via GitHub Actions FTPS to Hostinger. The full constellation is listed at <a href="https://kineticgain.com/#suite" style="color: inherit; text-decoration: underline;">kineticgain.com/#suite</a>.
         </p>
+        <a href="https://console.kineticgain.com" target="_blank" rel="noreferrer" style="display:block; margin: 0 0 1.5rem; border:1px solid var(--border); border-radius:12px; overflow:hidden;">
+          <img src="operator-console.png" alt="Kinetic Gain Operator Console — mission-control dashboard" loading="lazy" style="display:block; width:100%; height:auto;" />
+        </a>
         <div class="grid grid-2">
           <a class="card card-dark" href="https://aeo.kineticgain.com" target="_blank" rel="noreferrer">
             <div class="card-eyebrow">aeo.kineticgain.com</div>
@@ -418,6 +421,12 @@ flowchart LR
             <div class="card-eyebrow">pulse.kineticgain.com</div>
             <h3>AI Procurement Pulse</h3>
             <p>Quarterly research index of vendor AI governance disclosure across the open internet. Issue #1 "The Zero Baseline" is live — 0.0% of 37 domains publish yet.</p>
+            <span class="link">Open ↗</span>
+          </a>
+          <a class="card card-dark" href="https://console.kineticgain.com" target="_blank" rel="noreferrer">
+            <div class="card-eyebrow">console.kineticgain.com</div>
+            <h3>Operator Console</h3>
+            <p>Mission-control for the Suite: interactive topology mesh, a configurable SRE operator dashboard, live audit-stream visualization, and PDF export.</p>
             <span class="link">Open ↗</span>
           </a>
         </div>
