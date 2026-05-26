@@ -1,6 +1,6 @@
 # kinetic-gain-suite-landing
 
-Static landing site for the **[Kinetic Gain Protocol Suite](https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite)** — the canonical front door for the family of ten open AI governance specs.
+Static landing site for the **[Kinetic Gain Protocol Suite](https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite)** — the canonical front door for the family of eleven open AI governance specs.
 
 Live at **[suite.kineticgain.com](https://suite.kineticgain.com)**.
 
