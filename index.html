@@ -443,9 +443,9 @@ flowchart LR
 
     <section id="cloud-identity" class="block block-dark">
       <div class="block-inner">
-        <h2>Cloud Identity, Platform &amp; FinOps Governance lane</h2>
+        <h2>Cloud Identity, Platform, FinOps &amp; Threat Detection Governance lane</h2>
         <p class="prose">
-          Seven <strong>v1.0-prod operator surfaces</strong> covering the multi-cloud admin stack — Microsoft (Entra access reviews, Intune device compliance, M365 Purview retention), AWS (IAM Access Analyzer), GCP (IAM policy drift + billing-anomaly routing), and Azure (landing-zone drift). Each is a synthetic-data operator console at production hardness: AGPL-3.0-or-later, dual-Node CI, dependabot, 95%+ statement coverage, deployed on its own kineticgain.com subdomain via GitHub Pages.
+          Eight <strong>v1.0-prod operator surfaces</strong> covering the multi-cloud admin stack — Microsoft (Entra access reviews, Intune device compliance, M365 Purview retention), AWS (IAM Access Analyzer + GuardDuty triage), GCP (IAM policy drift + billing-anomaly routing), and Azure (landing-zone drift). Each is a synthetic-data operator console at production hardness: AGPL-3.0-or-later, dual-Node CI, dependabot, 95%+ statement coverage, deployed on its own kineticgain.com subdomain via GitHub Pages.
         </p>
         <div class="grid grid-2">
           <a class="card card-dark" href="https://entra.kineticgain.com" target="_blank" rel="noreferrer">
@@ -470,6 +470,12 @@ flowchart LR
             <div class="card-eyebrow">aws.kineticgain.com</div>
             <h3>AWS IAM Access Analyzer Console</h3>
             <p>AWS IAM Access Analyzer posture, public-access bindings, cross-account trust, and remediation sequencing.</p>
+            <span class="link">Open ↗</span>
+          </a>
+          <a class="card card-dark" href="https://guardduty.kineticgain.com" target="_blank" rel="noreferrer">
+            <div class="card-eyebrow">guardduty.kineticgain.com</div>
+            <h3>AWS GuardDuty Triage Board</h3>
+            <p>AWS GuardDuty detector posture, threat-finding triage, credential exfiltration / crypto-mining / anomalous-API behavior detection, response sequencing.</p>
             <span class="link">Open ↗</span>
           </a>
           <a class="card card-dark" href="https://gcp.kineticgain.com" target="_blank" rel="noreferrer">
