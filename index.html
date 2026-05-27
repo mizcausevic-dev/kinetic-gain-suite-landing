@@ -443,9 +443,9 @@ flowchart LR
 
     <section id="cloud-identity" class="block block-dark">
       <div class="block-inner">
-        <h2>Cloud Identity &amp; Platform Governance lane</h2>
+        <h2>Cloud Identity, Platform &amp; FinOps Governance lane</h2>
         <p class="prose">
-          Six <strong>v1.0-prod operator surfaces</strong> covering the multi-cloud admin stack — Microsoft (Entra access reviews, Intune device compliance, M365 Purview retention), AWS (IAM Access Analyzer), GCP (IAM policy drift), and Azure (landing-zone drift). Each is a synthetic-data operator console at production hardness: AGPL-3.0-or-later, dual-Node CI, dependabot, 95%+ statement coverage, deployed on its own kineticgain.com subdomain via GitHub Pages.
+          Seven <strong>v1.0-prod operator surfaces</strong> covering the multi-cloud admin stack — Microsoft (Entra access reviews, Intune device compliance, M365 Purview retention), AWS (IAM Access Analyzer), GCP (IAM policy drift + billing-anomaly routing), and Azure (landing-zone drift). Each is a synthetic-data operator console at production hardness: AGPL-3.0-or-later, dual-Node CI, dependabot, 95%+ statement coverage, deployed on its own kineticgain.com subdomain via GitHub Pages.
         </p>
         <div class="grid grid-2">
           <a class="card card-dark" href="https://entra.kineticgain.com" target="_blank" rel="noreferrer">
@@ -482,6 +482,12 @@ flowchart LR
             <div class="card-eyebrow">zone.kineticgain.com</div>
             <h3>Azure Landing-Zone Drift Radar</h3>
             <p>Azure landing-zone baseline drift, owner-role drift, missing deny assignments, disabled Defender, diagnostics gaps, route-bypass posture.</p>
+            <span class="link">Open ↗</span>
+          </a>
+          <a class="card card-dark" href="https://billing.kineticgain.com" target="_blank" rel="noreferrer">
+            <div class="card-eyebrow">billing.kineticgain.com</div>
+            <h3>GCP Billing Anomaly Router</h3>
+            <p>GCP billing anomaly routing, budget-breach detection, spend-spike escalation, idle commitments, unlabeled-cost drift, billing-export gaps.</p>
             <span class="link">Open ↗</span>
           </a>
         </div>
