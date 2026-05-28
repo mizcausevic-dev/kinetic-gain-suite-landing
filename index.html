@@ -34,6 +34,7 @@
         <a href="#specs">Specs</a>
         <a href="#tooling">Tooling</a>
         <a href="#implementations">Implementations</a>
+        <a href="#vault-contract">Vault contract</a>
         <a href="#audit-stream">Audit spine</a>
         <a href="#nist">NIST</a>
         <a href="#properties">Live</a>
@@ -329,6 +330,69 @@
         <p class="prose" style="margin-top: 24px;">
           Full catalog of all 15 repos — grouped by buyer (procurement reviewer · AEO consumer · data team · SRE · MCP integrator) — is in the <a href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite#-suite--implementations">Suite × Implementations</a> section of the meta-repo README.
         </p>
+      </div>
+    </section>
+
+    <section id="vault-contract" class="block">
+      <div class="block-inner">
+        <h2>The Vault Contract Pattern — one Decision Card field, four runtime surfaces</h2>
+        <p class="prose">
+          The AI Procurement Decision Card v0.2 added a single field — <code>data_vault_targets[]</code> — that names the fields a buyer authorizes a vendor to read, the protection level required at rest, and the roles permitted to reveal them. That one field is the spine of a complete <strong>vault contract</strong>: the buyer signs it as part of procurement, four open-source reference surfaces enforce it at runtime, and every read/reveal/transform event lands on the same hash-chained <a href="#audit-stream" style="color: inherit; text-decoration: underline;">audit-stream</a> the rest of the Suite uses.
+        </p>
+        <p class="prose">
+          The pattern is <strong>vault-vendor-shaped but vendor-neutral</strong> — the field names match Skyflow's vault-contract vocabulary, but the runtime targets work against any tokenization vault (Skyflow, Privacera, Very Good Security, in-house). What buyers get is a single procurement signature that travels into the retrieval index, the deal-desk UI, the marketing connector, and the operator console — without any of them learning a raw PII value they aren't authorized to see.
+        </p>
+        <div class="grid grid-2">
+          <a class="card-feature card-feature--blue" href="https://github.com/mizcausevic-dev/rag-sentinel" target="_blank" rel="noreferrer">
+            <div class="card-feature-eyebrow">SURFACE 1 · TOKENIZE-BEFORE-INDEX</div>
+            <h3>rag-sentinel</h3>
+            <p>The retrieval-layer enforcer. Intercepts documents on the way into a vector store, tokenizes every <code>data_vault_targets[]</code> field per the Decision Card's protection level (None · Masked · Tokenized · Encrypted), and stamps the chunk with the vault-token reference. Embeddings index the token, never the raw value — so the index is procurement-clean even if the LLM is compromised.</p>
+            <ul class="card-feature-list">
+              <li><strong>Where it sits:</strong> between your ingest pipeline and your vector DB</li>
+              <li><strong>Buyer outcome:</strong> a RAG corpus that can't leak fields procurement didn't authorize</li>
+            </ul>
+            <span class="card-feature-link">View on GitHub →</span>
+          </a>
+          <a class="card-feature card-feature--emerald" href="https://github.com/mizcausevic-dev/deal-desk-workspace" target="_blank" rel="noreferrer">
+            <div class="card-feature-eyebrow">SURFACE 2 · RBAC-AWARE REVEAL</div>
+            <h3>deal-desk-workspace</h3>
+            <p>The seat-of-work enforcer. A deal-desk operator UI that reads the Decision Card's <code>reveal_roles</code> for each vault field and renders accordingly — a sales engineer sees a token, a compliance officer sees the masked tail, a principal sees the unredacted value. Every reveal click writes a <code>vault_field_revealed</code> event into the audit-stream with the role, the field, and the token reference.</p>
+            <ul class="card-feature-list">
+              <li><strong>Where it sits:</strong> the human-in-the-loop surface for vault data</li>
+              <li><strong>Buyer outcome:</strong> a reveal log that survives an audit without a SIEM lift</li>
+            </ul>
+            <span class="card-feature-link">View on GitHub →</span>
+          </a>
+        </div>
+        <div class="grid grid-2" style="margin-top: 20px;">
+          <a class="card-feature card-feature--blue" href="https://github.com/mizcausevic-dev/kg-skyyflow-klaviyo-bridge" target="_blank" rel="noreferrer">
+            <div class="card-feature-eyebrow">SURFACE 3 · TRANSFORM PIPELINE LIB</div>
+            <h3>kg-skyyflow-klaviyo-bridge</h3>
+            <p>The marketing-connector enforcer. A TypeScript bridge library that sits between a vault and an outbound marketing platform (Klaviyo) — the buyer's Decision Card describes which fields can flow through to which downstream lists, in which protection state (raw / masked / tokenized). Every transform is a typed pipeline step with a reversible test fixture; nothing leaves the bridge that wasn't authorized in writing.</p>
+            <ul class="card-feature-list">
+              <li><strong>Where it sits:</strong> the egress edge of your marketing stack</li>
+              <li><strong>Buyer outcome:</strong> a connector that ships a contract change in PR, not a hot deploy</li>
+            </ul>
+            <span class="card-feature-link">View on GitHub →</span>
+          </a>
+          <a class="card-feature card-feature--emerald" href="https://github.com/mizcausevic-dev/skyyflow-klaviyo-bridge-console" target="_blank" rel="noreferrer">
+            <div class="card-feature-eyebrow">SURFACE 4 · VISUAL OPERATOR CONSOLE</div>
+            <h3>skyyflow-klaviyo-bridge-console</h3>
+            <p>The operator-readable companion to the bridge library. React 19 + slate-indigo Bento dashboard: live sync log of each transform run, dead-letter queue with retry semantics, a Schema Mapper page that diffs the active Decision Card's <code>data_vault_targets[]</code> against the connector configuration, and a Security Assets page that lists what's tokenized vs. what's still raw. The operator console for a contract, not just a connector.</p>
+            <ul class="card-feature-list">
+              <li><strong>Where it sits:</strong> alongside the bridge for ops + procurement review</li>
+              <li><strong>Buyer outcome:</strong> a single screen procurement can audit between renewals</li>
+            </ul>
+            <span class="card-feature-link">View on GitHub →</span>
+          </a>
+        </div>
+        <p class="prose" style="margin-top: 24px;">
+          <strong>How it composes.</strong> The four surfaces don't share a runtime — they share <em>the same JSON field on the same procurement document.</em> A vendor accepts the Decision Card; <code>rag-sentinel</code> reads <code>data_vault_targets[]</code> to decide what tokenizes on ingest; <code>deal-desk-workspace</code> reads <code>reveal_roles</code> to decide who sees what at the UI; <code>kg-skyyflow-klaviyo-bridge</code> reads the protection levels to decide what propagates to Klaviyo; and the bridge console reads all of the above to render the live posture. <strong>One signature, four enforcement layers, one audit trail</strong> — and any of the four is opt-in. Buyers can adopt the pattern incrementally without committing to a fifth vendor.
+        </p>
+        <div class="hero-cta" style="margin-top: 24px;">
+          <a class="btn btn-primary" href="https://mizcausevic-dev.github.io/kinetic-gain-visualizer/?view=editor&amp;spec=decision-card" target="_blank" rel="noreferrer">See the v0.2 example in the visualizer →</a>
+          <a class="btn btn-secondary" href="https://github.com/mizcausevic-dev/ai-procurement-decision-spec" target="_blank" rel="noreferrer">Decision Card spec on GitHub</a>
+        </div>
       </div>
     </section>
 
