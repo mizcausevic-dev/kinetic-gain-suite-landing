@@ -8,6 +8,13 @@
   <meta name="theme-color" content="#10b981" />
   <link rel="canonical" href="https://suite.kineticgain.com/" />
 
+  <!-- Security headers — canonical source is .htaccess; these <meta> tags are -->
+  <!-- fallbacks so file:// and offline-mirror previews carry the same posture. -->
+  <!-- HSTS, X-Frame, X-Content-Type-Options, Permissions-Policy, COOP, CORP    -->
+  <!-- CANNOT be set via <meta> — they MUST be response headers in .htaccess.   -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Kinetic Gain Protocol Suite — eleven open AI governance specs" />
   <meta property="og:description" content="Open governance protocols for the answer-engine and agent era. Two regulated verticals covered (EdTech, HealthTech) plus a cross-cutting buyer-side spec. Shared audit-stream spine: 11 producers across Python, Rust, PL/pgSQL, PHP, and Azure feed one hash-chained log. One MCP server, one hosted validator, 60+ live properties." />
