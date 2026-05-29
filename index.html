@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kinetic Gain Protocol Suite — eleven open JSON specs for the answer-engine and agent era</title>
-  <meta name="description" content="A family of eleven open JSON specifications for AI governance: five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech (Tutor Cards, Student AI Disclosure, Classroom AI AUP), one HealthTech (Clinical AI Disclosure), two cross-cutting (AI Incident Card + AI Procurement Decision Card). One unified MCP server + CLI (mcp-kinetic-gain v0.7.1, 63 tools, on npm). 15-repo implementation stack with a shared audit-stream spine — 20+ governance event kinds across 11 producers (Python, Rust, PL/pgSQL, PHP, Azure Functions) feeding one hash-chained, tamper-evident log. 35 live properties." />
+  <meta name="description" content="A family of eleven open JSON specifications for AI governance: five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech (Tutor Cards, Student AI Disclosure, Classroom AI AUP), one HealthTech (Clinical AI Disclosure), two cross-cutting (AI Incident Card + AI Procurement Decision Card). One unified MCP server + CLI (mcp-kinetic-gain v0.7.1, 63 tools, on npm). 15-repo implementation stack with a shared audit-stream spine — 20+ governance event kinds across 11 producers (Python, Rust, PL/pgSQL, PHP, Azure Functions) feeding one hash-chained, tamper-evident log. 49 live properties." />
   <meta name="theme-color" content="#10b981" />
   <link rel="canonical" href="https://suite.kineticgain.com/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Kinetic Gain Protocol Suite — eleven open AI governance specs" />
-  <meta property="og:description" content="Open governance protocols for the answer-engine and agent era. Two regulated verticals covered (EdTech, HealthTech) plus a cross-cutting buyer-side spec. Shared audit-stream spine: 11 producers across Python, Rust, PL/pgSQL, PHP, and Azure feed one hash-chained log. One MCP server, one hosted validator, 35 live properties." />
+  <meta property="og:description" content="Open governance protocols for the answer-engine and agent era. Two regulated verticals covered (EdTech, HealthTech) plus a cross-cutting buyer-side spec. Shared audit-stream spine: 11 producers across Python, Rust, PL/pgSQL, PHP, and Azure feed one hash-chained log. One MCP server, one hosted validator, 49 live properties." />
   <meta property="og:url" content="https://suite.kineticgain.com/" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,7 +26,7 @@
         <span class="brand-mark" aria-hidden="true">⌬</span>
         <span class="brand-text">
           <strong>Kinetic Gain Protocol Suite</strong>
-          <small>11 open specs · 2 regulated verticals · 35 live properties</small>
+          <small>11 open specs · 2 regulated verticals · 49 live properties</small>
         </span>
       </a>
       <nav class="nav-links" aria-label="Primary">
@@ -48,14 +48,14 @@
   <main>
     <section class="hero">
       <div class="hero-inner">
-        <span class="pill">v0.1 draft across all eleven specs · 35 live properties</span>
+        <span class="pill">v0.1 draft across all eleven specs · 49 live properties</span>
         <h1>Open governance protocols<br /><em>for the agent era.</em></h1>
         <p class="lede">
           A family of <strong>eleven open JSON specifications</strong> for declaring what an AI system is,
           what it does, what it refuses, what evidence it carries, what regulatory class it falls
           under, and what happens when it fails. Five core specs · two regulated-vertical extensions
           (EdTech, HealthTech) · two cross-cutting specs (incident + procurement decision). One MCP server, one
-          hosted validator, 35 live properties. Specs MIT, reference implementations AGPL-3.0.
+          hosted validator, 49 live properties. Specs MIT, reference implementations AGPL-3.0.
         </p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite" target="_blank" rel="noreferrer">View on GitHub</a>
@@ -65,7 +65,7 @@
           <div class="stat"><span class="stat-num">11</span><span class="stat-label">Open specs</span></div>
           <div class="stat"><span class="stat-num">63</span><span class="stat-label">MCP tools</span></div>
           <div class="stat"><span class="stat-num">15</span><span class="stat-label">Implementation repos</span></div>
-          <div class="stat"><span class="stat-num">35</span><span class="stat-label">Live properties</span></div>
+          <div class="stat"><span class="stat-num">49</span><span class="stat-label">Live properties</span></div>
         </div>
       </div>
     </section>
@@ -232,7 +232,7 @@
               </tr>
               <tr>
                 <td><a href="https://github.com/mizcausevic-dev/ai-procurement-decision-spec">AI Procurement Decision Card</a> <span class="tag tag-x">cross-cutting · buyer-side</span></td>
-                <td>Buyer's procurement review outcome · documents reviewed · conditions · rationale · <strong>v0.2 adds <code>data_vault_targets[]</code></strong> — Skyyflow-shaped field-level vault contract powering <a href="https://github.com/mizcausevic-dev/rag-sentinel">rag-sentinel</a>, <a href="https://github.com/mizcausevic-dev/deal-desk-workspace">deal-desk-workspace</a>, <a href="https://github.com/mizcausevic-dev/kg-skyyflow-klaviyo-bridge">kg-skyyflow-klaviyo-bridge</a>, and the <a href="https://github.com/mizcausevic-dev/skyyflow-klaviyo-bridge-console">bridge console</a></td>
+                <td>Buyer's procurement review outcome · documents reviewed · conditions · rationale · <strong>v0.2 adds <code>data_vault_targets[]</code></strong> (Skyyflow-shaped field-level vault contract) powering <a href="https://github.com/mizcausevic-dev/rag-sentinel">rag-sentinel</a>, <a href="https://github.com/mizcausevic-dev/deal-desk-workspace">deal-desk-workspace</a>, <a href="https://github.com/mizcausevic-dev/kg-skyyflow-klaviyo-bridge">kg-skyyflow-klaviyo-bridge</a>, and the <a href="https://github.com/mizcausevic-dev/skyyflow-klaviyo-bridge-console">bridge console</a> · <strong>v0.3 adds <code>retention_envelope[]</code></strong> — per-field TTL + redaction action + ed25519-signed deletion-proof endpoint</td>
                 <td><code>decision_card_version</code></td>
                 <td><code>/.well-known/decisions/&lt;id&gt;.json</code></td>
               </tr>
