@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EnergyTech / Grid + Pipeline Operations — Kinetic Gain Protocol Suite vertical 6-pack</title>
+  <meta name="description" content="NERC CIP-002 through CIP-014 + TSA SD-2021-02C + DOE EO 14028 + FERC Order 2222 + state PUC orders. Six sibling spec repos for AI tools in grid + pipeline operations. bes_cyber_system_categorization + ot_it_boundary cross-bound across 3 repos. First Suite vertical with regulatory-clock invariants. Part of the Kinetic Gain Protocol Suite." />
+  <meta name="theme-color" content="#10b981" />
+  <link rel="canonical" href="https://suite.kineticgain.com/verticals/energytech/" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="EnergyTech / Grid + Pipeline Operations — Kinetic Gain Protocol Suite vertical 6-pack" />
+  <meta property="og:description" content="NERC CIP + TSA + DOE + FERC + state PUC. Six sibling spec repos for AI tools in grid + pipeline operations. bes_cyber_system_categorization + ot_it_boundary cross-bound across 3 repos. First Suite vertical with regulatory-clock invariants." />
+  <meta property="og:url" content="https://suite.kineticgain.com/verticals/energytech/" />
+  <link rel="stylesheet" href="/assets/fonts.css" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/verticals/vertical.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body class="vertical-page">
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark">KG</span>
+      <span class="brand-text">
+        <strong>Kinetic Gain Protocol Suite</strong>
+        <small>OPEN AI GOVERNANCE SPECS</small>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="/#suite">Specs</a>
+      <a href="/verticals/">Verticals</a>
+      <a href="/#audit-stream">Audit stream</a>
+      <a class="cta" href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite">GitHub</a>
+    </nav>
+  </div>
+</header>
+<section class="hero vertical-hero">
+  <div class="hero-inner">
+    <span class="pill">EnergyTech vertical 6-pack — 9th vertical</span>
+    <h1>EnergyTech / Grid + Pipeline Operations<br /><em>6 sibling specs · 1 canonical shape per artifact</em></h1>
+    <p class="lede">Six sibling specs for AI tools used by electric utilities, ISO/RTOs, balancing authorities, transmission operators, pipeline operators, and AI vendors providing tools that touch BES Cyber Systems or pipeline SCADA. Distinct from sibling verticals: EnergyTech is the first to introduce <strong>physical-realm-vs-data-realm</strong> distinctions (OT/IT boundary) and <strong>wall-clock regulatory invariants</strong> (CIP-008 1-hour, TSA 12-hour). The Suite vertical 6-pack a utility&#39;s Chief Reliability Officer + Chief Cybersecurity Officer + Chief Equity Officer + NERC regional-entity auditor + TSA + FERC + state PUC need.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#repos">See the 6 repos</a>
+      <a class="btn btn-secondary" href="/verticals/">All nine verticals →</a>
+    </div>
+  </div>
+</section>
+
+<section class="block-dark">
+  <div class="block-inner">
+    <h2>Regulatory floor</h2>
+    <p class="block-lede">NERC Reliability Standards CIP-002 through CIP-014 · NERC operating procedures + System Operator certification · FERC Orders 2222 + 715 + Form 715 · TSA Security Directives SD-2021-02 / SD-2021-02C (post-Colonial Pipeline) · DOE EO 14028 implementation + CISA Binding Operational Directives · EPA Clean Air Act Section 114 · State PUC tariff + prudency review (CA D.24-06-008 · NY 15-E-0751 Supplemental · TX PUCT Staff Guidance 55718 · MA DPU 24-15 · IL ICC 24-0589 NOPR · WA UE-240122) · ISO/RTO Business Practice Manuals (CAISO BPM Rev 71 first major US ISO with AI-aided bid-validation BPM)</p>
+
+    <h3 class="subhead">Canonical example anchored throughout the 6-pack</h3>
+    <ul class="canonical-list">
+      <li><strong>Buyer:</strong> Continental Grid Operator (CGO) — regional transmission organization in the MISO/PJM/ERCOT shape</li>
+      <li><strong>Vendor / AI system:</strong> VendorE GridSense v6.x — predictive load forecasting + outage detection + market analytics</li>
+    </ul>
+
+    <h3 class="subhead">Key design innovations vs sibling-vertical equivalents</h3>
+    <p><code>bes_cyber_system_categorization</code> (HIGH/MEDIUM/LOW/NONE/PHYSICAL-SECURITY-PERIMETER-ONLY per CIP-002-5.1a) + <code>ot_it_boundary</code> (OT/IT/OT-IT-CROSSING) BOTH as REQUIRED fields on every audit event AND every Incident Card. SAME enums cross-bound across THREE EnergyTech repos — <strong>strongest typed cross-repo binding in the Suite to date</strong>. CIP-008 incident reporting <strong>1-hour wall-clock</strong> invariant — first Suite verifier to enforce regulatory time-arithmetic numerically (not just regulatory shape). Population-level equity in essential service delivery (load shed allocation, outage restoration priority, EV deployment) — first Suite bias lab reframed from individual decisioning. Regulatory-clock meta-violations as first-class Incident Card event types: <code>cip-008-1-hour-notification-window-missed</code> + <code>tsa-sd-2021-02c-12-hour-window-missed</code> (missing the window is its own separately-enforceable violation). 7 EnergyTech-unique vault contract protection levels including <code>medical-baseline-tokenized-with-flag</code> (only place in Suite where a per-record flag remains accessible alongside opaque identity — outage-prioritization AI must honor critical-medical-equipment registry without learning who the customer is). Asymmetric OT→IT data-diode enforcement (IT→OT FORBIDDEN by default).</p>
+  </div>
+</section>
+
+<section id="repos" class="block">
+  <div class="block-inner">
+    <h2>The six sibling specs</h2>
+    <p class="block-lede">Every Kinetic Gain Protocol Suite vertical 6-pack contains exactly these six artifact shapes. The same six shapes appear in every vertical — only the per-vertical content (data categories, regulatory basis, invariants) differs.</p>
+    <div class="repo-grid">
+
+    <article class="repo-card">
+      <span class="repo-shape">Operator audit-stream</span>
+      <h3><a href="https://github.com/mizcausevic-dev/grid-decision-record-audit-stream"><code>grid-decision-record-audit-stream</code></a></h3>
+      <p>17-kind event taxonomy + REQUIRED <code>resource.bes_cyber_system_categorization</code> + REQUIRED <code>resource.ot_it_boundary</code>. Three invariants: human-operator-in-loop on HIGH-IMPACT+OT + TSA pipeline disclosure + <strong>CIP-008 1-hour wall-clock</strong> (first Suite invariant enforcing regulatory time-arithmetic numerically).</p>
+    </article>
+    <article class="repo-card">
+      <span class="repo-shape">Operator regulatory-lifecycle</span>
+      <h3><a href="https://github.com/mizcausevic-dev/state-puc-ai-disclosure-tracker"><code>state-puc-ai-disclosure-tracker</code></a></h3>
+      <p>10 jurisdictions seeded: 6 state PUCs (CA / NY / TX / MA / IL / WA) + FERC + NERC + TSA + CAISO. Mixed-authority shape reflects the energy sector's actual multi-layered regulatory geography. Per-(jurisdiction, docket) lifecycle threading.</p>
+    </article>
+    <article class="repo-card">
+      <span class="repo-shape">Evidence Bundle (compliance)</span>
+      <h3><a href="https://github.com/mizcausevic-dev/nerc-cip-readiness-evidence-bundle"><code>nerc-cip-readiness-evidence-bundle</code></a></h3>
+      <p><strong>12 obligation families × 53 required evidence kinds — LARGEST evidence bundle in the Suite.</strong> Two parallel regulatory clocks (CIP-008 1-hour + TSA 12-hour) as separately-named drill records. AI model version change explicitly treated as CIP-010 configuration change.</p>
+    </article>
+    <article class="repo-card">
+      <span class="repo-shape">Evidence Bundle (bias)</span>
+      <h3><a href="https://github.com/mizcausevic-dev/grid-operator-bias-coverage-lab"><code>grid-operator-bias-coverage-lab</code></a></h3>
+      <p>Population-level equity framing (not individual decisioning). EPA EJSCREEN + Justice40 + state DAC designations + DOE LEAD energy-burden bands. 3 EnergyTech-unique pattern detectors: <code>load-shed-disparity-pattern-detected</code>, <code>restoration-priority-disparity-pattern-detected</code>, <code>critical-medical-equipment-response-time-violation</code>. 7-day freshness window (shortest in Suite).</p>
+    </article>
+    <article class="repo-card">
+      <span class="repo-shape">Incident Card</span>
+      <h3><a href="https://github.com/mizcausevic-dev/grid-operations-incident-card-profile"><code>grid-operations-incident-card-profile</code></a></h3>
+      <p><strong>20 event types — most extensive Incident Card in the Suite.</strong> Includes regulatory-clock meta-violations as first-class event types. 12 referral pathways (NERC E-ISAC + CISA + TSA + DOE CESER + FERC + ISO/RTO Market Monitor + state PUC + EPA EJ + DOJ Civil Rights + FBI Cyber Division). ed25519 REQUIRED.</p>
+    </article>
+    <article class="repo-card">
+      <span class="repo-shape">Decision Card vault contract</span>
+      <h3><a href="https://github.com/mizcausevic-dev/grid-asset-data-vault-contract-profile"><code>grid-asset-data-vault-contract-profile</code></a></h3>
+      <p>Design centerpiece. 20 data categories × 5 BES tiers × 3 OT/IT codes × 12 protection levels (7 EnergyTech-unique). <code>medical-baseline-tokenized-with-flag</code> protection level — only place in Suite where a per-record flag remains accessible alongside opaque identity. 5 unique runtime invariants including asymmetric OT→IT data-diode enforcement.</p>
+    </article>
+    </div>
+  </div>
+</section>
+
+<section class="block-dark">
+  <div class="block-inner">
+    <h2>Why parallel structure matters</h2>
+    <p>A buyer&#39;s procurement team operating across mixed regulated verticals — utility AI vendors plus HealthTech AI vendors plus FinTech AI vendors — can apply the same six-shape Suite vocabulary to every vendor in every vertical. The <a href="https://github.com/mizcausevic-dev/kg-suite-vertical-router"><code>kg-suite-vertical-router</code></a> tool routes any artifact to the right vertical&#39;s verification logic with one CLI command. The <a href="https://github.com/mizcausevic-dev/kg-suite-vertical-comparator"><code>kg-suite-vertical-comparator</code></a> tool surfaces the SAME-vs-DIFFERENT design contributions across all nine verticals as a single reference table.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p><a href="/">← Back to Suite hub</a> · <a href="/verticals/">All nine verticals</a> · <a href="https://github.com/mizcausevic-dev/kg-suite-vertical-comparator/blob/main/docs/CROSS-VERTICAL-COMPARISON.md">Cross-vertical comparison</a></p>
+    <p class="footer-fineprint">Per the standing public-language guardrail: <em>readiness · evidence · posture · controls · scaffolding</em> — never &quot;compliant&quot; / &quot;certified&quot; without an external attestation specific to each regulatory regime.</p>
+  </div>
+</footer>
+</body>
+</html>
