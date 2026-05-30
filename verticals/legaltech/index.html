@@ -106,6 +106,15 @@
 
 <section class="block-dark">
   <div class="block-inner">
+    <h2>Reference implementation</h2>
+    <p class="block-lede">The LegalTech audit-stream now has a full end-to-end reference implementation in Node.js: <a href="https://github.com/mizcausevic-dev/matter-decision-record-audit-stream-reference"><code>matter-decision-record-audit-stream-reference</code></a> (AGPL-3.0).</p>
+    <p>It runs the canonical 7-step matter trajectory (intake → conflict check → privilege-tier assigned → brief draft → citation validated → work-product stamped → privilege log) through an attorney-client vault contract, emits Suite-compliant hash-chained events, and re-validates against the spec's published JSON Schema + <strong>all three orthogonal invariants simultaneously</strong> (privilege-tier consistency · engagement-letter binding · citation-validation-before-production-ready). Green CI is evidence the spec's three invariants are mutually achievable end-to-end, not just individually checkable.</p>
+    <p>The second of two reference implementations in the Suite (the <a href="https://github.com/mizcausevic-dev/fhir-resource-access-audit-reference">first</a> covered HealthTech). Together they're evidence the parallel-structure thesis works in code, not just on paper.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="block-inner">
     <h2>Why parallel structure matters</h2>
     <p>A buyer&#39;s procurement team operating across mixed regulated verticals — HealthTech AI vendors plus FinTech AI vendors plus LegalTech AI vendors — can apply the same six-shape Suite vocabulary to every vendor in every vertical. The <a href="https://github.com/mizcausevic-dev/kg-suite-vertical-router"><code>kg-suite-vertical-router</code></a> tool routes any artifact to the right vertical&#39;s verification logic with one CLI command. The <a href="https://github.com/mizcausevic-dev/kg-suite-vertical-comparator"><code>kg-suite-vertical-comparator</code></a> tool surfaces the SAME-vs-DIFFERENT design contributions across all eight verticals as a single reference table.</p>
   </div>
