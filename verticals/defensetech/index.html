@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DefenseTech / DIB AI Tooling — Kinetic Gain Protocol Suite vertical 6-pack</title>
+  <meta name="description" content="DFARS 252.204-7012/7019/7020/7021 + CMMC 2.0 L2/L3 + NIST SP 800-171/172 + ITAR + EAR + EO 13526 + ICD 705 + DoDI 5230.24 + CUI Notice 2020-04 + NISPOM + FAR + False Claims Act. Six sibling spec repos for AI tools in DIB / DoD contractor environments. FIRST Suite vertical with 3-axis vault contract (CUI × export control × foreign-person restriction). Part of the Kinetic Gain Protocol Suite." />
+  <meta name="theme-color" content="#10b981" />
+  <link rel="canonical" href="https://suite.kineticgain.com/verticals/defensetech/" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="DefenseTech / DIB AI Tooling — Kinetic Gain Protocol Suite vertical 6-pack" />
+  <meta property="og:description" content="DFARS + CMMC + NIST 800-171/172 + ITAR + EAR + NISPOM + DoDI 5230.24. Six sibling spec repos. FIRST Suite vertical with 3-axis vault contract: CUI tier × export-control × foreign-person restriction." />
+  <meta property="og:url" content="https://suite.kineticgain.com/verticals/defensetech/" />
+  <link rel="stylesheet" href="/assets/fonts.css" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/verticals/vertical.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body class="vertical-page">
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark">KG</span>
+      <span class="brand-text">
+        <strong>Kinetic Gain Protocol Suite</strong>
+        <small>OPEN AI GOVERNANCE SPECS</small>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="/#suite">Specs</a>
+      <a href="/verticals/">Verticals</a>
+      <a href="/#audit-stream">Audit stream</a>
+      <a class="cta" href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite">GitHub</a>
+    </nav>
+  </div>
+</header>
+<section class="hero vertical-hero">
+  <div class="hero-inner">
+    <span class="pill">DefenseTech vertical 6-pack — 10th vertical</span>
+    <h1>DefenseTech / DIB AI Tooling<br /><em>6 sibling specs · 1 canonical shape per artifact</em></h1>
+    <p class="lede">Six sibling specs for AI tools used by Defense Industrial Base (DIB) prime + sub contractors, federally-funded research and development centers, defense-systems integrators, and AI vendors providing tools that touch CUI / classified / ITAR-controlled technical data. Distinct from sibling verticals: DefenseTech is the first Suite vertical with a <strong>3-axis vault contract</strong> — CUI categorization × export-control status × foreign-person access restriction, all REQUIRED on every audit event and intersected at runtime by <code>resolvePolicy()</code>. <strong>Second Suite vertical with a numeric regulatory wall-clock invariant</strong> (DFARS 252.204-7012(c)(1)(ii) 72-hour cyber incident reporting; after EnergyTech CIP-008 1-hour). The Suite vertical 6-pack a DIB contractor's Chief Information Security Officer + Facility Security Officer + CMMC Compliance Lead + Empowered Official (ITAR) + DCMA contracting officer + DDTC + BIS + DCSA + NARA-ISOO need.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#repos">See the 6 repos</a>
+      <a class="btn btn-secondary" href="/verticals/">All ten verticals →</a>
+    </div>
+  </div>
+</section>
+
+<section class="block-dark">
+  <div class="block-inner">
+    <h2>Regulatory floor</h2>
+    <p class="block-lede">DFARS 252.204-7012 (CDI safeguarding + 72-hour cyber incident reporting via dibnet.dod.mil) · DFARS 252.204-7019 / 7020 (NIST 800-171 self-assessment + SPRS submission) · DFARS 252.204-7021 (CMMC certification — becoming sole-source-disqualifying in 2026) · CMMC 2.0 L1/L2/L3 (32 CFR 170) · NIST SP 800-171 r2 + NIST SP 800-172 enhanced security requirements · ITAR 22 CFR 120-130 (DDTC USML licensing + defense services + deemed export) · EAR 15 CFR 730-774 (BIS CCL + Entity List + EAR-99 + deemed export 22 CFR 120.50) · E.O. 13526 Classified National Security Information + ICD 705 SCIF standards · DoDI 5230.24 Distribution Statements (letters A–F + X) · CUI Notice 2020-04 (CUI Registry implementation) · NISPOM 32 CFR 117 + Conforming Change 2 (Insider Threat Program) · FAR 52.204-21 (basic safeguarding) · False Claims Act 31 USC 3729 (post-Aerojet Rocketdyne settlement — false 7019/7020 self-assessment carries treble-damages exposure)</p>
+
+    <h3 class="subhead">Canonical example anchored throughout the 6-pack</h3>
+    <ul class="canonical-list">
+      <li><strong>Buyer:</strong> Stratos Aerospace — DIB Tier 2 defense contractor (CAGE-coded prime sub, representative of an Aerospace + Defense supplier)</li>
+      <li><strong>Vendor / AI system:</strong> VendorD GuardianAI v3.x — defense-domain AI tool (RFP analytics + technical-data-package screening + CUI handling)</li>
+    </ul>
+
+    <h3 class="subhead">Key design innovations vs sibling-vertical equivalents</h3>
+    <p><strong>3-axis design — first in the Suite.</strong> Three independent typed fields on every audit event: <code>cui_categorization</code> (9 tiers PUBLIC → SCI) + <code>export_control_status</code> (NOT-CONTROLLED / EAR-99 / EAR-CCL / ITAR) + <code>foreign_person_access_restriction</code> (US-PERSON-ONLY / AUTHORIZED-FOREIGN-PERSON / FIVE-EYES / NATO-PLUS / NO-RESTRICTION). LegalTech is 1-axis (privilege_tier), EnergyTech is 2-axis (bes_categorization + ot_it_boundary), every other vertical is 1-axis equivalent. <strong>Defense regulators don't compose</strong> — DDTC, DoD CIO, and foreign-person verification each enforce independently. The vault contract's <code>resolvePolicy()</code> intersects all three axes at runtime; the most-restrictive axis wins. <strong>DFARS 72-hour wall-clock invariant</strong> — second Suite verifier to enforce regulatory time-arithmetic numerically (after EnergyTech CIP-008 1-hour). <strong>22 event types on Incident Card</strong> — largest Incident Card profile in the Suite. <strong>10 federal authorities × 8 distinct enforcement modes</strong> on state-tracker — most diverse enforcement-mode diversity of any state-tracker in the Suite. <strong>cross_binding_refs as REQUIRED schema fields</strong> on the vault contract — DefenseTech is the first vertical where the vault contract explicitly publishes its sibling repos as required cross-bindings, making the vault contract the structural centerpiece of the 6-pack.</p>
+  </div>
+</section>
+
+<section id="repos" class="block">
+  <div class="block-inner">
+    <h2>The six sibling specs</h2>
+    <p class="block-lede">Every Kinetic Gain Protocol Suite vertical 6-pack contains exactly these six artifact shapes. The same six shapes appear in every vertical — only the per-vertical content (data categories, regulatory basis, invariants) differs.</p>
+    <div class="repo-grid">
+
+    <article class="repo-card">
+      <span class="repo-shape">Operator audit-stream</span>
+      <h3><a href="https://github.com/mizcausevic-dev/defense-decision-record-audit-stream"><code>defense-decision-record-audit-stream</code></a></h3>
+      <p>18-kind event taxonomy + THREE first-class required fields on resource: <code>cui_categorization</code> + <code>export_control_status</code> + <code>foreign_person_access_restriction</code>. Three invariants: CUI distribution-statement on CUI-Specified+ (DoDI 5230.24); export-control gating (ITAR requires us_person_status verification + DDTC license number on AUTHORIZED-FOREIGN-PERSON); <strong>DFARS 252.204-7012(c)(1)(ii) 72-hour wall-clock</strong> — second Suite verifier enforcing regulatory time-arithmetic numerically.</p>
+    </article>
+    <article class="repo-card">
+      <span class="repo-shape">Operator regulatory-lifecycle</span>
+      <h3><a href="https://github.com/mizcausevic-dev/dod-cmmc-disclosure-tracker"><code>dod-cmmc-disclosure-tracker</code></a></h3>
+      <p>10 federal authorities seeded: DoD CIO + Cyber AB + DIBCAC + DDTC + BIS + NIST + GSA + DCMA + DCSA + NARA-ISOO. <strong>8 distinct enforcement modes</strong> — most diverse enforcement-mode diversity of any state-tracker in the Suite. Reflects that no two federal-defense authorities work the same way (contract-clause-flowdown vs license-pre-authorization vs facility-personnel-clearance vs registry-curation are structurally different).</p>
+    </article>
+    <article class="repo-card">
+      <span class="repo-shape">Evidence Bundle (compliance)</span>
+      <h3><a href="https://github.com/mizcausevic-dev/cmmc-l2-l3-readiness-evidence-bundle"><code>cmmc-l2-l3-readiness-evidence-bundle</code></a></h3>
+      <p><strong>18 control families × 48 evidence kinds</strong>. 14 NIST 800-171 families + 4 CMMC-program-specific families (Program Mgmt, POA&amp;M, SPRS Scoring, C3PAO Assessment Artifacts). Three invariants: L3+DIBCAC requires dibcac confidence score; DFARS 7019/7020 in scope requires cmmc-sprs-scoring evidence; every <code>not-satisfied</code> outcome must carry a <code>poam_ref</code> (orphan failures break POA&amp;M traceability).</p>
+    </article>
+    <article class="repo-card">
+      <span class="repo-shape">Evidence Bundle (bias)</span>
+      <h3><a href="https://github.com/mizcausevic-dev/defense-contractor-bias-coverage-lab"><code>defense-contractor-bias-coverage-lab</code></a></h3>
+      <p>15 dimensions × 8 metric kinds × 14 regulatory bases × 8 decision domains. Population-level only (per OFCCP guidance — counts below 20 reported as <code>insufficient-data</code> to avoid de-anonymization). DefenseTech-unique dimensions: protected-veteran-status-vevraa-4212, security-clearance-tier-distribution, clearance-denial-rate, polygraph-success-rate, subcontractor-sb-sdb-vosb-classification, insider-threat-flag-rate.</p>
+    </article>
+    <article class="repo-card">
+      <span class="repo-shape">Incident Card</span>
+      <h3><a href="https://github.com/mizcausevic-dev/defense-ai-incident-card-profile"><code>defense-ai-incident-card-profile</code></a></h3>
+      <p><strong>22 event types — LARGEST Incident Card profile in the Suite.</strong> Spans DFARS cyber incidents, CUI handling (spillage / marking / mishandling), ITAR + EAR violations, foreign-person access (unauthorized + blocked), classified-environment misuse + SCIF violations + AI-generated classified-marking errors, NISPOM insider-threat flags, CMMC POA&amp;M failures + SPRS discrepancies, AI-tool supply-chain compromise. DFARS 72-hour clock enforced at the published-Card level (mirrors audit-stream invariant).</p>
+    </article>
+    <article class="repo-card">
+      <span class="repo-shape">Decision Card vault contract</span>
+      <h3><a href="https://github.com/mizcausevic-dev/cui-data-vault-contract-profile"><code>cui-data-vault-contract-profile</code></a></h3>
+      <p><strong>DESIGN CENTERPIECE.</strong> FIRST Suite vault contract with 3 orthogonal typed policy axes (cui_handling_policy 9 tiers × export_control_handling_policy 4 tiers × foreign_person_handling_policy 5 tiers). <code>resolvePolicy()</code> intersects all 3 axes at runtime — most-restrictive axis wins. <code>cross_binding_refs</code> as REQUIRED schema fields publish sibling repos. 4 runtime invariants: distribution_statement on CUI-Specified+; us-person-verified min on ITAR; audit_stream_event + fso_cosign on CLASSIFIED-*; audit_stream_event on AUTHORIZED-FOREIGN-PERSON (per-event DDTC review).</p>
+    </article>
+    </div>
+  </div>
+</section>
+
+<section class="block-dark">
+  <div class="block-inner">
+    <h2>Why parallel structure matters</h2>
+    <p>A DIB contractor's procurement team operating across mixed regulated programs — defense AI vendors plus HealthTech AI vendors (for veteran healthcare programs) plus FinTech AI vendors (for sub-contractor financing) — can apply the same six-shape Suite vocabulary to every vendor in every vertical. The <a href="https://github.com/mizcausevic-dev/kg-suite-vertical-router"><code>kg-suite-vertical-router</code></a> tool routes any artifact to the right vertical&#39;s verification logic with one CLI command. The <a href="https://github.com/mizcausevic-dev/kg-suite-vertical-comparator"><code>kg-suite-vertical-comparator</code></a> tool surfaces the SAME-vs-DIFFERENT design contributions across all ten verticals as a single reference table.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p><a href="/">← Back to Suite hub</a> · <a href="/verticals/">All ten verticals</a> · <a href="https://github.com/mizcausevic-dev/kg-suite-vertical-comparator/blob/main/docs/CROSS-VERTICAL-COMPARISON.md">Cross-vertical comparison</a></p>
+    <p class="footer-fineprint">Per the standing public-language guardrail: <em>readiness · evidence · posture · controls · scaffolding</em> — never &quot;compliant&quot; / &quot;certified&quot; without an external attestation specific to each regulatory regime.</p>
+  </div>
+</footer>
+</body>
+</html>
