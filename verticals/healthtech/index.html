@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HealthTech / Clinical AI — Kinetic Gain Protocol Suite vertical 6-pack</title>
+  <meta name="description" content="FDA SaMD + HIPAA + Section 1557 + IMDRF. Six sibling spec repos for AI tools in HealthTech. Decision Card vault contract · Incident Card · Evidence Bundle (compliance) · Evidence Bundle (bias) · Operator audit-stream · Operator regulatory-lifecycle tracker. Part of the Kinetic Gain Protocol Suite." />
+  <meta name="theme-color" content="#10b981" />
+  <link rel="canonical" href="https://suite.kineticgain.com/verticals/healthtech/" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="HealthTech / Clinical AI — Kinetic Gain Protocol Suite vertical 6-pack" />
+  <meta property="og:description" content="FDA SaMD + HIPAA + Section 1557 + IMDRF. Six sibling spec repos for AI tools in HealthTech. Decision Card vault contract · Incident Card · Evidence Bundle (compliance) · Evidence Bundle (bias) · Operator audit-stream · Operator regulatory-lifecycle tracker. Part of the Kinetic Gain Protocol Suite." />
+  <meta property="og:url" content="https://suite.kineticgain.com/verticals/healthtech/" />
+  <link rel="stylesheet" href="/assets/fonts.css" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/verticals/vertical.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body class="vertical-page">
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark">KG</span>
+      <span class="brand-text">
+        <strong>Kinetic Gain Protocol Suite</strong>
+        <small>OPEN AI GOVERNANCE SPECS</small>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="/#suite">Specs</a>
+      <a href="/verticals/">Verticals</a>
+      <a href="/#audit-stream">Audit stream</a>
+      <a class="cta" href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite">GitHub</a>
+    </nav>
+  </div>
+</header>
+<section class="hero vertical-hero">
+  <div class="hero-inner">
+    <span class="pill">HealthTech vertical 6-pack</span>
+    <h1>HealthTech / Clinical AI<br /><em>6 sibling specs · 1 canonical shape per artifact</em></h1>
+    <p class="lede">Six sibling specs for AI tools that touch PHI, FHIR resources, clinical decisioning, and AI/ML medical devices. The Suite vertical 6-pack that lets a hospital, payer, or digital health vendor publish Decision Cards, Incident Cards, and Evidence Bundles regulators can validate.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#repos">See the 6 repos</a>
+      <a class="btn btn-secondary" href="/verticals/">All six verticals →</a>
+    </div>
+  </div>
+</section>
+
+<section class="block-dark">
+  <div class="block-inner">
+    <h2>Regulatory floor</h2>
+    <p class="block-lede">FDA SaMD (510(k) / De Novo / PMA + PCCP per Dec 2024 final) · HIPAA Privacy + Security Rules · Section 1557 of the ACA · IMDRF AE Terminology · CTCAE severity scale</p>
+
+    <h3 class="subhead">Canonical example anchored throughout the 6-pack</h3>
+    <ul class="canonical-list">
+      <li><strong>Buyer:</strong> St Mary Hospital</li>
+      <li><strong>Vendor / AI system:</strong> VendorH AIClinician v7.x</li>
+    </ul>
+
+    <h3 class="subhead">Key design innovation vs sibling-vertical equivalents</h3>
+    <p>FHIR-bridged audit events; FDA SaMD lifecycle Operator; HIPAA 18 Safe Harbor identifier categories in vault contract; OMB SPD 15 + Section 1557 + Fitzpatrick skin-type-classifier in bias coverage.</p>
+  </div>
+</section>
+
+<section id="repos" class="block">
+  <div class="block-inner">
+    <h2>The six sibling specs</h2>
+    <p class="block-lede">Every Kinetic Gain Protocol Suite vertical 6-pack contains exactly these six artifact shapes. The same six shapes appear in every vertical — only the per-vertical content (data categories, regulatory basis, invariants) differs.</p>
+    <div class="repo-grid">
+      
+    <article class="repo-card">
+      <span class="repo-shape">Operator audit-stream</span>
+      <h3><a href="https://github.com/mizcausevic-dev/fhir-resource-access-audit"><code>fhir-resource-access-audit</code></a></h3>
+      <p>Per-AI-tool FHIR resource access events hash-chained for HIPAA + Section 1557 evidence</p>
+    </article>
+    <article class="repo-card">
+      <span class="repo-shape">Operator regulatory-lifecycle</span>
+      <h3><a href="https://github.com/mizcausevic-dev/fda-samd-classification-board"><code>fda-samd-classification-board</code></a></h3>
+      <p>FDA SaMD classification lifecycle (510(k) / De Novo / PMA + PCCP per Dec 2024 final)</p>
+    </article>
+    <article class="repo-card">
+      <span class="repo-shape">Evidence Bundle (compliance)</span>
+      <h3><a href="https://github.com/mizcausevic-dev/hipaa-readiness-evidence-bundle"><code>hipaa-readiness-evidence-bundle</code></a></h3>
+      <p>18 HIPAA Security Rule standards across Admin / Physical / Technical safeguards</p>
+    </article>
+    <article class="repo-card">
+      <span class="repo-shape">Evidence Bundle (bias)</span>
+      <h3><a href="https://github.com/mizcausevic-dev/clinical-bias-cohort-coverage-lab"><code>clinical-bias-cohort-coverage-lab</code></a></h3>
+      <p>OMB SPD 15 + Section 1557 + Fitzpatrick skin-type-classifier + equity metrics</p>
+    </article>
+    <article class="repo-card">
+      <span class="repo-shape">Incident Card</span>
+      <h3><a href="https://github.com/mizcausevic-dev/medical-adverse-event-incident-card"><code>medical-adverse-event-incident-card</code></a></h3>
+      <p>FDA MedWatch + EU MDR vigilance + IMDRF AE Terminology + CTCAE severity scale</p>
+    </article>
+    <article class="repo-card">
+      <span class="repo-shape">Decision Card vault contract</span>
+      <h3><a href="https://github.com/mizcausevic-dev/phi-vault-contract-profile"><code>phi-vault-contract-profile</code></a></h3>
+      <p>AI Procurement Decision Card v0.3 vault contract profile naming HIPAA&#39;s 18 Safe Harbor identifier categories</p>
+    </article>
+    </div>
+  </div>
+</section>
+
+<section class="block-dark">
+  <div class="block-inner">
+    <h2>Why parallel structure matters</h2>
+    <p>A buyer's procurement team operating across mixed regulated verticals — HealthTech AI vendors plus FinTech AI vendors plus HR Tech AI vendors — can apply the same six-shape Suite vocabulary to every vendor in every vertical. The <a href="https://github.com/mizcausevic-dev/kg-suite-vertical-router"><code>kg-suite-vertical-router</code></a> tool routes any artifact to the right vertical's verification logic with one CLI command. The <a href="https://github.com/mizcausevic-dev/kg-suite-vertical-comparator"><code>kg-suite-vertical-comparator</code></a> tool surfaces the SAME-vs-DIFFERENT design contributions across all six verticals as a single reference table.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p><a href="/">← Back to Suite hub</a> · <a href="/verticals/">All six verticals</a> · <a href="https://github.com/mizcausevic-dev/kg-suite-vertical-comparator/blob/main/docs/CROSS-VERTICAL-COMPARISON.md">Cross-vertical comparison</a></p>
+    <p class="footer-fineprint">Per the standing public-language guardrail: <em>readiness · evidence · posture · controls · scaffolding</em> — never "compliant" / "certified" without an external attestation specific to each regulatory regime.</p>
+  </div>
+</footer>
+</body>
+</html>
