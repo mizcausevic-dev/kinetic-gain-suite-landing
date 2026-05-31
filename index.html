@@ -632,6 +632,53 @@ flowchart LR
       </div>
     </section>
 
+    <section class="block" aria-label="Suite GitHub Actions">
+      <div class="block-inner block-narrow">
+        <h2>Suite GitHub Actions — semver-released for Marketplace pinning</h2>
+        <p class="prose">
+          Twenty-one protocol PR-gate Actions now ship with <code>v0.1.0</code> semver tags + floating <code>v0.1</code> major tags (released 2026-05-31). Consumers can pin:
+        </p>
+        <pre style="background: rgba(0,0,0,.4); padding: 10px 14px; border-radius: 8px; margin: 12px 0; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>uses: mizcausevic-dev/agent-card-diff-action@v0.1      # floating major
+uses: mizcausevic-dev/agent-card-diff-action@v0.1.0    # exact pin</code></pre>
+        <p class="prose">
+          <strong>Per-protocol diff Actions (5):</strong>
+          <a href="https://github.com/mizcausevic-dev/agent-card-diff-action" target="_blank" rel="noreferrer">agent-card-diff</a> ·
+          <a href="https://github.com/mizcausevic-dev/mcp-tool-card-diff-action" target="_blank" rel="noreferrer">mcp-tool-card-diff</a> ·
+          <a href="https://github.com/mizcausevic-dev/prompt-provenance-diff-action" target="_blank" rel="noreferrer">prompt-provenance-diff</a> ·
+          <a href="https://github.com/mizcausevic-dev/evidence-bundle-diff-action" target="_blank" rel="noreferrer">evidence-bundle-diff</a> ·
+          <a href="https://github.com/mizcausevic-dev/otel-genai-diff-action" target="_blank" rel="noreferrer">otel-genai-diff</a>.
+        </p>
+        <p class="prose">
+          <strong>Per-protocol fleet-summary Actions (5):</strong>
+          <a href="https://github.com/mizcausevic-dev/agent-card-fleet-summary-action" target="_blank" rel="noreferrer">agent-card-fleet-summary</a> ·
+          <a href="https://github.com/mizcausevic-dev/mcp-tool-card-fleet-summary-action" target="_blank" rel="noreferrer">mcp-tool-card-fleet-summary</a> ·
+          <a href="https://github.com/mizcausevic-dev/prompt-provenance-fleet-summary-action" target="_blank" rel="noreferrer">prompt-provenance-fleet-summary</a> ·
+          <a href="https://github.com/mizcausevic-dev/evidence-bundle-fleet-summary-action" target="_blank" rel="noreferrer">evidence-bundle-fleet-summary</a> ·
+          <a href="https://github.com/mizcausevic-dev/otel-genai-fleet-summary-action" target="_blank" rel="noreferrer">otel-genai-fleet-summary</a>.
+        </p>
+        <p class="prose">
+          <strong>Per-protocol readme-generator Actions (4):</strong>
+          <a href="https://github.com/mizcausevic-dev/agent-card-readme-generator-action" target="_blank" rel="noreferrer">agent-card-readme</a> ·
+          <a href="https://github.com/mizcausevic-dev/mcp-tool-card-readme-generator-action" target="_blank" rel="noreferrer">mcp-tool-card-readme</a> ·
+          <a href="https://github.com/mizcausevic-dev/prompt-provenance-readme-generator-action" target="_blank" rel="noreferrer">prompt-provenance-readme</a> ·
+          <a href="https://github.com/mizcausevic-dev/evidence-bundle-readme-generator-action" target="_blank" rel="noreferrer">evidence-bundle-readme</a>.
+        </p>
+        <p class="prose">
+          <strong>Cross-protocol Suite Actions (7):</strong>
+          <a href="https://github.com/mizcausevic-dev/kg-suite-canonicalize-action" target="_blank" rel="noreferrer">canonicalize</a> ·
+          <a href="https://github.com/mizcausevic-dev/kg-suite-conformance-runner-action" target="_blank" rel="noreferrer">conformance-runner</a> ·
+          <a href="https://github.com/mizcausevic-dev/kg-suite-fleet-overview-action" target="_blank" rel="noreferrer">fleet-overview</a> ·
+          <a href="https://github.com/mizcausevic-dev/kg-suite-pr-gate-action" target="_blank" rel="noreferrer">pr-gate</a> ·
+          <a href="https://github.com/mizcausevic-dev/kg-suite-spec-version-tracker-action" target="_blank" rel="noreferrer">spec-version-tracker</a> ·
+          <a href="https://github.com/mizcausevic-dev/kg-protocol-detect-action" target="_blank" rel="noreferrer">protocol-detect</a> ·
+          <a href="https://github.com/mizcausevic-dev/procurement-pulse-action" target="_blank" rel="noreferrer">procurement-pulse</a>.
+        </p>
+        <p class="prose" style="font-size: 14px; margin-top: 14px;">
+          GitHub Marketplace publish pending UI confirmation per Action (action.yml is well-formed; needs only the "Publish this Action to the GitHub Marketplace" checkbox on each Release page). Source of v1.0-prod hardening discipline: <a href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite" target="_blank" rel="noreferrer">kinetic-gain-protocol-suite</a> meta-repo.
+        </p>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
