@@ -131,6 +131,25 @@
   </div>
 </section>
 
+<section class="block-dark">
+  <div class="block-inner">
+    <h2>Ten reference implementations now ship — one per vertical (AGPL-3.0)</h2>
+    <p class="prose">Every vertical now has working code proving its audit-stream spec invariants survive a real hash-chained trajectory end-to-end. Specs stay MIT for maximum implementation freedom; reference impls are AGPL-3.0. Together they exercise five distinct wall-clock invariant patterns the Suite supports.</p>
+    <ul class="prose">
+      <li><strong>HealthTech</strong> · <a href="https://github.com/mizcausevic-dev/fhir-resource-access-audit-reference"><code>fhir-resource-access-audit-reference</code></a> — HAPI FHIR public test server + HIPAA Safe-Harbor vault.</li>
+      <li><strong>LegalTech</strong> · <a href="https://github.com/mizcausevic-dev/matter-decision-record-audit-stream-reference"><code>matter-decision-record-audit-stream-reference</code></a> — attorney-client vault + 3 simultaneous invariants.</li>
+      <li><strong>EnergyTech</strong> · <a href="https://github.com/mizcausevic-dev/grid-decision-record-audit-stream-reference"><code>grid-decision-record-audit-stream-reference</code></a> — NERC CIP-008 1-hour wall clock (forward-from-event).</li>
+      <li><strong>DefenseTech</strong> · <a href="https://github.com/mizcausevic-dev/defense-decision-record-audit-stream-reference"><code>defense-decision-record-audit-stream-reference</code></a> — 3-axis CUI vault + DFARS 72-hour clock.</li>
+      <li><strong>GovTech</strong> · <a href="https://github.com/mizcausevic-dev/government-decision-record-audit-stream-reference"><code>government-decision-record-audit-stream-reference</code></a> — OMB M-24-10 trajectory + impact-assessment-before-deployment.</li>
+      <li><strong>FinTech</strong> · <a href="https://github.com/mizcausevic-dev/financial-decision-record-audit-stream-reference"><code>financial-decision-record-audit-stream-reference</code></a> — FCRA §604 permissible purpose + ECOA timing.</li>
+      <li><strong>HR Tech</strong> · <a href="https://github.com/mizcausevic-dev/employment-decision-record-audit-stream-reference"><code>employment-decision-record-audit-stream-reference</code></a> — NYC LL 144 14-day backward-before-event window.</li>
+      <li><strong>EdTech</strong> · <a href="https://github.com/mizcausevic-dev/student-data-access-audit-stream-reference"><code>student-data-access-audit-stream-reference</code></a> — FERPA basis enum + COPPA must-precede-event consent for under-13.</li>
+      <li><strong>PropTech</strong> · <a href="https://github.com/mizcausevic-dev/mortgage-decision-record-audit-stream-reference"><code>mortgage-decision-record-audit-stream-reference</code></a> — UNIVERSAL human-underwriter rule (only Suite vertical with universal-not-scoped rule) + ECOA 30-day clock anchored on application-completed.</li>
+      <li><strong>InsurTech</strong> · <a href="https://github.com/mizcausevic-dev/insurance-decision-record-audit-stream-reference"><code>insurance-decision-record-audit-stream-reference</code></a> — scoped human-adjudicator + NAIC Model Bulletin on AI 90-day bounded-backward bias-monitoring window.</li>
+    </ul>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="footer-inner">
     <p><a href="/">← Back to Suite hub</a> · <a href="/verticals/">All ten verticals</a> · <a href="https://github.com/mizcausevic-dev/kg-suite-vertical-comparator/blob/main/docs/CROSS-VERTICAL-COMPARISON.md">Cross-vertical comparison</a></p>
