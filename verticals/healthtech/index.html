@@ -51,7 +51,7 @@
 <section class="block-dark">
   <div class="block-inner">
     <h2>Regulatory floor</h2>
-    <p class="block-lede">FDA SaMD (510(k) / De Novo / PMA + PCCP per Dec 2024 final) · HIPAA Privacy + Security Rules · Section 1557 of the ACA · IMDRF AE Terminology · CTCAE severity scale</p>
+    <p class="block-lede">FDA SaMD (510(k) / De Novo / PMA + PCCP per Dec 2024 final) Â· HIPAA Privacy + Security Rules Â· Section 1557 of the ACA Â· IMDRF AE Terminology Â· CTCAE severity scale</p>
 
     <h3 class="subhead">Canonical example anchored throughout the 6-pack</h3>
     <ul class="canonical-list">
@@ -105,14 +105,6 @@
 </section>
 
 <section class="block-dark">
-  <div class="block-inner">
-    <h2>Reference implementation</h2>
-    <p class="block-lede">The HealthTech audit-stream now has a full end-to-end reference implementation in Node.js: <a href="https://github.com/mizcausevic-dev/fhir-resource-access-audit-reference"><code>fhir-resource-access-audit-reference</code></a> (AGPL-3.0).</p>
-    <p>It reads from a FHIR R4 server (HAPI public test in live mode, fixtures in test mode), applies a HIPAA Safe-Harbor vault contract, emits Suite-compliant hash-chained events, and re-verifies its own output against the spec's published JSON Schema in CI. Green CI is evidence the spec is implementable end-to-end — not just well-typed example data.</p>
-  </div>
-</section>
-
-<section class="block">
   <div class="block-inner">
     <h2>Why parallel structure matters</h2>
     <p>A buyer's procurement team operating across mixed regulated verticals — HealthTech AI vendors plus FinTech AI vendors plus HR Tech AI vendors — can apply the same six-shape Suite vocabulary to every vendor in every vertical. The <a href="https://github.com/mizcausevic-dev/kg-suite-vertical-router"><code>kg-suite-vertical-router</code></a> tool routes any artifact to the right vertical's verification logic with one CLI command. The <a href="https://github.com/mizcausevic-dev/kg-suite-vertical-comparator"><code>kg-suite-vertical-comparator</code></a> tool surfaces the SAME-vs-DIFFERENT design contributions across all six verticals as a single reference table.</p>
