@@ -6,7 +6,7 @@
       "long_name": "HealthTech / Clinical AI",
       "tagline": "FDA SaMD + HIPAA + Section 1557 + IMDRF.",
       "lede": "Six sibling specs for AI tools that touch PHI, FHIR resources, clinical decisioning, and AI/ML medical devices. The Suite vertical 6-pack that lets a hospital, payer, or digital health vendor publish Decision Cards, Incident Cards, and Evidence Bundles regulators can validate.",
-      "federal_floor": "FDA SaMD (510(k) / De Novo / PMA + PCCP per Dec 2024 final) \u00c2\u00b7 HIPAA Privacy + Security Rules \u00c2\u00b7 Section 1557 of the ACA \u00c2\u00b7 IMDRF AE Terminology \u00c2\u00b7 CTCAE severity scale",
+      "federal_floor": "FDA SaMD (510(k) / De Novo / PMA + PCCP per Dec 2024 final) Â· HIPAA Privacy + Security Rules Â· Section 1557 of the ACA Â· IMDRF AE Terminology Â· CTCAE severity scale",
       "canonical_buyer": "St Mary Hospital",
       "canonical_vendor": "VendorH AIClinician v7.x",
       "key_innovation": "FHIR-bridged audit events; FDA SaMD lifecycle Operator; HIPAA 18 Safe Harbor identifier categories in vault contract; OMB SPD 15 + Section 1557 + Fitzpatrick skin-type-classifier in bias coverage.",
@@ -49,7 +49,7 @@
       "long_name": "EdTech / Student AI",
       "tagline": "FERPA + COPPA + IDEA / Section 504 + ESSA + 50 state student-data-privacy regimes.",
       "lede": "Six sibling specs for AI tools that touch student records, classroom assessments, tutoring transcripts, and special-education accommodations. The Suite vertical 6-pack that lets a district, edtech vendor, or testing provider publish the artifacts a parent, OCR investigator, or state DoE auditor expects.",
-      "federal_floor": "FERPA (34 CFR Part 99) \u00c2\u00b7 COPPA (16 CFR \u00c2\u00a7312 2025 refresh) \u00c2\u00b7 IDEA \u00c2\u00b7 Section 504 \u00c2\u00b7 Title VI / IX / 504 civil rights \u00c2\u00b7 ESSA accountability subgroups \u00c2\u00b7 OMB SPD 15 \u00c2\u00b7 50 state student-data-privacy laws (IL SOPPA \u00c2\u00b7 CA AB 1584 + AB 2876 \u00c2\u00b7 TX HB 18 \u00c2\u00b7 NY ED Law 2-d \u00c2\u00b7 VA ChAIPA)",
+      "federal_floor": "FERPA (34 CFR Part 99) Â· COPPA (16 CFR Â§312 2025 refresh) Â· IDEA Â· Section 504 Â· Title VI / IX / 504 civil rights Â· ESSA accountability subgroups Â· OMB SPD 15 Â· 50 state student-data-privacy laws (IL SOPPA Â· CA AB 1584 + AB 2876 Â· TX HB 18 Â· NY ED Law 2-d Â· VA ChAIPA)",
       "canonical_buyer": "Lincoln Unified School District",
       "canonical_vendor": "VendorT MathBuddy v3.x",
       "key_innovation": "CEDS + Ed-Fi semantics in audit stream; FERPA's 8 obligation families + COPPA 2025 refresh in vault contract; CTCAE-analog instructional-impact severity scale on Incident Card; ESSA subgroups + WIDA EL proficiency in bias coverage.",
@@ -82,7 +82,7 @@
         {
           "name": "pii-student-vault-contract-profile",
           "shape": "Decision Card vault contract",
-          "blurb": "FERPA 7 \u00c2\u00a799.3 PII categories + COPPA 10 \u00c2\u00a7312.2 PI categories (2025 refresh) + 4-doctrine consent_basis"
+          "blurb": "FERPA 7 Â§99.3 PII categories + COPPA 10 Â§312.2 PI categories (2025 refresh) + 4-doctrine consent_basis"
         }
       ]
     },
@@ -92,7 +92,7 @@
       "long_name": "PropTech / Real Estate AI",
       "tagline": "RESPA + ECOA Reg B + Fair Housing Act + HMDA + GLBA + CFPB UDAAP + state real-estate AI laws.",
       "lede": "Six sibling specs for AI tools that touch mortgage applications, MLS data, title chains, appraisals, and tenant screening. The Suite vertical 6-pack that lets a mortgage lender, broker, AVM vendor, or title insurer publish Decision Cards a CFPB examiner + DOJ fair-lending attorney + HUD investigator can validate.",
-      "federal_floor": "RESPA (12 CFR Part 1024) \u00c2\u00b7 ECOA Reg B (12 CFR Part 1002) \u00c2\u00b7 TILA-RESPA Integrated Disclosure \u00c2\u00b7 Fair Housing Act (42 USC \u00c2\u00a73604) \u00c2\u00b7 HMDA (12 CFR Part 1003) \u00c2\u00b7 GLBA Safeguards (16 CFR Part 314) \u00c2\u00b7 CFPB UDAAP \u00c2\u00b7 ALTA Best Practices \u00c2\u00b7 NAR 2024 Settlement",
+      "federal_floor": "RESPA (12 CFR Part 1024) Â· ECOA Reg B (12 CFR Part 1002) Â· TILA-RESPA Integrated Disclosure Â· Fair Housing Act (42 USC Â§3604) Â· HMDA (12 CFR Part 1003) Â· GLBA Safeguards (16 CFR Part 314) Â· CFPB UDAAP Â· ALTA Best Practices Â· NAR 2024 Settlement",
       "canonical_buyer": "Pacific Coast Mortgage Holdings",
       "canonical_vendor": "VendorR LoanDecision v5.2",
       "key_innovation": "MISMO + Fannie Mae URLA semantics; human_underwriter_required = true universal on adverse-action events; EEOC four-fifths-rule canonical threshold in bias coverage; LTV / DTI bands + MSA + majority-minority-tract flag dimensions.",
@@ -134,8 +134,8 @@
       "name": "Insurance / InsurTech",
       "long_name": "Insurance / InsurTech AI",
       "tagline": "NAIC AI Model Bulletin (Nov 2023) + state DOI adoptions + NY DFS CL 7 + CO SB 21-169.",
-      "lede": "Six sibling specs for AI tools that touch insurance applications, claims, pricing, and fraud detection. The Suite vertical 6-pack that lets an insurer, reinsurer, MGA, or AI vendor publish artifacts a state DOI market-conduct examiner expects \u00e2\u20ac\u201d including the unique actuarial-soundness defense framework that distinguishes insurance from other fair-lending regimes.",
-      "federal_floor": "NAIC AI Model Bulletin Nov 2023 (state DOI adoptions: CT first; 20+ states by mid-2026) \u00c2\u00b7 NY DFS Circular Letter No. 7 (Jul 2024) \u00c2\u00b7 Colorado SB 21-169 + 3 CCR 702-10 Reg 10-1-1 (Life) \u00c2\u00b7 CA DOI Bulletin 2022-5 \u00c2\u00b7 FCRA \u00c2\u00b7 ECOA-applicable credit-based insurance scoring",
+      "lede": "Six sibling specs for AI tools that touch insurance applications, claims, pricing, and fraud detection. The Suite vertical 6-pack that lets an insurer, reinsurer, MGA, or AI vendor publish artifacts a state DOI market-conduct examiner expects â€” including the unique actuarial-soundness defense framework that distinguishes insurance from other fair-lending regimes.",
+      "federal_floor": "NAIC AI Model Bulletin Nov 2023 (state DOI adoptions: CT first; 20+ states by mid-2026) Â· NY DFS Circular Letter No. 7 (Jul 2024) Â· Colorado SB 21-169 + 3 CCR 702-10 Reg 10-1-1 (Life) Â· CA DOI Bulletin 2022-5 Â· FCRA Â· ECOA-applicable credit-based insurance scoring",
       "canonical_buyer": "Coastguard Insurance",
       "canonical_vendor": "VendorI ClaimsTriage v3.x",
       "key_innovation": "ACORD-bridged; covers underwriting + claims + pricing under one schema; human_adjudicator_required scoped to adverse-action-capable kinds + recommendations only (vs PropTech's universal); actuarial-soundness-defended coverage status; protected-class data default tokenized-AND-NOT-a-model-input.",
@@ -153,12 +153,12 @@
         {
           "name": "naic-ai-bulletin-readiness-evidence-bundle",
           "shape": "Evidence Bundle (compliance)",
-          "blurb": "6 obligation families: governance (NAIC \u00c2\u00a72) + risk-management (\u00c2\u00a73) + third-party-AI (\u00c2\u00a74) + testing-validation + consumer-protection + state-DOI examination"
+          "blurb": "6 obligation families: governance (NAIC Â§2) + risk-management (Â§3) + third-party-AI (Â§4) + testing-validation + consumer-protection + state-DOI examination"
         },
         {
           "name": "insurance-applicant-bias-coverage-lab",
           "shape": "Evidence Bundle (bias)",
-          "blurb": "actuarial-soundness-defended coverage status; CO SB 21-169 + NAIC \u00c2\u00a73 + EEOC four-fifths-rule"
+          "blurb": "actuarial-soundness-defended coverage status; CO SB 21-169 + NAIC Â§3 + EEOC four-fifths-rule"
         },
         {
           "name": "unfair-discrimination-incident-card-profile",
@@ -178,7 +178,7 @@
       "long_name": "HR Tech / Employment AI",
       "tagline": "EEOC AI Guidance (May 2023) + Title VII + ADA + ADEA + GINA + OFCCP + NYC LL 144 + IL 820 ILCS 42 + MD HB 1202.",
       "lede": "Six sibling specs for AI tools that touch hiring, promotion, performance evaluation, and termination decisions. The Suite vertical 6-pack that lets an employer, AI vendor, or independent bias auditor publish the NYC LL 144 bias-audit + EEOC-investigation-ready evidence that an HR / GC / Chief People Officer chain needs.",
-      "federal_floor": "EEOC AI Guidance May 2023 \u00c2\u00b7 Title VII \u00c2\u00a7703(k) + UGESP (29 CFR Part 1607) \u00c2\u00b7 ADA Title I (42 USC \u00c2\u00a712112) \u00c2\u00b7 Section 504 of Rehabilitation Act \u00c2\u00b7 ADEA (29 USC \u00c2\u00a7621) \u00c2\u00b7 GINA (42 USC \u00c2\u00a72000ff) \u00c2\u00b7 OFCCP federal-contractor regs \u00c2\u00b7 NYC Local Law 144 of 2021 (effective 2023-07-05) \u00c2\u00b7 IL Artificial Intelligence Video Interview Act (820 ILCS 42) \u00c2\u00b7 MD HB 1202 Facial Recognition \u00c2\u00b7 CA AB 331 (withdrawn \u00e2\u2020\u2019 DFEH FEHA rulemaking) \u00c2\u00b7 CO SB 24-205",
+      "federal_floor": "EEOC AI Guidance May 2023 Â· Title VII Â§703(k) + UGESP (29 CFR Part 1607) Â· ADA Title I (42 USC Â§12112) Â· Section 504 of Rehabilitation Act Â· ADEA (29 USC Â§621) Â· GINA (42 USC Â§2000ff) Â· OFCCP federal-contractor regs Â· NYC Local Law 144 of 2021 (effective 2023-07-05) Â· IL Artificial Intelligence Video Interview Act (820 ILCS 42) Â· MD HB 1202 Facial Recognition Â· CA AB 331 (withdrawn â†’ DFEH FEHA rulemaking) Â· CO SB 24-205",
       "canonical_buyer": "MomentumHR Inc.",
       "canonical_vendor": "VendorE HireAssess v2.x",
       "key_innovation": "First audit stream with TWO orthogonal invariants (human-hiring-decision + NYC LL 144 candidate-notice, independent); first Suite tracker supporting sub-state jurisdictions (US-XX-CITY pattern); accommodation-pathway-impairment + two-sd-violation coverage statuses; strictest default-deny posture (6 of 19 vault data categories default NOT a model input).",
@@ -201,7 +201,7 @@
         {
           "name": "employment-candidate-bias-coverage-lab",
           "shape": "Evidence Bundle (bias)",
-          "blurb": "NYC LL 144 annual bias audit + UGESP four-fifths + UGESP \u00c2\u00a71607.5(D) 2-SD test + accommodation-pathway-impairment + two-sd-violation"
+          "blurb": "NYC LL 144 annual bias audit + UGESP four-fifths + UGESP Â§1607.5(D) 2-SD test + accommodation-pathway-impairment + two-sd-violation"
         },
         {
           "name": "employment-ai-incident-card-profile",
@@ -221,7 +221,7 @@
       "long_name": "FinTech / Consumer + Small Business Credit AI",
       "tagline": "CFPB AI bulletin (2023) + Section 1071 + Section 1033 + UDAAP + OCC / FRB / FDIC joint AI + ECOA + FCRA + GLBA + BSA/AML.",
       "lede": "Six sibling specs for AI tools that touch consumer credit, deposit account opening, payment authorization, fraud detection, AML / KYC, robo-advisors, and CFPB Section 1071 small business lending. The Suite vertical 6-pack that lets a bank, credit union, neobank, or fintech publish Decision Cards a CFPB examiner + OCC / FRB / FDIC supervisor + state-banking-regulator examiner can validate. Distinct from PropTech (mortgage-only).",
-      "federal_floor": "CFPB AI bulletin (2023) \u00c2\u00b7 CFPB Section 1071 small business \u00c2\u00b7 CFPB Section 1033 financial data rights \u00c2\u00b7 CFPB UDAAP (12 CFR Part 1031) \u00c2\u00b7 OCC / FRB / FDIC joint AI statement (2023) \u00c2\u00b7 OCC Bulletin 2011-12 model-risk-management \u00c2\u00b7 FRB SR 11-7 \u00c2\u00b7 ECOA Reg B (12 CFR Part 1002) \u00c2\u00b7 FCRA Reg V (12 CFR Part 1022) \u00c2\u00b7 GLBA Safeguards (16 CFR Part 314) \u00c2\u00b7 GLBA Financial Privacy (12 CFR Part 1016) \u00c2\u00b7 BSA/AML (31 CFR Part 1010) \u00c2\u00b7 SEC/FINRA investment-recommendation best-interest",
+      "federal_floor": "CFPB AI bulletin (2023) Â· CFPB Section 1071 small business Â· CFPB Section 1033 financial data rights Â· CFPB UDAAP (12 CFR Part 1031) Â· OCC / FRB / FDIC joint AI statement (2023) Â· OCC Bulletin 2011-12 model-risk-management Â· FRB SR 11-7 Â· ECOA Reg B (12 CFR Part 1002) Â· FCRA Reg V (12 CFR Part 1022) Â· GLBA Safeguards (16 CFR Part 314) Â· GLBA Financial Privacy (12 CFR Part 1016) Â· BSA/AML (31 CFR Part 1010) Â· SEC/FINRA investment-recommendation best-interest",
       "canonical_buyer": "Meridian Financial",
       "canonical_vendor": "VendorF CreditMind v4.x",
       "key_innovation": "TWO orthogonal invariants on audit stream (human-credit-officer + FCRA permissible-purpose required on every credit-bureau pull); first Suite tracker supporting multi-regulation per state (CA CCFPL statute + DFPI 10 CCR 1060-1077 as parallel lifecycle streams); business-necessity-defended + redlining-pattern-flagged coverage statuses; primary-federal-supervisor-notification regulator routing (OCC/FRB/FDIC/NCUA per institution type); Section 1033 data-portability window in retention envelope.",
@@ -263,11 +263,11 @@
       "name": "GovTech / Public Sector AI",
       "long_name": "GovTech / Public Sector AI",
       "tagline": "OMB M-24-10 + AI Bill of Rights + Section 508 + Privacy Act + FOIA + NIST AI RMF + EO 14110 (rescinded) / EO 14179 + FedRAMP + state government AI laws.",
-      "lede": "Six sibling specs for AI tools used BY government \u00e2\u20ac\u201d federal agency benefit determinations, federal contracting recommendations, FOIA processing, IRS / SSA / VA / DHS / state-Medicaid decision support, public-services chatbots, regulatory permitting. Distinct from the prior 6 verticals (which cover regulators telling the private sector what to do): GovTech covers government's OWN AI use rules. The Suite vertical 6-pack a federal agency's Chief AI Officer + Office of Civil Rights + OIG + General Counsel need to publish OMB M-24-10 \u00c2\u00a73(a) Federal AI Use Case Inventory entries + rights-impacting + safety-impacting AI impact assessments.",
-      "federal_floor": "OMB Memorandum M-24-10 (Mar 2024) Advancing Governance, Innovation, and Risk Management for Agency Use of AI \u00c2\u00b7 OMB M-24-18 (AI procurement) \u00c2\u00b7 AI Bill of Rights blueprint (OSTP Oct 2022) \u00c2\u00b7 Section 508 of the Rehabilitation Act + 36 CFR Part 1194 + WCAG 2.1 AA \u00c2\u00b7 Privacy Act of 1974 (5 USC \u00c2\u00a7552a) \u00c2\u00b7 FOIA (5 USC \u00c2\u00a7552) \u00c2\u00b7 NIST AI RMF 1.0 + GenAI Profile (2024) \u00c2\u00b7 EO 14110 Safe Secure Trustworthy AI (Oct 2023, rescinded by EO 14179 Jan 2025) \u00c2\u00b7 FedRAMP authorization \u00c2\u00b7 state government AI laws (CT Public Act 23-16 first state AI policy officer law, NYC AI Mayoral Action Plan)",
+      "lede": "Six sibling specs for AI tools used BY government â€” federal agency benefit determinations, federal contracting recommendations, FOIA processing, IRS / SSA / VA / DHS / state-Medicaid decision support, public-services chatbots, regulatory permitting. Distinct from the prior 6 verticals (which cover regulators telling the private sector what to do): GovTech covers government's OWN AI use rules. The Suite vertical 6-pack a federal agency's Chief AI Officer + Office of Civil Rights + OIG + General Counsel need to publish OMB M-24-10 Â§3(a) Federal AI Use Case Inventory entries + rights-impacting + safety-impacting AI impact assessments.",
+      "federal_floor": "OMB Memorandum M-24-10 (Mar 2024) Advancing Governance, Innovation, and Risk Management for Agency Use of AI Â· OMB M-24-18 (AI procurement) Â· AI Bill of Rights blueprint (OSTP Oct 2022) Â· Section 508 of the Rehabilitation Act + 36 CFR Part 1194 + WCAG 2.1 AA Â· Privacy Act of 1974 (5 USC Â§552a) Â· FOIA (5 USC Â§552) Â· NIST AI RMF 1.0 + GenAI Profile (2024) Â· EO 14110 Safe Secure Trustworthy AI (Oct 2023, rescinded by EO 14179 Jan 2025) Â· FedRAMP authorization Â· state government AI laws (CT Public Act 23-16 first state AI policy officer law, NYC AI Mayoral Action Plan)",
       "canonical_buyer": "Pacific Region Federal Services Agency (PRFSA)",
       "canonical_vendor": "VendorG GovDecide v3.x",
-      "key_innovation": "FIRST Suite audit stream with THREE orthogonal invariants (human-agency-officer + Federal AI Use Case Inventory entry + classification-clearance via ordered UNCLASSIFIED<CUI<CONFIDENTIAL<SECRET<TOP-SECRET enforcement per E.O. 13526); 'rescinded' lifecycle state in state tracker; Title VI LEP dimension in bias lab; MOST EXTENSIVE Incident Card event-type taxonomy (18 events) including the GovTech-unique federal-ai-use-case-inventory-correction referral pathway; REQUIRED ai_use_case_inventory_block in Decision Card (OMB M-24-10 \u00c2\u00a73(a) inventory-publication requirement encoded into the vault contract itself).",
+      "key_innovation": "FIRST Suite audit stream with THREE orthogonal invariants (human-agency-officer + Federal AI Use Case Inventory entry + classification-clearance via ordered UNCLASSIFIED<CUI<CONFIDENTIAL<SECRET<TOP-SECRET enforcement per E.O. 13526); 'rescinded' lifecycle state in state tracker; Title VI LEP dimension in bias lab; MOST EXTENSIVE Incident Card event-type taxonomy (18 events) including the GovTech-unique federal-ai-use-case-inventory-correction referral pathway; REQUIRED ai_use_case_inventory_block in Decision Card (OMB M-24-10 Â§3(a) inventory-publication requirement encoded into the vault contract itself).",
       "repos": [
         {
           "name": "government-decision-record-audit-stream",
@@ -287,7 +287,7 @@
         {
           "name": "government-applicant-bias-coverage-lab",
           "shape": "Evidence Bundle (bias)",
-          "blurb": "OMB M-24-10 \u00c2\u00a75(d) + Title VI + ADA Title II + Section 1557 + OFCCP-equivalent + GovTech-unique Title VI LEP dimension + accessibility-pathway-impairment + agency-civil-rights-finding-pending coverage statuses"
+          "blurb": "OMB M-24-10 Â§5(d) + Title VI + ADA Title II + Section 1557 + OFCCP-equivalent + GovTech-unique Title VI LEP dimension + accessibility-pathway-impairment + agency-civil-rights-finding-pending coverage statuses"
         },
         {
           "name": "government-ai-incident-card-profile",
@@ -302,12 +302,141 @@
       ]
     },
     {
+      "code": "legaltech",
+      "name": "LegalTech",
+      "long_name": "LegalTech / AI in the Practice of Law",
+      "tagline": "ABA Model Rules 1.1c8 + 1.6 + 3.3 + 5.3 + attorney-client privilege + work-product + state bar opinions + Mata v. Avianca-era court orders.",
+      "lede": "Six sibling specs for AI tools used by attorneys in the practice of law — eDiscovery review, contract review, brief drafting, legal research, due diligence. Distinct from prior verticals: covers attorneys' OWN AI use ethics rather than client industries. The Suite vertical 6-pack a Big Law GC, ALSP, or in-house legal-ops lead needs to satisfy ABA Model Rules 1.1 competence + 1.6 confidentiality + 3.3 candor + 5.3 supervision while preserving privilege through hash-chained AI-tool-access records.",
+      "federal_floor": "ABA Model Rules 1.1 (competence) + 1.1c8 (technology competence) + 1.6 + 1.6(c) (reasonable safeguards) + 1.7 + 1.9 (conflicts) + 3.3 (candor to tribunal) + 5.3 (nonlawyer supervision) + 5.5 (UPL) · Attorney-client privilege · Work-product doctrine (FRCP 26(b)(3)) · State bar opinions: CA Form Op 2023-01, NY-COSAC AI guidance, FL Bar AI Op 24-1, DC Bar Op 388, PA Bar AI Op 2023-04, TX Bar AI Op 705, IL ARDC AI · Mata v. Avianca-era SDNY court standing orders.",
+      "canonical_buyer": "Hale & Dorrigan LLP",
+      "canonical_vendor": "VendorL MatterAssist v2.x",
+      "key_innovation": "FIRST Suite audit stream where resource.privilege_tier is REQUIRED on every event (8-value taxonomy: privileged · work-product · joint-defense · common-interest · public-record · pre-litigation-investigative · tribunal-disclosure-required · opposing-party-quarantine). THREE simultaneous invariants: privilege-tier consistency + engagement-letter binding (ABA 1.7/1.9) + citation-validation-before-production-ready (anti-Mata-v-Avianca). Vault contract enforces 4 LegalTech-unique runtime invariants including cross-matter firewall + no-training-data-use vendor clause REQUIRED.",
+      "repos": [
+        {
+          "name": "matter-decision-record-audit-stream",
+          "shape": "Operator audit-stream",
+          "blurb": "14-kind matter-life-cycle event taxonomy; FIRST Suite stream with REQUIRED resource.privilege_tier (8-value); 3 invariants — privilege consistency + engagement binding + citation validation"
+        },
+        {
+          "name": "state-bar-ai-disclosure-tracker",
+          "shape": "Operator regulatory-lifecycle",
+          "blurb": "9-jurisdiction lifecycle ledger spanning ABA + 7 state bars + SDNY Mata v. Avianca sanction; bar_jurisdiction accepts both US-XX-BAR and federal court IDs"
+        },
+        {
+          "name": "aba-rule-1-6-readiness-evidence-bundle",
+          "shape": "Evidence Bundle (compliance)",
+          "blurb": "8 obligation families × 35 required evidence kinds; attorney-client privilege + work-product treated as TWO distinct families (waiver mechanics differ from confidentiality)"
+        },
+        {
+          "name": "legal-applicant-bias-coverage-lab",
+          "shape": "Evidence Bundle (bias)",
+          "blurb": "3 LegalTech-unique subgroups (indigent_defendant_status + immigration_status + criminal_history_band); compas-cautionary + batson-pattern coverage statuses; supervising-attorney review REQUIRED on 4 trigger categories"
+        },
+        {
+          "name": "legal-ai-incident-card-profile",
+          "shape": "Incident Card",
+          "blurb": "18 event types incl Mata-v-Avianca court-sanctioned-hallucination; 6-code privilege_waiver_risk_taxonomy (Fed. R. Evid. 502(d) clawback as distinct rung); ed25519 signature REQUIRED"
+        },
+        {
+          "name": "attorney-client-data-vault-contract-profile",
+          "shape": "Decision Card vault contract",
+          "blurb": "DESIGN CENTERPIECE. 18 attorney-client data classes × 8 privilege tiers (same enum as audit-stream — typed cross-repo binding); 4 LegalTech-unique runtime invariants including cross-matter-firewall + no-training-data-use vendor clause REQUIRED"
+        }
+      ]
+    },
+    {
+      "code": "energytech",
+      "name": "EnergyTech",
+      "long_name": "EnergyTech / Grid + Pipeline Operations",
+      "tagline": "NERC CIP-002 through CIP-014 + TSA Security Directives + FERC Orders + DOE EO 14028 + state PUC orders + ISO/RTO Business Practice Manuals.",
+      "lede": "Six sibling specs for AI tools touching the bulk electric system, pipelines, wholesale energy markets, distributed-energy resources, and Section 114 Clean Air Act monitoring. The Suite vertical 6-pack a TO/TOP/BA/GOP, pipeline operator, ISO/RTO, or utility-scale renewables developer needs to satisfy NERC CIP-008 1-hour wall-clock incident reporting + CIP-004 personnel-risk-assessment + TSA SD-2021-02C + FERC market-power monitoring while running AI tools in OT-adjacent decision paths.",
+      "federal_floor": "NERC CIP-002 (BES asset categorization) through CIP-014 (physical security) · NERC operating procedures · FERC Order 2222 (DER aggregation) + Order 715 + RTO market-monitor authority · TSA Security Directives SD-2021-02C (pipelines, AI overlay 2024) · DOE EO 14028 implementation · EPA Clean Air Act Section 114 (continuous emissions monitoring) · state PUC orders (CA D.24-04-018, NY PSC Case 18-M-0084, TX PUC RM 56042, MA DPU 20-80, IL ICC 22-0432, WA UTC UE-220066) · ISO/RTO Business Practice Manuals.",
+      "canonical_buyer": "Northern Grid Cooperative (BA + TO/TOP for the Pacific Northwest BES)",
+      "canonical_vendor": "VendorE GridDecide v4.x",
+      "key_innovation": "NERC CIP-008 1-hour FORWARD wall-clock incident reporting invariant — SHORTEST in the Suite catalog. Hour-bound and minute-bound stream emit `clock_violated=true` on any post-event hour-boundary that lacks an associated NERC EOP report event. resolvePolicy() over a 2-axis vault contract (bes_categorization × ot_it_boundary).",
+      "repos": [
+        {
+          "name": "grid-decision-record-audit-stream",
+          "shape": "Operator audit-stream",
+          "blurb": "16-kind grid + pipeline AI-decision event taxonomy; CIP-008 1-hour wall-clock invariant (clock_violated emitted on missing-report); resource.bes_categorization REQUIRED"
+        },
+        {
+          "name": "ferc-nerc-disclosure-tracker",
+          "shape": "Operator regulatory-lifecycle",
+          "blurb": "Multi-authority lifecycle ledger: NERC standards + FERC orders + TSA SDs + state PUC orders; supports parallel obligation streams per regulator"
+        },
+        {
+          "name": "nerc-readiness-evidence-bundle",
+          "shape": "Evidence Bundle (compliance)",
+          "blurb": "10 obligation families × 38 evidence kinds covering CIP-002→014 + CIP-004 personnel-risk + EOP-004 reporting + market-power-monitoring + Section 114 CEMS"
+        },
+        {
+          "name": "grid-operator-bias-coverage-lab",
+          "shape": "Evidence Bundle (bias)",
+          "blurb": "Outage-allocation-fairness + load-shedding-equity dimensions; EJ Index proxy cohorts; CIP-004 personnel-risk-assessment disparate-impact tracking"
+        },
+        {
+          "name": "grid-ai-incident-card-profile",
+          "shape": "Incident Card",
+          "blurb": "20 event types: CIP-008 cyber incidents + EOP-004 operating events + market-manipulation + AI-recommendation-induced derate; CIP-008 1-hour clock mirrored at Card level"
+        },
+        {
+          "name": "ot-data-vault-contract-profile",
+          "shape": "Decision Card vault contract",
+          "blurb": "2-axis vault: bes_categorization (HIGH/MEDIUM/LOW + non-BES) × ot_it_boundary (IT / IT-adjacent / OT-segregated / OT-airgapped); resolvePolicy() intersects axes at runtime"
+        }
+      ]
+    },
+    {
+      "code": "defensetech",
+      "name": "DefenseTech",
+      "long_name": "DefenseTech / DIB AI Tooling",
+      "tagline": "DFARS 252.204-7012/7019/7020/7021 + CMMC 2.0 L2/L3 + NIST SP 800-171 r2 + 800-172 + ITAR (22 CFR 120-130) + EAR (15 CFR 730-774) + EO 13526 + ICD 705 + DoDI 5230.24 + NISPOM 32 CFR 117 + FAR 52.204-21 + False Claims Act 31 USC 3729.",
+      "lede": "Six sibling specs for AI tools used by DIB prime + sub contractors + FFRDCs + defense-systems integrators touching CUI / classified / ITAR-controlled technical data. The Suite vertical 6-pack a DIB CISO + FSO + Contracts officer + Empowered Official needs to satisfy DFARS 7012 + CMMC 2.0 Level 2/3 + ITAR + EAR + classified-systems handling while running AI tools across mixed-clearance workforces.",
+      "federal_floor": "DFARS 252.204-7012 (NIST 800-171 + 72-hour cyber-incident clock) / 7019 (SPRS scoring) / 7020 (DCMA gov-assessment) / 7021 (CMMC reciprocity) · CMMC 2.0 L1/L2/L3 · NIST SP 800-171 r2 + NIST SP 800-172 · ITAR 22 CFR 120-130 · EAR 15 CFR 730-774 · EAR deemed export 22 CFR 120.50 · E.O. 13526 (classified national security information) · ICD 705 (physical security standards) · DoDI 5230.24 (CUI distribution statements) · CUI Notice 2020-04 · NISPOM 32 CFR 117 · FAR 52.204-21 · False Claims Act 31 USC 3729 (qui tam CMMC-misrepresentation exposure).",
+      "canonical_buyer": "Stratos Aerospace (DIB Tier 2 contractor, CMMC L2 + Industrial Security)",
+      "canonical_vendor": "VendorD DefenseDecide v5.x",
+      "key_innovation": "DESIGN CENTERPIECE. FIRST Suite vault contract with 3 ORTHOGONAL TYPED POLICY AXES (cui_handling_policy 9 tiers × export_control_handling_policy 4 tiers × foreign_person_handling_policy 5 tiers). resolvePolicy() intersects all 3 axes at runtime — most-restrictive axis wins. cross_binding_refs as REQUIRED schema fields publish sibling repos. DFARS 252.204-7012(c)(1)(ii) 72-hour wall-clock — SECOND Suite verifier enforcing numeric regulatory time-arithmetic. 22-event-type Incident Card — LARGEST in the Suite.",
+      "repos": [
+        {
+          "name": "defense-decision-record-audit-stream",
+          "shape": "Operator audit-stream",
+          "blurb": "18-kind defense AI-decision taxonomy; FIRST Suite stream with THREE required resource fields (cui_categorization + export_control_status + foreign_person_access_restriction); DFARS 72-hour clock invariant"
+        },
+        {
+          "name": "dod-cmmc-disclosure-tracker",
+          "shape": "Operator regulatory-lifecycle",
+          "blurb": "10 federal authorities seeded (DoD CIO + Cyber AB + DIBCAC + DDTC + BIS + NIST + GSA + DCMA + DCSA + NARA-ISOO); 8 distinct enforcement modes — most diverse in the Suite"
+        },
+        {
+          "name": "cmmc-l2-l3-readiness-evidence-bundle",
+          "shape": "Evidence Bundle (compliance)",
+          "blurb": "18 control families × 48 evidence kinds (14 NIST 800-171 families + 4 CMMC-program-specific: Program Mgmt + POA&M + SPRS + C3PAO Assessment Artifacts); 3 invariants on confidence scoring + SPRS + POA&M traceability"
+        },
+        {
+          "name": "defense-contractor-bias-coverage-lab",
+          "shape": "Evidence Bundle (bias)",
+          "blurb": "15 dimensions × 8 metric kinds; DefenseTech-unique: VEVRAA 4212 protected-veteran + security-clearance-tier-distribution + polygraph-success-rate + NISPOM insider-threat-flag-rate; population-level only (counts <20 → insufficient-data)"
+        },
+        {
+          "name": "defense-ai-incident-card-profile",
+          "shape": "Incident Card",
+          "blurb": "22 event types — LARGEST Incident Card in Suite. DFARS cyber + CUI spillage/marking + ITAR/EAR violations + foreign-person access + classified-environment + NISPOM insider-threat + CMMC POA&M; DFARS 72-hour clock mirrored at Card level"
+        },
+        {
+          "name": "cui-data-vault-contract-profile",
+          "shape": "Decision Card vault contract",
+          "blurb": "DESIGN CENTERPIECE. 3 ORTHOGONAL TYPED POLICY AXES (cui_handling 9 tiers × export_control 4 tiers × foreign_person 5 tiers); resolvePolicy() intersects all axes; cross_binding_refs as REQUIRED schema fields"
+        }
+      ]
+    },
+    {
       "code": "retailtech",
       "name": "RetailTech",
       "long_name": "RetailTech / Consumer AI",
       "tagline": "FTC Section 5 + EU Omnibus 2019/2161 Art 6a + NY ATBP + CA SB-892 + CCPA / CPRA + BIPA + PCI DSS.",
       "lede": "Six sibling specs for AI tools that touch personalized pricing, recommendation ranking, loyalty-tier classification, fraud screening, refund decisions, ad personalization, BOPIS routing, and biometric identification. The Suite vertical 6-pack that lets a retailer, marketplace, brand, or ad-tech vendor publish Decision Cards that satisfy FTC Section 5 algorithmic-pricing enforcement, EU Omnibus pricing transparency, state pricing-transparency + bias-audit obligations, and BIPA biometric-consent requirements.",
-      "federal_floor": "FTC Section 5 \u00b7 FTC algorithmic-pricing guidance (2023) \u00b7 FTC Operation AI Comply (2024) \u00b7 EU Omnibus Directive 2019/2161 Art 6a (personalized-pricing disclosure) \u00b7 EU AI Act high-risk Annex III \u00b7 CCPA / CPRA \u00b7 CA CPPA ADMT regulations \u00b7 NY S365A ATBP (in-comm) \u00b7 CA SB-892 \u00b7 BIPA 740 ILCS 14 + 2024 SB 2979 amendment \u00b7 NYC \u00a722-1201 (biometric) \u00b7 PCI DSS 4.0 \u00b7 GLBA Safeguards (retail-finance overlap)",
+      "federal_floor": "FTC Section 5 · FTC algorithmic-pricing guidance (2023) · FTC Operation AI Comply (2024) · EU Omnibus Directive 2019/2161 Art 6a (personalized-pricing disclosure) · EU AI Act high-risk Annex III · CCPA / CPRA · CA CPPA ADMT regulations · NY S365A ATBP (in-comm) · CA SB-892 · BIPA 740 ILCS 14 + 2024 SB 2979 amendment · NYC §22-1201 (biometric) · PCI DSS 4.0 · GLBA Safeguards (retail-finance overlap)",
       "canonical_buyer": "Parkway Marketplace, Inc.",
       "canonical_vendor": "VendorR PriceRunner v3.7.2",
       "key_innovation": "TWO retail-specific invariants on audit stream (personalized-pricing-transparency-disclosure-required + biometric-consent-artifact-required); BIPA per-scan-stacking remediation context (post-SB 2979); CPPA ADMT regulations as a state-level enforcement vector beyond FTC Section 5; ADMT opt-out + Global Privacy Control honor records in audit stream; biometric template special retention envelope (365-day BIPA-aligned hard-delete).",
@@ -320,7 +449,7 @@
         {
           "name": "state-retail-ai-disclosure-tracker",
           "shape": "Operator regulatory-lifecycle",
-          "blurb": "Per-state retail AI lifecycle ledger; seed: IL BIPA + 2024 amendment, CA CCPA \u2192 CPRA \u2192 CPPA ADMT, NY S365A ATBP + NYC \u00a722-1201 biometric"
+          "blurb": "Per-state retail AI lifecycle ledger; seed: IL BIPA + 2024 amendment, CA CCPA → CPRA → CPPA ADMT, NY S365A ATBP + NYC §22-1201 biometric"
         },
         {
           "name": "ftc-algorithmic-pricing-readiness-evidence-bundle",
@@ -340,7 +469,7 @@
         {
           "name": "shopper-pii-vault-contract-profile",
           "shape": "Decision Card vault contract",
-          "blurb": "7 data classes (identity, payment, biometric, purchase history, browsing history, loyalty, location) \u00d7 4 tokenization methods \u00d7 6 retention envelopes (biometric-special = 365-day hard-delete)"
+          "blurb": "7 data classes (identity, payment, biometric, purchase history, browsing history, loyalty, location) × 4 tokenization methods × 6 retention envelopes (biometric-special = 365-day hard-delete)"
         }
       ]
     }

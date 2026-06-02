@@ -128,8 +128,8 @@ function renderIndexPage() {
       <span class="vertical-card-cta">See the 6 repos →</span>
     </a>`).join("");
 
-  const title = "The Six Vertical 6-Packs — Kinetic Gain Protocol Suite";
-  const description = "Six regulated-vertical 6-packs of AI governance specs — HealthTech, EdTech, PropTech / Real Estate, Insurance / InsurTech, HR Tech / Employment AI, FinTech. 36 sibling spec repos. Same six canonical shapes in every vertical; different per-vertical regulatory basis, data categories, and invariants.";
+  const title = "The Eleven Vertical 6-Packs — Kinetic Gain Protocol Suite";
+  const description = "Eleven regulated-vertical 6-packs of AI governance specs — HealthTech, EdTech, PropTech / Real Estate, Insurance / InsurTech, HR Tech / Employment AI, FinTech, GovTech, LegalTech, EnergyTech, DefenseTech, RetailTech. 66 sibling spec repos. Same six canonical shapes in every vertical; different per-vertical regulatory basis, data categories, and invariants.";
   const canonical = "https://suite.kineticgain.com/verticals/";
 
   return `${HEAD(title, description, canonical)}
@@ -137,9 +137,9 @@ function renderIndexPage() {
 ${NAV}
 <section class="hero">
   <div class="hero-inner">
-    <span class="pill">36 sibling spec repos</span>
-    <h1>Six Regulated Verticals.<br /><em>One canonical six-shape vocabulary.</em></h1>
-    <p class="lede">The Kinetic Gain Protocol Suite ships six vertical 6-packs — HealthTech, EdTech, PropTech / Real Estate, Insurance / InsurTech, HR Tech / Employment AI, and FinTech — each containing the same six canonical artifact shapes (Decision Card vault contract · Incident Card · Evidence Bundle compliance · Evidence Bundle bias · Operator audit-stream · Operator regulatory-lifecycle tracker). Same shape across verticals; different per-vertical regulatory basis, data categories, and invariants. Pick a vertical to explore its 6 sibling specs + canonical example.</p>
+    <span class="pill">66 sibling spec repos</span>
+    <h1>Eleven Regulated Verticals.<br /><em>One canonical six-shape vocabulary.</em></h1>
+    <p class="lede">The Kinetic Gain Protocol Suite ships eleven vertical 6-packs — HealthTech, EdTech, PropTech / Real Estate, Insurance / InsurTech, HR Tech / Employment AI, FinTech, GovTech, LegalTech, EnergyTech, DefenseTech, and RetailTech — each containing the same six canonical artifact shapes (Decision Card vault contract · Incident Card · Evidence Bundle compliance · Evidence Bundle bias · Operator audit-stream · Operator regulatory-lifecycle tracker). Same shape across verticals; different per-vertical regulatory basis, data categories, and invariants. Pick a vertical to explore its 6 sibling specs + canonical example.</p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="https://github.com/mizcausevic-dev/kg-suite-vertical-comparator/blob/main/docs/CROSS-VERTICAL-COMPARISON.md">Cross-vertical comparison table</a>
       <a class="btn btn-secondary" href="https://github.com/mizcausevic-dev/kg-suite-vertical-router">Routing tool</a>
@@ -286,8 +286,18 @@ function escapeHtml(s) {
     .replace(/'/g, "&#39;");
 }
 
+// Hand-maintained verticals — RICH per-vertical content that pre-dates the
+// JSON-driven generator. Skip overwriting these files; they are owned by hand
+// at verticals/<code>/index.html. The JSON entries still drive the hub-grid
+// card on verticals/index.html, just not the per-vertical mini-landing page.
+const HAND_MAINTAINED = new Set(["legaltech", "energytech", "defensetech"]);
+
 // Write the per-vertical pages
 for (const v of data.verticals) {
+  if (HAND_MAINTAINED.has(v.code)) {
+    console.log(`skipped verticals/${v.code}/index.html (hand-maintained)`);
+    continue;
+  }
   const html = renderVerticalPage(v);
   const outPath = new URL(`./${v.code}/index.html`, import.meta.url);
   writeFileSync(outPath, html, "utf8");
