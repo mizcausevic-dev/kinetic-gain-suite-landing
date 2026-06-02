@@ -51,65 +51,102 @@ code {
 
 .code { font-family: var(--font-mono); }
 
-.nav {
+/* ------- Site header (apex-aligned visual language) ------- */
+.site-header {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(15, 23, 42, 0.96);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--slate-800);
+  background: rgba(10, 11, 17, 0.72);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
-.nav-inner {
-  max-width: 1200px;
+.site-header-inner {
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 0.9rem 1.25rem;
+  height: 68px;
+  padding: 0 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 28px;
 }
-.brand {
-  display: flex; align-items: center; gap: 0.75rem;
+
+/* KG logo — mirror of apex .kg-logo / .kg-mark / .kg-word */
+.kg-logo {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
   color: #fff;
+  flex-shrink: 0;
+}
+.kg-mark { height: 22px; width: auto; display: block; flex: none; }
+.kg-mark .kg-anchor { fill: var(--emerald-400); }
+.kg-mark .kg-bar { fill: #f5f2eb; }
+.kg-word {
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.025em;
+  color: #f5f2eb;
+  white-space: nowrap;
+}
+.kg-word-dim { color: var(--slate-400); font-weight: 400; }
+
+/* Primary nav links — mono uppercase, 12px (apex parity) */
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: nowrap;
+}
+.site-nav-links a {
+  font-family: var(--font-mono, ui-monospace, "SFMono-Regular", Menlo, monospace);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--slate-400);
+  text-decoration: none;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+.site-nav-links a:hover { color: #f5f2eb; text-decoration: none; }
+
+/* Pill CTA — rounded outline with emerald-aware hover, akin to apex .btn-start */
+.btn-start {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono, ui-monospace, "SFMono-Regular", Menlo, monospace);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f5f2eb;
+  text-decoration: none;
+  background: transparent;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  flex-shrink: 0;
+}
+.btn-start:hover {
+  color: var(--slate-900);
+  background: var(--emerald-400);
+  border-color: var(--emerald-400);
   text-decoration: none;
 }
-.brand-mark {
-  width: 36px; height: 36px;
-  border-radius: 10px;
-  background: var(--emerald-500);
-  color: var(--slate-900);
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 22px;
-  font-weight: 800;
-}
-.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
-.brand-text strong { font-size: 0.95rem; color: #fff; }
-.brand-text small {
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  color: var(--slate-400);
-  font-family: var(--font-mono);
-  margin-top: 2px;
-}
+.btn-start .ar { transition: transform 0.25s ease; display: inline-block; }
+.btn-start:hover .ar { transform: translate(2px, -2px); }
 
-.nav-links { display: flex; align-items: center; gap: 1.25rem; }
-.nav-links a {
-  color: var(--slate-300);
-  font-size: 0.9rem;
-  font-weight: 500;
+@media (max-width: 920px) {
+  .site-nav-links { gap: 16px; }
+  .site-nav-links a { font-size: 11px; }
+  .kg-word-dim { display: none; }
 }
-.nav-links a:hover { color: var(--emerald-400); text-decoration: none; }
-.nav-links .cta {
-  padding: 0.45rem 0.9rem;
-  border-radius: 8px;
-  background: var(--emerald-500);
-  color: var(--slate-900) !important;
-  font-weight: 600;
-}
-.nav-links .cta:hover { background: var(--emerald-400); }
-
 @media (max-width: 720px) {
-  .nav-links a:not(.cta) { display: none; }
+  .site-nav-links { display: none; }
+  .site-header-inner { padding: 0 18px; }
 }
 
 .hero {
