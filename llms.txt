@@ -2,7 +2,7 @@
 
 > Canonical front door for the entire 11-spec open AI governance suite + 15-repo implementation stack.
 
-The official landing page for the Kinetic Gain Protocol Suite. **11 open JSON specifications** spanning entity declaration, prompt lineage, agent disclosure, citation evidence, tool disclosure, plus an EdTech trio (vendor / district / student), a HealthTech extension, a cross-cutting vendor-side incident-disclosure spec, and a cross-cutting buyer-side procurement Decision Card. **One unified MCP server (63 tools, v0.7.1), one unified visualizer (11 renderers), 101 live properties, plus a 15-repo Suite Implementation Stack** (procurement-decision-api, policy-as-code-engine, audit-stream-py, hash-attestation-rs, aeo-validator-service, aeo-graph-explorer-rs, slo-budget-tracker, reliability-toolkit-rs, feature-flag-rs, request-shadow-rs, data-contract-registry, csv-data-quality-rs, incident-correlation-rs, mcp-reliability-toolkit, mcp-decision-intelligence) with four cross-ecosystem hooks.
+The official landing page for the Kinetic Gain Protocol Suite. **11 open JSON specifications** spanning entity declaration, prompt lineage, agent disclosure, citation evidence, tool disclosure, plus an EdTech trio (vendor / district / student), a HealthTech extension, a cross-cutting vendor-side incident-disclosure spec, and a cross-cutting buyer-side procurement Decision Card. **One unified MCP server (71 tools, v0.8.0, includes DefenseTech 6-pack), one unified visualizer (11 renderers), 101 live properties, plus a 15-repo Suite Implementation Stack** (procurement-decision-api, policy-as-code-engine, audit-stream-py, hash-attestation-rs, aeo-validator-service, aeo-graph-explorer-rs, slo-budget-tracker, reliability-toolkit-rs, feature-flag-rs, request-shadow-rs, data-contract-registry, csv-data-quality-rs, incident-correlation-rs, mcp-reliability-toolkit, mcp-decision-intelligence) with four cross-ecosystem hooks.
 
 ## Identity
 
@@ -25,7 +25,7 @@ A family of **11 open JSON specifications** for the answer-engine and agent era 
 - **Front door**: [suite.kineticgain.com](https://suite.kineticgain.com/)
 - **Quickstart hub**: [docs.kineticgain.com](https://docs.kineticgain.com/)
 - **Portfolio constellation**: [portfolio.kineticgain.com](https://portfolio.kineticgain.com/) — live visual atlas of every public repo at github.com/mizcausevic-dev (hundreds of repos across 20+ languages), classified into named platforms + industry verticals, auto-refreshed every six hours.
-- **Unified MCP server** (63 tools across 11 specs + 5 cross-cutting op categories, v0.7.1): [github.com/mizcausevic-dev/mcp-kinetic-gain](https://github.com/mizcausevic-dev/mcp-kinetic-gain)
+- **Unified MCP server** (71 tools across 11 specs + DefenseTech 6-pack + 5 cross-cutting op categories, v0.8.0, on the official MCP Registry): [github.com/mizcausevic-dev/mcp-kinetic-gain](https://github.com/mizcausevic-dev/mcp-kinetic-gain)
 - **Unified visualizer** (11 renderers): [github.com/mizcausevic-dev/kinetic-gain-visualizer](https://github.com/mizcausevic-dev/kinetic-gain-visualizer)
 - **Meta-repo + Suite × Implementations catalog**: [github.com/mizcausevic-dev/kinetic-gain-protocol-suite](https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite)
 - **NIST AI RMF crosswalk v0.2**: [suite.kineticgain.com/docs/nist-rmf-crosswalk.md](https://suite.kineticgain.com/docs/nist-rmf-crosswalk.md)
