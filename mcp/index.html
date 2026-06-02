@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>mcp-kinetic-gain — 71 governance tools, one MCP config | Kinetic Gain Suite</title>
+  <meta name="description" content="mcp-kinetic-gain v0.8.0 — unified MCP server exposing 71 tools (47 spec + 16 implementation-preview + 8 DefenseTech) from all 11 Kinetic Gain Protocol Suite specifications. One Claude Desktop / Cursor / Cline config entry. Live on npm, Official MCP Registry, mcp.so. AGPL-3.0, 126 tests passing, no API key required." />
+  <meta name="theme-color" content="#10b981" />
+  <link rel="canonical" href="https://suite.kineticgain.com/mcp/" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="mcp-kinetic-gain — unified MCP server" />
+  <meta property="og:description" content="71 governance tools across 11 specs + DefenseTech 6-pack. One Claude Desktop config entry. Live on npm + MCP Registry + mcp.so." />
+  <meta property="og:url" content="https://suite.kineticgain.com/mcp/" />
+  <link rel="stylesheet" href="/assets/fonts.css" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"mcp-kinetic-gain","softwareVersion":"0.8.0","applicationCategory":"DeveloperApplication","operatingSystem":"Cross-platform","license":"https://www.gnu.org/licenses/agpl-3.0.html","downloadUrl":"https://www.npmjs.com/package/mcp-kinetic-gain","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Unified MCP server exposing 71 tools across the eleven Kinetic Gain Protocol Suite specifications plus the DefenseTech 6-pack. stdio transport, AGPL-3.0, 126 tests passing.","publisher":{"@type":"Organization","name":"Kinetic Gain LLC"}}
+  </script>
+  <style>
+    /* Page-scoped styles (style.css extension) */
+    .mcp-eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:"Geist Mono",ui-monospace,monospace;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--emerald-400);background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.24);padding:.35rem .85rem;border-radius:999px;margin-bottom:1rem}
+    .mcp-eyebrow b{color:#fff;font-weight:600}
+    .mcp-stat-row{display:flex;flex-wrap:wrap;gap:2rem;margin:2rem 0 0;font-family:"Geist Mono",ui-monospace,monospace}
+    .mcp-stat-row .stat-num{font-size:2.5rem;font-weight:600;color:var(--emerald-400);display:block;line-height:1}
+    .mcp-stat-row .stat-lbl{font-size:.75rem;color:var(--slate-400);letter-spacing:.08em;text-transform:uppercase;margin-top:.4rem}
+    .install-block{margin:1.5rem 0 0;padding:1.1rem 1.4rem;background:var(--slate-800);border:1px solid var(--slate-700);border-radius:10px;display:inline-flex;flex-direction:column;gap:.5rem;font-family:"Geist Mono",ui-monospace,monospace;max-width:100%}
+    .install-block .label{font-size:.7rem;letter-spacing:.14em;color:var(--slate-400);text-transform:uppercase}
+    .install-block code{color:var(--emerald-400);font-size:1rem;font-family:inherit;background:transparent;padding:0;border:0;word-break:break-all}
+    .registry-status{margin:2.5rem auto;max-width:1100px;padding:0 1.5rem}
+    .registry-table{width:100%;border-collapse:collapse;background:var(--slate-800);border:1px solid var(--slate-700);border-radius:12px;overflow:hidden;font-size:.95rem}
+    .registry-table th,.registry-table td{padding:.85rem 1.1rem;text-align:left;border-bottom:1px solid var(--slate-700)}
+    .registry-table thead th{font-family:"Geist Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:.10em;text-transform:uppercase;color:var(--slate-400);background:rgba(0,0,0,.2);font-weight:600}
+    .registry-table tbody tr:last-child td{border-bottom:none}
+    .registry-table .reg-name{color:var(--slate-100);font-weight:500}
+    .registry-table .reg-status{font-family:"Geist Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:.08em}
+    .reg-status.live{color:var(--emerald-400)}
+    .reg-status.submitted{color:#fbbf24}
+    .registry-table a{color:var(--emerald-400)}
+    .spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.5rem}
+    .spec-card{background:var(--slate-800);border:1px solid var(--slate-700);border-radius:10px;padding:1.1rem 1.2rem;display:flex;flex-direction:column}
+    .spec-card .spec-num{font-family:"Geist Mono",ui-monospace,monospace;font-size:.7rem;letter-spacing:.14em;color:var(--slate-400);text-transform:uppercase;margin-bottom:.4rem}
+    .spec-card h3{font-size:1rem;color:var(--slate-100);font-weight:600;margin:0 0 .35rem 0;letter-spacing:-.01em}
+    .spec-card .spec-tools{font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;color:var(--emerald-400);margin-bottom:.6rem}
+    .spec-card p{font-size:.83rem;color:var(--slate-400);line-height:1.5;margin:0;flex:1}
+    .spec-card .headline{margin-top:.7rem;font-family:"Geist Mono",ui-monospace,monospace;font-size:.7rem;color:var(--slate-300);letter-spacing:.04em;line-height:1.6;word-break:break-word}
+    .spec-card .headline code{font-family:inherit;background:rgba(16,185,129,.10);border:1px solid rgba(16,185,129,.22);color:var(--emerald-400);padding:.05rem .35rem;border-radius:4px;font-size:.68rem}
+    .ext-card{background:linear-gradient(135deg,rgba(167,139,250,.08),rgba(96,165,250,.05));border:1px solid rgba(167,139,250,.30);padding:1.5rem 1.6rem;border-radius:12px;margin-top:1.5rem}
+    .ext-card .spec-num{color:#A78BFA}
+    .ext-card h3{color:#fff}
+    .ext-card .spec-tools{color:#A78BFA}
+    .pair-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.5rem}
+    .pair-card{background:var(--slate-800);border:1px solid var(--slate-700);border-radius:10px;padding:1.1rem 1.2rem}
+    .pair-card .num{font-family:"Geist Mono",ui-monospace,monospace;font-size:.7rem;letter-spacing:.14em;color:var(--slate-400);text-transform:uppercase;margin-bottom:.4rem}
+    .pair-card h4{font-size:.95rem;color:var(--slate-100);font-weight:600;margin:0 0 .4rem 0}
+    .pair-card .pair-tools{font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;color:var(--emerald-400);margin-bottom:.5rem}
+    .pair-card p{font-size:.82rem;color:var(--slate-400);line-height:1.5;margin:0}
+    .config-block{margin:2rem 0;padding:1.4rem 1.6rem;background:var(--slate-800);border:1px solid var(--slate-700);border-radius:12px;overflow-x:auto}
+    .config-block pre{margin:0;font-family:"Geist Mono",ui-monospace,monospace;font-size:.85rem;color:var(--slate-200);line-height:1.6;white-space:pre}
+    .config-block .key{color:#fbbf24}
+    .config-block .str{color:var(--emerald-400)}
+    .config-block .punct{color:var(--slate-500)}
+    .config-block-label{font-family:"Geist Mono",ui-monospace,monospace;font-size:.7rem;letter-spacing:.14em;color:var(--slate-400);text-transform:uppercase;margin-bottom:.6rem}
+    .who-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.5rem}
+    .who-card{background:var(--slate-800);border:1px solid var(--slate-700);border-radius:10px;padding:1rem 1.2rem}
+    .who-card h4{margin:0 0 .3rem 0;font-size:.9rem;color:var(--slate-100);font-weight:600}
+    .who-card p{margin:0;font-size:.78rem;color:var(--slate-400);line-height:1.5}
+  </style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark">KG</span>
+      <span class="brand-text">
+        <strong>Kinetic Gain Protocol Suite</strong>
+        <small>OPEN AI GOVERNANCE SPECS</small>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="/#suite">Specs</a>
+      <a href="/verticals/">Verticals</a>
+      <a href="/mcp/">MCP server</a>
+      <a class="cta" href="https://github.com/mizcausevic-dev/mcp-kinetic-gain">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff">
+  <div class="hero-inner">
+    <div class="mcp-eyebrow"><b>mcp-kinetic-gain</b> · v0.8.0 · AGPL-3.0</div>
+    <h1 style="color:#fff">71 governance tools.<br /><em style="color:#A78BFA">One MCP config entry.</em></h1>
+    <p class="lede" style="color:#cbd5e1">The unified <a href="https://modelcontextprotocol.io" style="color:var(--emerald-400)">Model Context Protocol</a> server that exposes every Kinetic Gain Protocol Suite spec — plus the DefenseTech 6-pack — as callable tools to Claude Desktop, Cursor, Cline, or any MCP client. <strong>71 tools</strong> = 47 spec tools + 16 implementation-preview tools + 8 DefenseTech tools. stdio transport. 126 tests passing. No API key. No phone-home.</p>
+    <div class="mcp-stat-row">
+      <div><span class="stat-num">71</span><span class="stat-lbl">Tools</span></div>
+      <div><span class="stat-num">11</span><span class="stat-lbl">Specs covered</span></div>
+      <div><span class="stat-num">126</span><span class="stat-lbl">Tests passing</span></div>
+      <div><span class="stat-num">4</span><span class="stat-lbl">Registries</span></div>
+    </div>
+    <div class="install-block">
+      <span class="label">Install (or run via npx)</span>
+      <code>npm install -g mcp-kinetic-gain</code>
+      <code>npx -y mcp-kinetic-gain</code>
+    </div>
+  </div>
+</section>
+
+<section class="registry-status">
+  <h2 style="color:var(--slate-900);font-size:1.5rem;margin:0 0 .5rem 0">Registry status</h2>
+  <p style="color:var(--slate-600);margin:0 0 1.5rem 0;font-size:.95rem">Where mcp-kinetic-gain is live. Bumped on every release via the canonical generator — these counts cannot drift from the actual published state.</p>
+  <table class="registry-table">
+    <thead>
+      <tr><th>Registry</th><th>Status</th><th>Since</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="reg-name">npm</td>
+        <td><span class="reg-status live">● LIVE</span></td>
+        <td>2026-05-24</td>
+        <td><a href="https://www.npmjs.com/package/mcp-kinetic-gain">npmjs.com/package/mcp-kinetic-gain</a> · v0.8.0 · provenance-stamped</td>
+      </tr>
+      <tr>
+        <td class="reg-name">Official MCP Registry</td>
+        <td><span class="reg-status live">● LIVE</span></td>
+        <td>2026-06-02</td>
+        <td><code>io.github.mizcausevic-dev/mcp-kinetic-gain</code> @ <a href="https://registry.modelcontextprotocol.io">registry.modelcontextprotocol.io</a></td>
+      </tr>
+      <tr>
+        <td class="reg-name">mcp.so</td>
+        <td><span class="reg-status live">● LIVE</span></td>
+        <td>2026-06-01</td>
+        <td>Community directory · auto-crawls metadata from GitHub repo</td>
+      </tr>
+      <tr>
+        <td class="reg-name">Cline marketplace</td>
+        <td><span class="reg-status submitted">○ SUBMITTED</span></td>
+        <td>2026-05-26</td>
+        <td><a href="https://github.com/cline/mcp-marketplace/issues/1661">cline/mcp-marketplace#1661</a> — open, awaiting team review</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="block-dark">
+  <div class="block-inner">
+    <h2>The eleven Suite specs, as MCP tools</h2>
+    <p class="prose">Each Kinetic Gain Protocol Suite specification exposes a tight tool surface — typically fetch + inspect + validate + cross-cutting checks. The agent picks the spec by the document's <code>*_version</code> field; the tool family handles the rest.</p>
+    <div class="spec-grid">
+
+      <div class="spec-card">
+        <div class="spec-num">Spec 01</div>
+        <h3>AEO Protocol</h3>
+        <div class="spec-tools">4 tools</div>
+        <p>Entity declaration at <code style="background:transparent;color:inherit;padding:0">/.well-known/aeo.json</code>. Fetch, inspect, extract a claim, compute the well-known URL.</p>
+        <div class="headline"><code>aeo_fetch</code> <code>aeo_inspect</code></div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">Spec 02</div>
+        <h3>Prompt Provenance</h3>
+        <div class="spec-tools">3 tools</div>
+        <p>Validate Prompt Provenance documents against the v0.1 schema. Inspect, evaluate result.</p>
+        <div class="headline"><code>prompt_provenance_validate</code> <code>prompt_provenance_eval_result</code></div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">Spec 03</div>
+        <h3>Agent Cards</h3>
+        <div class="spec-tools">4 tools</div>
+        <p>Inspect or validate Agent Cards. Probe the tool disclosure surface. Resolve well-known URL.</p>
+        <div class="headline"><code>agent_card_validate</code> <code>agent_card_tool_disclosure</code></div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">Spec 04</div>
+        <h3>AI Evidence Format</h3>
+        <div class="spec-tools">3 tools</div>
+        <p>Validate, inspect, and verify the content hash of an AI Evidence object.</p>
+        <div class="headline"><code>ai_evidence_validate</code> <code>ai_evidence_verify_hash</code></div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">Spec 05</div>
+        <h3>MCP Tool Cards</h3>
+        <div class="spec-tools">4 tools</div>
+        <p>Inspect or validate MCP Tool Cards. Check tested-with declarations. Resolve well-known URL.</p>
+        <div class="headline"><code>tool_card_validate</code> <code>tool_card_tested_with</code></div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">Spec 06 · EdTech</div>
+        <h3>AI Tutor Cards</h3>
+        <div class="spec-tools">6 tools</div>
+        <p>Fetch, inspect, validate, check COPPA applicability, check subject coverage, well-known.</p>
+        <div class="headline"><code>tutor_card_coppa_check</code> <code>tutor_card_subject_check</code></div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">Spec 07 · EdTech</div>
+        <h3>Student AI Disclosure</h3>
+        <div class="spec-tools">5 tools</div>
+        <p>Validate, inspect, check against AUP, verify prompt hash, verify artifact hash.</p>
+        <div class="headline"><code>disclosure_aup_check</code> <code>disclosure_verify_prompt_hash</code></div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">Spec 08 · EdTech</div>
+        <h3>Classroom AI AUP</h3>
+        <div class="spec-tools">5 tools</div>
+        <p>Fetch, inspect, validate, check compliance against a student disclosure, well-known URL.</p>
+        <div class="headline"><code>aup_check_compliance</code> <code>aup_validate</code></div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">Spec 09 · HealthTech</div>
+        <h3>Clinical AI Disclosure</h3>
+        <div class="spec-tools">4 tools</div>
+        <p>Fetch, inspect, validate, well-known. Clinical-AI vocabulary aligned with FDA SaMD + IMDRF.</p>
+        <div class="headline"><code>clinical_ai_validate</code> <code>clinical_ai_inspect</code></div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">Spec 10 · Cross-cutting</div>
+        <h3>AI Incident Card</h3>
+        <div class="spec-tools">7 tools</div>
+        <p>Fetch, inspect, validate, walk-affected, remediation plan, index, well-known.</p>
+        <div class="headline"><code>incident_affected_walk</code> <code>incident_remediation_plan</code></div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-num">Spec 11 · Cross-cutting</div>
+        <h3>AI Procurement Decision Card</h3>
+        <div class="spec-tools">7 tools</div>
+        <p>Fetch, inspect, validate, infer status, signature check, to-PolicyBundle preview, well-known.</p>
+        <div class="headline"><code>decision_card_validate</code> <code>decision_card_to_policy_bundle</code></div>
+      </div>
+
+    </div>
+
+    <div class="ext-card">
+      <div class="spec-num">Vertical extension</div>
+      <h3>DefenseTech 6-pack — 8 tools</h3>
+      <div class="spec-tools">CUI · ITAR · DFARS · CMMC L2/L3</div>
+      <p style="color:var(--slate-300)">Beyond the 11 horizontal specs, the DefenseTech 6-pack adds a vertical-specific tool family: 3-axis vault contract resolver (CUI tier × export-control × foreign-person), CUI distribution-statement invariant (DoDI 5230.24), ITAR us-person check (22 CFR 120.62 + deemed-export rule), DFARS 72-hour wall-clock, CMMC evidence-bundle summarizer, Incident Card event-type classifier, cross-binding consistency check.</p>
+      <div class="headline"><code>defensetech_vault_resolve_3axis</code> <code>defensetech_audit_event_check_invariants</code> <code>defensetech_check_dfars_72h_clock</code> <code>defensetech_summarize_cmmc_evidence_bundle</code></div>
+    </div>
+  </div>
+</section>
+
+<section class="block-light" style="padding:3rem 0">
+  <div class="block-inner" style="max-width:1100px;margin:0 auto;padding:0 1.5rem">
+    <h2 style="color:var(--slate-900)">Implementation-preview tools (16)</h2>
+    <p style="color:var(--slate-600);font-size:.95rem;line-height:1.6">Beyond the spec-level surface, the unified server wraps the v0.1.0 implementation stack at preview scale — read-only, deterministic, no HTTP round trip. These are the tools an agent reaches for when it needs to <em>compute</em> against governance state, not just validate documents.</p>
+    <div class="pair-grid">
+      <div class="pair-card">
+        <div class="num">Layer 1</div>
+        <h4>Hash attestation (3 tools)</h4>
+        <div class="pair-tools">ed25519 over canonical hashes</div>
+        <p>Canonical-hash an object, verify a detached signature, inspect a signed attestation envelope. Same math as <code>hash-attestation-rs</code>.</p>
+      </div>
+      <div class="pair-card">
+        <div class="num">Layer 2</div>
+        <h4>Audit-stream (6 tools)</h4>
+        <div class="pair-tools">offline + live event composition</div>
+        <p>Compose events, verify a hash-chained log, inspect events. Live mode: emit/query/verify against a running <code>audit-stream-py</code> via <code>AUDIT_STREAM_URL</code>.</p>
+      </div>
+      <div class="pair-card">
+        <div class="num">Layer 3</div>
+        <h4>Decision Intelligence (5 tools)</h4>
+        <div class="pair-tools">Decision Card → PolicyBundle preview</div>
+        <p>Infer Decision Card status from a rubric, compute signature, preview generated PolicyBundle, plan incident remediation, walk affected systems.</p>
+      </div>
+      <div class="pair-card">
+        <div class="num">Layer 4</div>
+        <h4>Cross-spec drift (2 tools)</h4>
+        <div class="pair-tools">detect spec + structural diff</div>
+        <p>Detect which Suite spec a JSON document is. Compute a structural diff between two versions of the same document — catches the silent re-shape.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block-dark">
+  <div class="block-inner">
+    <h2>Use it in 60 seconds</h2>
+    <p class="prose">Drop one entry into your Claude Desktop / Cursor / Cline config. Restart the client. 71 tools appear.</p>
+    <div class="config-block">
+      <div class="config-block-label">claude_desktop_config.json (macOS: <code style="background:transparent;color:var(--slate-400);font-size:.78rem">~/Library/Application Support/Claude/</code> · Windows: <code style="background:transparent;color:var(--slate-400);font-size:.78rem">%APPDATA%\Claude\</code>)</div>
+      <pre><span class="punct">{</span>
+  <span class="key">"mcpServers"</span><span class="punct">:</span> <span class="punct">{</span>
+    <span class="key">"kinetic-gain"</span><span class="punct">:</span> <span class="punct">{</span>
+      <span class="key">"command"</span><span class="punct">:</span> <span class="str">"npx"</span><span class="punct">,</span>
+      <span class="key">"args"</span><span class="punct">:</span> <span class="punct">[</span><span class="str">"-y"</span><span class="punct">,</span> <span class="str">"mcp-kinetic-gain"</span><span class="punct">]</span>
+    <span class="punct">}</span>
+  <span class="punct">}</span>
+<span class="punct">}</span></pre>
+    </div>
+    <p class="prose" style="font-size:.9rem;color:var(--slate-400);margin-top:1rem">Optional: set <code>AUDIT_STREAM_URL</code> in the <code>env</code> block to enable the 3 live audit-stream tools against a running <a href="https://github.com/mizcausevic-dev/audit-stream-py" style="color:var(--emerald-400)">audit-stream-py</a> instance. Without it, the server runs fully offline — the other 68 tools work unchanged.</p>
+  </div>
+</section>
+
+<section class="block-light" style="padding:3rem 0">
+  <div class="block-inner" style="max-width:1100px;margin:0 auto;padding:0 1.5rem">
+    <h2 style="color:var(--slate-900)">Who's this for</h2>
+    <p style="color:var(--slate-600);font-size:.95rem">Three audiences. One config entry.</p>
+    <div class="who-list">
+      <div class="who-card">
+        <h4>Application developers</h4>
+        <p>Building an agent that needs to validate or emit Kinetic Gain Protocol Suite documents — System Cards, Tool Cards, Decision Cards, audit-stream events. The MCP server is the read+write surface.</p>
+      </div>
+      <div class="who-card">
+        <h4>Security / GRC teams</h4>
+        <p>Auditing vendor AI disclosures, running policy-as-code previews against Decision Cards, verifying hash-chained event logs, checking DefenseTech invariants on CUI/ITAR-bearing artifacts.</p>
+      </div>
+      <div class="who-card">
+        <h4>Procurement / DPO</h4>
+        <p>Pair with the <a href="https://kineticgain.com/calculators/ai-vendor-lock-in-cost/">Lock-In Cost calculator</a> and <a href="https://kineticgain.com/trust/ai-vendor-sla-negotiator/">SLA Negotiator</a> — let the agent fetch + validate a vendor's published disclosures while you negotiate the contract.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block-dark">
+  <div class="block-inner">
+    <h2>Where to next</h2>
+    <p class="prose">The unified server is the runtime layer. To explore the specs themselves, the visualizer, or the implementation stack:</p>
+    <div class="pair-grid">
+      <div class="pair-card">
+        <h4><a href="/" style="color:var(--emerald-400)">Suite hub</a></h4>
+        <p>The eleven specs, side-by-side, with audit-stream + Decision Card patterns.</p>
+      </div>
+      <div class="pair-card">
+        <h4><a href="https://kinetic-gain-visualizer.vercel.app/" style="color:var(--emerald-400)">Visualizer</a></h4>
+        <p>Render any document from any of the eleven specs. Six tabs including the live audit-stream demo.</p>
+      </div>
+      <div class="pair-card">
+        <h4><a href="https://github.com/mizcausevic-dev/mcp-kinetic-gain" style="color:var(--emerald-400)">Source</a></h4>
+        <p>TypeScript, AGPL-3.0, 126 tests, OpenSSF Scorecard + CodeQL + CycloneDX SBOM.</p>
+      </div>
+      <div class="pair-card">
+        <h4><a href="https://github.com/mizcausevic-dev/mcp-kinetic-gain/blob/main/docs/REGISTRIES.md" style="color:var(--emerald-400)">Registry docs</a></h4>
+        <p>How the package got published to four registries + the bump-checklist for next time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="background:var(--slate-900);color:var(--slate-400);padding:2rem 1.5rem;font-size:.85rem">
+  <div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:space-between">
+    <div>© Kinetic Gain LLC · Boston, MA · <a href="https://kineticgain.com/" style="color:var(--slate-400)">kineticgain.com</a></div>
+    <div>
+      <a href="/" style="color:var(--slate-400);margin-right:1rem">Suite hub</a>
+      <a href="/verticals/" style="color:var(--slate-400);margin-right:1rem">Verticals</a>
+      <a href="https://github.com/mizcausevic-dev/mcp-kinetic-gain" style="color:var(--slate-400)">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
