@@ -33,8 +33,23 @@ jobs:
         # automatically — that's the Phase C "auto-flow" guarantee.
         run: |
           mkdir -p /tmp/apex/generated
-          curl -fsS -o /tmp/apex/kinetic-gain-canonical.json \
-            https://kineticgain.com/kinetic-gain-canonical.json
+          # Hostinger's edge WAF returns 403 to default curl UA from GitHub
+          # Actions runner IPs. Use a real browser UA + Accept header.
+          # If still 403, fall back to the in-repo last-known canonical scalars
+          # so the deploy still succeeds (degraded mode — stats just won't update).
+          if curl -fsS \
+              -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+              -H "Accept: application/json,*/*" \
+              -o /tmp/apex/kinetic-gain-canonical.json \
+              https://kineticgain.com/kinetic-gain-canonical.json; then
+            echo "OK: fetched canonical from kineticgain.com (apex live)"
+          else
+            echo "::warning::Could not fetch canonical from apex (HTTP failure). Splice step will skip."
+            exit 0
+          fi
+          # Guard against empty/invalid JSON.
+          python3 -c "import json; json.load(open('/tmp/apex/kinetic-gain-canonical.json'))" || {
+            echo "::warning::Canonical JSON invalid; aborting splice"; exit 0; }
           python3 <<'PY'
           import json, pathlib
           canon = json.load(open("/tmp/apex/kinetic-gain-canonical.json", encoding="utf-8"))
@@ -65,7 +80,13 @@ jobs:
         # (mizcausevic-dev/kineticgain-com-apex .github/workflows/deploy.yml).
         # CI rewrites the in-tree files before FTP upload — repo content drifts
         # back to canonical every deploy without committing the stat values.
+        # Skips gracefully if the canonical fetch step failed (degraded mode —
+        # the last-committed scalar values stay live, deploy still proceeds).
         run: |
+          if [ ! -f /tmp/apex/generated/live-properties-count.html ]; then
+            echo "::warning::No canonical splice payloads — skipping splice. In-repo scalars will deploy as-is."
+            exit 0
+          fi
           python3 <<'PY'
           import pathlib
           # (target, begin_marker_prefix, end_marker, source file)
