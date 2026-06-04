@@ -143,7 +143,7 @@ jobs:
           password: ${{ secrets.FTP_PASS }}
           protocol: ftps
           port: 21
-          timeout: 60000
+          timeout: 120000
           local-dir: ./
           server-dir: /suite/
           dangerous-clean-slate: false
@@ -151,6 +151,12 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
+            **/.github/**
+            **/node_modules/**
+            **/CHANGELOG.md
+            **/LICENSE
+            **/README.md
+            **/docs/**
             **/.github/**
             **/node_modules/**
             **/.DS_Store
@@ -171,7 +177,7 @@ jobs:
           password: ${{ secrets.FTP_PASS }}
           protocol: ftps
           port: 21
-          timeout: 90000
+          timeout: 150000
           local-dir: ./
           server-dir: /suite/
           dangerous-clean-slate: false
