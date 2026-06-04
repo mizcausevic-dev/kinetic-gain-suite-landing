@@ -24,34 +24,40 @@ jobs:
           echo "OK: site root verified"
           ls -lah
 
-      - name: Fetch + run apex canonical generator (for stat splices)
-        # SoT = mizcausevic-dev/kineticgain-com-apex's kinetic-gain-canonical.json.
-        # Re-emit the 14 generated/ surfaces every deploy so the universe count,
-        # live-property count, and other drift-prone stats stay in lockstep with
-        # the apex canonical. Phase C of the canonical-sync rollout.
+      - name: Fetch apex canonical + emit splice payloads
+        # SoT = kinetic-gain-canonical.json, published live at
+        # https://kineticgain.com/kinetic-gain-canonical.json by the apex deploy.
+        # We fetch the public URL (not the private GH repo) so this workflow
+        # needs no cross-repo PAT. Whenever apex updates the canonical and
+        # redeploys, the next suite-hub deploy picks up the new scalars
+        # automatically — that's the Phase C "auto-flow" guarantee.
         run: |
-          git clone --depth=1 https://github.com/mizcausevic-dev/kineticgain-com-apex.git /tmp/apex
-          cd /tmp/apex && python3 generate.py
-          ls -la /tmp/apex/generated/
-          # Emit plain-text companions for markdown splice targets (no HTML wrappers).
+          mkdir -p /tmp/apex/generated
+          curl -fsS -o /tmp/apex/kinetic-gain-canonical.json \
+            https://kineticgain.com/kinetic-gain-canonical.json
           python3 <<'PY'
           import json, pathlib
           canon = json.load(open("/tmp/apex/kinetic-gain-canonical.json", encoding="utf-8"))
           hstats = canon["headline_stats"]
           pstats = canon["pulse_stats"]
           out = pathlib.Path("/tmp/apex/generated")
-          # Markdown-safe scalar splices (no <span> wrapper for llms.txt etc).
-          (out / "live-properties-count.txt").write_text(str(hstats["live_properties"]) + "\n", encoding="utf-8", newline="\n")
-          (out / "pulse-universe-count.txt").write_text(f"{pstats['universe_size']:,}\n", encoding="utf-8", newline="\n")
-          # HTML-wrapped scalar splice for live_properties (mirrors pulse-universe-count.html pattern from apex).
           measured = canon.get("updated", "2026-06-04")
+          # Plain-text scalar (for llms.txt — no <span> wrapper).
+          (out / "live-properties-count.txt").write_text(str(hstats["live_properties"]) + "\n", encoding="utf-8", newline="\n")
+          # HTML-wrapped scalars (mirror apex generated/pulse-universe-count.html shape).
           (out / "live-properties-count.html").write_text(
               f'<!-- GENERATED from canonical.json — do not hand-edit -->\n'
               f'<span class="kg-live-properties" data-measured="{measured}">{hstats["live_properties"]}</span>\n',
               encoding="utf-8", newline="\n"
           )
-          print(f"OK: emitted live-properties-count.{{html,txt}} ({hstats['live_properties']}) + pulse-universe-count.txt ({pstats['universe_size']:,})")
+          (out / "pulse-universe-count.html").write_text(
+              f'<!-- GENERATED from canonical.json — do not hand-edit -->\n'
+              f'<span class="kg-pulse-universe" data-measured="{pstats.get("measured", measured)}">{pstats["universe_size"]:,}</span>\n',
+              encoding="utf-8", newline="\n"
+          )
+          print(f"OK: canonical v{canon['version']} ({canon['updated']}) -> live_properties={hstats['live_properties']} pulse_universe={pstats['universe_size']:,}")
           PY
+          ls -la /tmp/apex/generated/
 
       - name: Splice canonical stats into index.html + llms.txt
         # Marker-based replacement between <!-- BEGIN GENERATED X --> and
