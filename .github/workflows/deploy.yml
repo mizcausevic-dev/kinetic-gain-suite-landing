@@ -4,9 +4,19 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Hourly self-heal: if a push deploy gets blocked by the Hostinger FTP
+  # auth throttle (530 Login incorrect, see memory entry "Hostinger FTP cap
+  # behavior"), the next cron tick redeploys HEAD without needing a new
+  # commit. Same pattern as apex deploy.yml line 68-69.
+  schedule:
+    - cron: "13 * * * *"
 
 permissions:
   contents: read
+
+concurrency:
+  group: kinetic-gain-suite-landing-deploy
+  cancel-in-progress: true
 
 jobs:
   deploy:
