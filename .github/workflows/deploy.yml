@@ -24,6 +24,77 @@ jobs:
           echo "OK: site root verified"
           ls -lah
 
+      - name: Fetch + run apex canonical generator (for stat splices)
+        # SoT = mizcausevic-dev/kineticgain-com-apex's kinetic-gain-canonical.json.
+        # Re-emit the 14 generated/ surfaces every deploy so the universe count,
+        # live-property count, and other drift-prone stats stay in lockstep with
+        # the apex canonical. Phase C of the canonical-sync rollout.
+        run: |
+          git clone --depth=1 https://github.com/mizcausevic-dev/kineticgain-com-apex.git /tmp/apex
+          cd /tmp/apex && python3 generate.py
+          ls -la /tmp/apex/generated/
+          # Emit plain-text companions for markdown splice targets (no HTML wrappers).
+          python3 <<'PY'
+          import json, pathlib
+          canon = json.load(open("/tmp/apex/kinetic-gain-canonical.json", encoding="utf-8"))
+          hstats = canon["headline_stats"]
+          pstats = canon["pulse_stats"]
+          out = pathlib.Path("/tmp/apex/generated")
+          # Markdown-safe scalar splices (no <span> wrapper for llms.txt etc).
+          (out / "live-properties-count.txt").write_text(str(hstats["live_properties"]) + "\n", encoding="utf-8", newline="\n")
+          (out / "pulse-universe-count.txt").write_text(f"{pstats['universe_size']:,}\n", encoding="utf-8", newline="\n")
+          # HTML-wrapped scalar splice for live_properties (mirrors pulse-universe-count.html pattern from apex).
+          measured = canon.get("updated", "2026-06-04")
+          (out / "live-properties-count.html").write_text(
+              f'<!-- GENERATED from canonical.json — do not hand-edit -->\n'
+              f'<span class="kg-live-properties" data-measured="{measured}">{hstats["live_properties"]}</span>\n',
+              encoding="utf-8", newline="\n"
+          )
+          print(f"OK: emitted live-properties-count.{{html,txt}} ({hstats['live_properties']}) + pulse-universe-count.txt ({pstats['universe_size']:,})")
+          PY
+
+      - name: Splice canonical stats into index.html + llms.txt
+        # Marker-based replacement between <!-- BEGIN GENERATED X --> and
+        # <!-- END GENERATED X -->. Mirrors the apex deploy.yml splice pattern
+        # (mizcausevic-dev/kineticgain-com-apex .github/workflows/deploy.yml).
+        # CI rewrites the in-tree files before FTP upload — repo content drifts
+        # back to canonical every deploy without committing the stat values.
+        run: |
+          python3 <<'PY'
+          import pathlib
+          # (target, begin_marker_prefix, end_marker, source file)
+          SPLICES = [
+              ("index.html", "<!-- BEGIN GENERATED live-properties-count", "<!-- END GENERATED live-properties-count -->", "/tmp/apex/generated/live-properties-count.html"),
+              ("index.html", "<!-- BEGIN GENERATED pulse-universe-count",  "<!-- END GENERATED pulse-universe-count -->",  "/tmp/apex/generated/pulse-universe-count.html"),
+              ("llms.txt",   "<!-- BEGIN GENERATED live-properties-count", "<!-- END GENERATED live-properties-count -->", "/tmp/apex/generated/live-properties-count.txt"),
+          ]
+          targets = {}
+          for tgt, begin_prefix, end_marker, src_file in SPLICES:
+              if tgt not in targets:
+                  targets[tgt] = open(tgt, encoding="utf-8").read()
+              src = targets[tgt]
+              new = open(src_file, encoding="utf-8").read().strip()
+              # For HTML-wrapped source files, strip the "<!-- GENERATED ... -->" header
+              # line so we splice just the payload.
+              if new.startswith("<!-- GENERATED"):
+                  new = new.split("\n", 1)[1].strip()
+              i = src.find(begin_prefix)
+              j = src.find(end_marker, i)
+              if i < 0 or j < 0:
+                  raise SystemExit(f"FAIL: markers missing in {tgt} for {src_file}: begin={i} end={j}")
+              i_end_of_begin = src.find("-->", i) + len("-->")
+              src = src[:i_end_of_begin] + new + src[j:]
+              targets[tgt] = src
+              print(f"OK: spliced {len(new)} bytes from {src_file} into {tgt}")
+          for tgt, src in targets.items():
+              pathlib.Path(tgt).write_text(src, encoding="utf-8", newline="\n")
+              print(f"OK: wrote {tgt}")
+          PY
+          # Sanity-check the fingerprints landed.
+          grep -q 'class="kg-live-properties"' index.html || { echo "FAIL: kg-live-properties span missing from index.html post-splice"; exit 1; }
+          grep -q 'class="kg-pulse-universe"' index.html  || { echo "FAIL: kg-pulse-universe span missing from index.html post-splice"; exit 1; }
+          echo "OK: stat splices verified in index.html + llms.txt"
+
       - name: FTP-Deploy to /suite/ (first attempt)
         id: deploy
         timeout-minutes: 5
