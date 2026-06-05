@@ -27,6 +27,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
 
+      - name: Capture runner egress IP (for Hostinger Kodee diagnostic)
+        run: |
+          echo "=== RUNNER EGRESS IPv4 ==="
+          curl -s --max-time 10 https://api.ipify.org || echo "(ipify failed)"
+          echo ""
+          curl -s --max-time 10 https://ifconfig.me || echo "(ifconfig.me failed)"
+          echo ""
+          echo "=== /32 + /24 of the egress IP for Kodee ==="
+          IP=$(curl -s --max-time 10 https://api.ipify.org)
+          echo "Runner IP: $IP"
+          echo "Runner /24: $(echo $IP | awk -F. '{print $1"."$2"."$3".0/24"}')"
+
       - name: Verify site root contains Suite landing
         run: |
           test -f index.html || (echo "FAIL: no index.html at repo root" && exit 1)
