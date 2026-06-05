@@ -208,18 +208,28 @@ jobs:
       # but port 65002 (SSH) is on a different filter path. Even if SOME
       # runners get blocked, key auth makes per-run success less random
       # since we don't waste budget on retries that fail at auth.
-      - name: Install SSH key + add known_host
+      # Use webfactory/ssh-agent — loads the key directly into ssh-agent
+      # via the SSH_AUTH_SOCK protocol, avoiding any printf / file-write
+      # byte-mangling. This was the suspected cause of "Permission denied
+      # (publickey)" on clean-runner-IP attempts where the connection reached
+      # Hostinger but the key wasn't accepted. SHA pinned per repo standing rule.
+      - name: Load SSH key into ssh-agent (webfactory)
+        uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387  # v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Seed known_hosts for ftp.kineticgain.com:65002
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           FTP_HOST: ${{ secrets.FTP_HOST }}
         run: |
           set -euo pipefail
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
-          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/kg_deploy
-          chmod 600 ~/.ssh/kg_deploy
           HOST="${FTP_HOST#ftp://}"; HOST="${HOST#sftp://}"; HOST="${HOST%/}"
+          # ssh-keyscan may fail on TCP-blocked runner IPs; allow that — the
+          # next deploy step will reuse this known_hosts if seeded, or fall
+          # back to accept-new which writes one on first successful connect.
           ssh-keyscan -p 65002 -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
-          echo "SSH key installed, known_hosts seeded for $HOST:65002"
+          echo "known_hosts seeded for $HOST:65002"
 
       - name: SFTP-Deploy to /suite/ via tar | ssh
         id: deploy
@@ -232,13 +242,13 @@ jobs:
           HOST="${FTP_HOST#ftp://}"; HOST="${HOST#sftp://}"; HOST="${HOST%/}"
 
           # Tar local content (excluding repo metadata), pipe over SSH,
-          # untar on server. Single SSH session, atomic write per-file.
+          # untar on server. ssh-agent provides the key via SSH_AUTH_SOCK —
+          # no -i flag needed (and no on-disk private key to mishandle).
           tar --exclude='.git' --exclude='.github' --exclude='node_modules' \
               --exclude='CHANGELOG.md' --exclude='LICENSE' --exclude='README.md' \
               --exclude='docs' --exclude='.DS_Store' \
               -czf - . | \
-          ssh -i ~/.ssh/kg_deploy \
-              -o StrictHostKeyChecking=accept-new \
+          ssh -o StrictHostKeyChecking=accept-new \
               -o ConnectTimeout=30 \
               -o ServerAliveInterval=15 \
               -p 65002 \
