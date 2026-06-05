@@ -197,70 +197,51 @@ jobs:
       # Diagnostic on 2026-06-04 confirmed port 65002 reachable while port 21
       # is intermittently blocked. Inline lftp invocation avoids third-party
       # action dependency for higher reliability.
-      - name: Pre-flight — verbose SSH probe to pinpoint failure mode
+      # ---- SFTP via port 65002 with SSH KEY auth ----
+      # Uses Hostinger's SSH service (enabled in hPanel 2026-06-04). SSH key
+      # is registered in hPanel under "SSH Keys" + the matching private key
+      # is stored as repo secret SSH_PRIVATE_KEY. No password ever leaves the
+      # runner.
+      #
+      # Why this works around the GH Actions IP-reputation block: Hostinger's
+      # WAF blocks port 21 from flagged Azure IPs as anti-FTP-brute-force,
+      # but port 65002 (SSH) is on a different filter path. Even if SOME
+      # runners get blocked, key auth makes per-run success less random
+      # since we don't waste budget on retries that fail at auth.
+      - name: Install SSH key + add known_host
         env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           FTP_HOST: ${{ secrets.FTP_HOST }}
-          FTP_USER: ${{ secrets.FTP_USER }}
-          FTP_PASS: ${{ secrets.FTP_PASS }}
         run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/kg_deploy
+          chmod 600 ~/.ssh/kg_deploy
           HOST="${FTP_HOST#ftp://}"; HOST="${HOST#sftp://}"; HOST="${HOST%/}"
-          echo "=== TCP probe to port 65002 ==="
-          timeout 10 nc -vz "$HOST" 65002 2>&1 || echo "(nc to 65002 failed — IP block likely)"
-          echo ""
-          echo "=== Verbose SSH probe (will show key vs password auth + actual server response) ==="
-          sudo apt-get install -qq -y sshpass >/dev/null
-          # Disable host-key check + force password auth attempt
-          timeout 25 sshpass -p "$FTP_PASS" ssh -v \
-            -o StrictHostKeyChecking=no \
-            -o UserKnownHostsFile=/dev/null \
-            -o PreferredAuthentications=password \
-            -o PubkeyAuthentication=no \
-            -o ConnectTimeout=10 \
-            -p 65002 \
-            "$FTP_USER@$HOST" \
-            "echo SSH_LOGIN_SUCCESS; pwd; exit 0" 2>&1 | tail -40 || echo "(ssh probe failed with exit $?)"
-          echo ""
-          echo "=== Probe complete — proceeding to deploy step regardless ==="
+          ssh-keyscan -p 65002 -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
+          echo "SSH key installed, known_hosts seeded for $HOST:65002"
 
-      - name: SFTP-Deploy to /suite/ via port 65002 (lftp inline)
+      - name: SFTP-Deploy to /suite/ via tar | ssh
         id: deploy
         timeout-minutes: 10
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USER: ${{ secrets.FTP_USER }}
-          FTP_PASS: ${{ secrets.FTP_PASS }}
         run: |
           set -euo pipefail
-          sudo apt-get install -qq -y lftp >/dev/null
-          echo "lftp $(lftp --version | head -1)"
+          HOST="${FTP_HOST#ftp://}"; HOST="${HOST#sftp://}"; HOST="${HOST%/}"
 
-          # Hostinger's host value is "ftp://82.25.89.47" — strip the scheme;
-          # lftp infers protocol from the open URL we pass.
-          HOST="${FTP_HOST#ftp://}"
-          HOST="${HOST#sftp://}"
-          HOST="${HOST%/}"
-          echo "Connecting to sftp://$HOST:65002 as $FTP_USER"
-
-          # mirror --reverse uploads local -> remote, --delete-first removes
-          # stale remote files (matches FTP-Deploy-Action default behavior).
-          # --parallel=4 keeps upload time bounded.
-          lftp -c "
-            set sftp:auto-confirm yes;
-            set sftp:connect-program 'ssh -a -x -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=30 -o ServerAliveInterval=10';
-            set net:timeout 30;
-            set net:max-retries 2;
-            set net:reconnect-interval-base 5;
-            open -u \"$FTP_USER\",\"$FTP_PASS\" -p 65002 sftp://$HOST;
-            mirror --reverse --parallel=4 --verbose \
-              --exclude-glob '.git/' \
-              --exclude-glob '.git*' \
-              --exclude-glob '.github/' \
-              --exclude-glob 'node_modules/' \
-              --exclude-glob 'docs/' \
-              --exclude-glob 'CHANGELOG.md' \
-              --exclude-glob 'LICENSE' \
-              --exclude-glob 'README.md' \
-              --exclude-glob '.DS_Store' \
-              ./ /home/u815783393/domains/kineticgain.com/public_html/suite/;
-          "
+          # Tar local content (excluding repo metadata), pipe over SSH,
+          # untar on server. Single SSH session, atomic write per-file.
+          tar --exclude='.git' --exclude='.github' --exclude='node_modules' \
+              --exclude='CHANGELOG.md' --exclude='LICENSE' --exclude='README.md' \
+              --exclude='docs' --exclude='.DS_Store' \
+              -czf - . | \
+          ssh -i ~/.ssh/kg_deploy \
+              -o StrictHostKeyChecking=accept-new \
+              -o ConnectTimeout=30 \
+              -o ServerAliveInterval=15 \
+              -p 65002 \
+              "$FTP_USER@$HOST" \
+              'cd domains/kineticgain.com/public_html/suite/ && tar -xzf - && echo "DEPLOY_EXTRACTED"'
           echo "SFTP deploy complete."
