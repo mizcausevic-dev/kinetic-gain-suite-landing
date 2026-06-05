@@ -27,17 +27,48 @@ jobs:
       - name: Checkout
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
 
-      - name: Capture runner egress IP (for Hostinger Kodee diagnostic)
+      - name: Kodee diagnostic battery — runner-to-Hostinger network path
         run: |
-          echo "=== RUNNER EGRESS IPv4 ==="
-          curl -s --max-time 10 https://api.ipify.org || echo "(ipify failed)"
-          echo ""
-          curl -s --max-time 10 https://ifconfig.me || echo "(ifconfig.me failed)"
-          echo ""
-          echo "=== /32 + /24 of the egress IP for Kodee ==="
+          # Install nc + openssl if missing (ubuntu-latest has them by default)
+          which nc openssl nslookup || sudo apt-get install -y netcat-openbsd openssl dnsutils 2>&1 | tail -3
+
           IP=$(curl -s --max-time 10 https://api.ipify.org)
-          echo "Runner IP: $IP"
-          echo "Runner /24: $(echo $IP | awk -F. '{print $1"."$2"."$3".0/24"}')"
+          echo "============================================================"
+          echo "RUNNER PUBLIC IPv4: $IP    /24: $(echo $IP | awk -F. '{print $1"."$2"."$3".0/24"}')"
+          echo "============================================================"
+          echo ""
+
+          echo "############## 1. DNS RESOLUTION ##############"
+          echo "--- nslookup ftp.kineticgain.com ---"
+          nslookup ftp.kineticgain.com || echo "(nslookup failed)"
+          echo ""
+          echo "--- nslookup kineticgain.com ---"
+          nslookup kineticgain.com || echo "(nslookup failed)"
+          echo ""
+
+          echo "############## 2. HTTPS (port 443) ##############"
+          echo "--- curl -Iv --connect-timeout 10 https://kineticgain.com/kinetic-gain-canonical.json ---"
+          curl -Iv --connect-timeout 10 --max-time 30 https://kineticgain.com/kinetic-gain-canonical.json 2>&1 | head -25 || echo "(curl failed with exit $?)"
+          echo ""
+
+          echo "############## 3. TCP CONNECT — FTP (port 21) ##############"
+          echo "--- nc -vz ftp.kineticgain.com 21 (15s timeout) ---"
+          timeout 15 nc -vz ftp.kineticgain.com 21 2>&1 || echo "(nc port 21 failed with exit $?)"
+          echo ""
+
+          echo "############## 4. TCP CONNECT — HTTPS (port 443) ##############"
+          echo "--- nc -vz kineticgain.com 443 (15s timeout) ---"
+          timeout 15 nc -vz kineticgain.com 443 2>&1 || echo "(nc port 443 failed with exit $?)"
+          echo ""
+
+          echo "############## 5. FTPS HANDSHAKE — openssl s_client ##############"
+          echo "--- openssl s_client -starttls ftp -connect ftp.kineticgain.com:21 -brief (30s timeout) ---"
+          timeout 30 openssl s_client -starttls ftp -connect ftp.kineticgain.com:21 -brief < /dev/null 2>&1 | head -30 || echo "(openssl s_client failed with exit $?)"
+          echo ""
+
+          echo "============================================================"
+          echo "DIAGNOSTIC COMPLETE — runner IP $IP"
+          echo "============================================================"
 
       - name: Verify site root contains Suite landing
         run: |
