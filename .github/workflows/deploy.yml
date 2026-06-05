@@ -197,6 +197,31 @@ jobs:
       # Diagnostic on 2026-06-04 confirmed port 65002 reachable while port 21
       # is intermittently blocked. Inline lftp invocation avoids third-party
       # action dependency for higher reliability.
+      - name: Pre-flight — verbose SSH probe to pinpoint failure mode
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: |
+          HOST="${FTP_HOST#ftp://}"; HOST="${HOST#sftp://}"; HOST="${HOST%/}"
+          echo "=== TCP probe to port 65002 ==="
+          timeout 10 nc -vz "$HOST" 65002 2>&1 || echo "(nc to 65002 failed — IP block likely)"
+          echo ""
+          echo "=== Verbose SSH probe (will show key vs password auth + actual server response) ==="
+          sudo apt-get install -qq -y sshpass >/dev/null
+          # Disable host-key check + force password auth attempt
+          timeout 25 sshpass -p "$FTP_PASS" ssh -v \
+            -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null \
+            -o PreferredAuthentications=password \
+            -o PubkeyAuthentication=no \
+            -o ConnectTimeout=10 \
+            -p 65002 \
+            "$FTP_USER@$HOST" \
+            "echo SSH_LOGIN_SUCCESS; pwd; exit 0" 2>&1 | tail -40 || echo "(ssh probe failed with exit $?)"
+          echo ""
+          echo "=== Probe complete — proceeding to deploy step regardless ==="
+
       - name: SFTP-Deploy to /suite/ via port 65002 (lftp inline)
         id: deploy
         timeout-minutes: 10
