@@ -192,25 +192,50 @@ jobs:
 
       # ---- SFTP via port 65002 (Hostinger's documented SSH port) ----
       # Bypasses the FTP-port-21 IP-reputation firewall that blocks GH-hosted
-      # runners intermittently. Uses the SAME credentials as FTP — Hostinger's
-      # master user (u815783393) works for both FTP and SFTP/SSH on the Cloud
-      # Professional plan. Diagnostic on 2026-06-04 confirmed:
-      #   - FTP port 21: BLOCKED at TCP layer on most Azure runner IPs
-      #   - SSH port 65002: SUCCEEDS (different firewall path)
-      # See: feedback_hostinger_ftp_gha_block (MEMORY note).
-      - name: SFTP-Deploy to /suite/ via port 65002
+      # runners. Uses the SAME credentials as FTP — Hostinger's master user
+      # works for both FTP and SFTP/SSH on the Cloud Professional plan.
+      # Diagnostic on 2026-06-04 confirmed port 65002 reachable while port 21
+      # is intermittently blocked. Inline lftp invocation avoids third-party
+      # action dependency for higher reliability.
+      - name: SFTP-Deploy to /suite/ via port 65002 (lftp inline)
         id: deploy
-        timeout-minutes: 8
-        uses: wlixcc/SFTP-Deploy-Action@b6a01566c40bc8d6e34ce92b7c918e9d4ec3eb8d  # v1.2.4
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          port: 65002
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASS }}
-          local_path: './'
-          remote_path: '/home/u815783393/domains/kineticgain.com/public_html/suite/'
-          sftp_only: true
-          # SFTP-Deploy-Action excludes via .gitignore-style patterns
-          # passed as a single 'exclude' arg (comma-separated globs)
-          delete_remote_files: false
-          args: '-o ConnectTimeout=30 -o ServerAliveInterval=10'
+        timeout-minutes: 10
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: |
+          set -euo pipefail
+          sudo apt-get install -qq -y lftp >/dev/null
+          echo "lftp $(lftp --version | head -1)"
+
+          # Hostinger's host value is "ftp://82.25.89.47" — strip the scheme;
+          # lftp infers protocol from the open URL we pass.
+          HOST="${FTP_HOST#ftp://}"
+          HOST="${HOST#sftp://}"
+          HOST="${HOST%/}"
+          echo "Connecting to sftp://$HOST:65002 as $FTP_USER"
+
+          # mirror --reverse uploads local -> remote, --delete-first removes
+          # stale remote files (matches FTP-Deploy-Action default behavior).
+          # --parallel=4 keeps upload time bounded.
+          lftp -c "
+            set sftp:auto-confirm yes;
+            set sftp:connect-program 'ssh -a -x -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=30 -o ServerAliveInterval=10';
+            set net:timeout 30;
+            set net:max-retries 2;
+            set net:reconnect-interval-base 5;
+            open -u \"$FTP_USER\",\"$FTP_PASS\" -p 65002 sftp://$HOST;
+            mirror --reverse --parallel=4 --verbose \
+              --exclude-glob '.git/' \
+              --exclude-glob '.git*' \
+              --exclude-glob '.github/' \
+              --exclude-glob 'node_modules/' \
+              --exclude-glob 'docs/' \
+              --exclude-glob 'CHANGELOG.md' \
+              --exclude-glob 'LICENSE' \
+              --exclude-glob 'README.md' \
+              --exclude-glob '.DS_Store' \
+              ./ /home/u815783393/domains/kineticgain.com/public_html/suite/;
+          "
+          echo "SFTP deploy complete."
