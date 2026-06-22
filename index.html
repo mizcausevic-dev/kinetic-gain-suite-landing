@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kinetic Gain Protocol Suite — eleven open JSON specs for the answer-engine and agent era</title>
-  <meta name="description" content="Eleven open JSON specifications for AI governance — five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech, one HealthTech, two cross-cutting (Incident + Procurement Decision Card). Plus eleven regulated-vertical 6-packs (HealthTech, EdTech, PropTech, InsurTech, HR Tech, FinTech, GovTech, LegalTech, EnergyTech, DefenseTech, RetailTech) — 66 sibling spec repos. One unified MCP server (mcp-kinetic-gain v0.8.0, 71 tools, on npm), one hosted validator, one audit-stream spine. Specs MIT, reference implementations AGPL-3.0." />
+  <title>Kinetic Gain Protocol Suite — an eleven-spec open AI governance family for the answer-engine and agent era</title>
+  <meta name="description" content="An eleven-spec family of open AI governance protocols — five core (AEO, Prompt Provenance, Agent Cards, AI Evidence, MCP Tool Cards), three EdTech, one HealthTech, two cross-cutting (Incident + Procurement Decision Card). Plus eleven regulated-vertical 6-packs (HealthTech, EdTech, PropTech, InsurTech, HR Tech, FinTech, GovTech, LegalTech, EnergyTech, DefenseTech, RetailTech) — 66 sibling spec repos. One unified MCP server (mcp-kinetic-gain v0.8.0, 71 tools, on npm), one hosted validator, one audit-stream spine. Specs MIT, reference implementations AGPL-3.0." />
   <meta name="theme-color" content="#10b981" />
   <link rel="canonical" href="https://suite.kineticgain.com/" />
 
@@ -16,7 +16,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Kinetic Gain Protocol Suite — eleven open AI governance specs" />
+  <meta property="og:title" content="Kinetic Gain Protocol Suite — an eleven-spec open AI governance family" />
   <meta property="og:description" content="Open governance protocols for the answer-engine and agent era. Eleven core specs · eleven regulated-vertical 6-packs (66 sibling spec repos) · shared audit-stream spine · one unified MCP server (71 tools) · one hosted validator." />
   <meta property="og:url" content="https://suite.kineticgain.com/" />
 
@@ -63,7 +63,7 @@
         <span class="pill">v0.1 draft · eleven specs · eleven vertical 6-packs</span>
         <h1>Open governance protocols<br /><em>for the agent era.</em></h1>
         <p class="lede">
-          A family of <strong>eleven open JSON specifications</strong> for declaring what an AI system is,
+          A family of <strong>eleven open JSON governance specs</strong> for declaring what an AI system is,
           what it does, what it refuses, what evidence it carries, what regulatory class it falls under,
           and what happens when it fails. Plus <strong>eleven regulated-vertical 6-packs</strong> —
           HealthTech · EdTech · PropTech · InsurTech · HR&nbsp;Tech · FinTech · GovTech · LegalTech ·
@@ -76,7 +76,7 @@
           <a class="btn btn-secondary" href="https://mizcausevic-dev.github.io/kinetic-gain-visualizer/" target="_blank" rel="noreferrer">Open the visualizer</a>
         </div>
         <div class="stats">
-          <div class="stat"><span class="stat-num">11</span><span class="stat-label">Open specs</span></div>
+          <div class="stat"><span class="stat-num">11</span><span class="stat-label">Specs</span></div>
           <div class="stat"><span class="stat-num">11</span><span class="stat-label">Vertical 6-packs</span></div>
           <div class="stat"><span class="stat-num">71</span><span class="stat-label">MCP tools</span></div>
           <div class="stat"><span class="stat-num">24</span><span class="stat-label">Implementation repos</span></div>
@@ -281,7 +281,7 @@
             <p><strong>71 tools across all 11 specs + DefenseTech 6-pack + 5 cross-cutting operation categories</strong>, v0.8.0, published on npm with provenance and on the official MCP Registry. One Claude Desktop / Cursor / MCP-client config entry. Headline cross-spec tools: <code>aup_check_compliance</code> (AUP + Student AI Disclosure → allow/deny), <code>decision_card_to_policy_bundle</code> (Decision Card → runtime PolicyBundle preview), <code>attestation_verify</code> (ed25519 signatures over canonical hashes), <code>audit_chain_verify</code> (walks a hash-chained governance event log), <code>suite_doc_drift</code> (structural diff between two doc versions). v0.6.0 adds 13 implementation-tooling preview tools that wrap the 15-repo implementation stack at preview scale — read-only, deterministic, no HTTP round trip. v0.7.0 adds live audit-stream tools so an agent can emit, query, and verify governance events from chat. v0.8.0 adds the DefenseTech 6-pack: 3-axis vault resolver (CUI tier × export-control × foreign-person), CUI distribution-statement / ITAR us-person / DFARS 72-hour-clock invariants, CMMC evidence-bundle summarizer, and Incident Card event-type classifier.</p>
             <pre style="background: rgba(0,0,0,.4); padding: 10px 14px; border-radius: 8px; margin: 12px 0; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>npx -y mcp-kinetic-gain validate &lt;files...&gt;</code></pre>
             <ul class="card-feature-list">
-              <li><strong>126 tests pass</strong> · typecheck clean · build clean</li>
+              <li><strong>158 tests pass</strong> · typecheck clean · build clean</li>
               <li>Live on npm + Official MCP Registry + mcp.so · auto-published on tag</li>
               <li>Sibling MCP servers: <code>mcp-reliability-toolkit</code> · <code>mcp-decision-intelligence</code></li>
             </ul>
@@ -506,7 +506,7 @@ flowchart LR
           <a class="card card-dark" href="https://pulse.kineticgain.com" target="_blank" rel="noreferrer">
             <div class="card-eyebrow">pulse.kineticgain.com</div>
             <h3>AI Procurement Pulse</h3>
-            <p>Quarterly research index of vendor AI governance disclosure. Issues #1-#4 live — universe scaled 37 → 834 domains, kineticgain.com flipped to <strong>verified=11/11</strong> (ed25519), engine v0.4 per-spec discriminator landed. Issue #5 = the first true quarterly delta (August 2026).</p>
+            <p>Quarterly research index of vendor AI governance disclosure. Issues #1-#4 live — universe scaled from dozens to thousands of domains, kineticgain.com flipped to <strong>verified=11/11</strong> (ed25519), engine v0.4 per-spec discriminator landed. Issue #5 = the first true quarterly delta (August 2026).</p>
             <span class="link">Open ↗</span>
           </a>
           <a class="card card-dark" href="https://console.kineticgain.com" target="_blank" rel="noreferrer">
@@ -610,7 +610,7 @@ uses: mizcausevic-dev/agent-card-diff-action@v0.1.0    # exact pin</code></pre>
           <a href="https://kineticgain.com/policies/" target="_blank" rel="noreferrer">/policies/</a> (the 11-vertical readiness aggregator),
           <a href="https://pulse.kineticgain.com/" target="_blank" rel="noreferrer">pulse.kineticgain.com</a> (quarterly procurement telemetry over a <!-- BEGIN GENERATED pulse-universe-count --><span class="kg-pulse-universe" data-measured="2026-06-04">2,044</span><!-- END GENERATED pulse-universe-count -->-domain universe),
           <a href="https://provenance-lab.kineticgain.com/" target="_blank" rel="noreferrer">provenance-lab.kineticgain.com</a> (interactive watermark stress test + the case for C2PA),
-          and <a href="https://portfolio.kineticgain.com/" target="_blank" rel="noreferrer">portfolio.kineticgain.com</a> (programmatic dashboard over 555 public repos).
+          and <a href="https://portfolio.kineticgain.com/" target="_blank" rel="noreferrer">portfolio.kineticgain.com</a> (programmatic dashboard over 683 public repos).
         </p>
       </div>
     </section>
