@@ -123,6 +123,7 @@ jobs:
           canon = json.load(open("/tmp/apex/kinetic-gain-canonical.json", encoding="utf-8"))
           hstats = canon["headline_stats"]
           pstats = canon["pulse_stats"]
+          mstats = canon["mcp_server"]
           out = pathlib.Path("/tmp/apex/generated")
           measured = canon.get("updated", "2026-06-04")
           # Plain-text scalar (for llms.txt — no <span> wrapper).
@@ -138,7 +139,14 @@ jobs:
               f'<span class="kg-pulse-universe" data-measured="{pstats.get("measured", measured)}">{pstats["universe_size"]:,}</span>\n',
               encoding="utf-8", newline="\n"
           )
-          print(f"OK: canonical v{canon['version']} ({canon['updated']}) -> live_properties={hstats['live_properties']} pulse_universe={pstats['universe_size']:,}")
+          # mcp-kinetic-gain tests-passing tile (mcp/index.html). Keeps the tile's
+          # stat-num class; mirrors the kg-* scalar shape above.
+          (out / "tests-passing.html").write_text(
+              f'<!-- GENERATED from canonical.json — do not hand-edit -->\n'
+              f'<span class="stat-num" data-measured="{mstats.get("measured", measured)}">{mstats["tests_passing"]}</span>\n',
+              encoding="utf-8", newline="\n"
+          )
+          print(f"OK: canonical v{canon['version']} ({canon['updated']}) -> live_properties={hstats['live_properties']} pulse_universe={pstats['universe_size']:,} tests_passing={mstats['tests_passing']}")
           PY
           ls -la /tmp/apex/generated/
 
@@ -162,6 +170,7 @@ jobs:
               ("index.html", "<!-- BEGIN GENERATED live-properties-count", "<!-- END GENERATED live-properties-count -->", "/tmp/apex/generated/live-properties-count.html"),
               ("index.html", "<!-- BEGIN GENERATED pulse-universe-count",  "<!-- END GENERATED pulse-universe-count -->",  "/tmp/apex/generated/pulse-universe-count.html"),
               ("llms.txt",   "<!-- BEGIN GENERATED live-properties-count", "<!-- END GENERATED live-properties-count -->", "/tmp/apex/generated/live-properties-count.txt"),
+              ("mcp/index.html", "<!-- BEGIN GENERATED tests-passing", "<!-- END GENERATED tests-passing -->", "/tmp/apex/generated/tests-passing.html"),
           ]
           targets = {}
           for tgt, begin_prefix, end_marker, src_file in SPLICES:
