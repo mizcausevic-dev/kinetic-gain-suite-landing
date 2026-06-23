@@ -199,6 +199,76 @@ jobs:
           grep -q 'class="kg-pulse-universe"' index.html  || { echo "FAIL: kg-pulse-universe span missing from index.html post-splice"; exit 1; }
           echo "OK: stat splices verified in index.html + llms.txt"
 
+      - name: Guard against stale literals (canonical-driven, assert-only)
+        # Regression guard. Reads the authoritative counts from the canonical
+        # JSON already fetched to /tmp/apex/ and FAILS the build (exit 1) if the
+        # committed HTML still carries a stale literal that drifted from canonical.
+        # Mirrors the "Verify site root" grep||exit 1 gate. Runs AFTER the splice
+        # (so it validates exactly the bytes that will be uploaded) and BEFORE the
+        # SFTP step. A fetch / canonical-shape problem degrades like the splice
+        # step (::warning:: + exit 0); only a real stale literal hard-fails.
+        run: |
+          if [ ! -f /tmp/apex/kinetic-gain-canonical.json ]; then
+            echo "::warning::Canonical not fetched; skipping stale-literal guard (degraded mode, deploy proceeds)."
+            exit 0
+          fi
+          python3 <<'PY'
+          import json, re, sys, pathlib
+          try:
+              canon = json.load(open("/tmp/apex/kinetic-gain-canonical.json", encoding="utf-8"))
+              OPEN_SPECS = canon["headline_stats"]["open_specs"]      # 16  published open-spec catalog
+              IMPL_SPECS = len(canon["mcp_server"]["specs_covered"])  # 11  specs the MCP server implements
+              PRODUCERS  = canon["audit_stream"]["producer_repos"]    # 9   audit-stream producer repos
+          except Exception as e:
+              print(f"::warning::Canonical missing expected keys ({e}); skipping guard (degraded mode).")
+              sys.exit(0)
+
+          FILES = ["index.html", "mcp/index.html"]
+          blobs = {f: pathlib.Path(f).read_text(encoding="utf-8") for f in FILES}
+          fails = []
+
+          # (1) Catalog/implemented collision: the body must never pair a spec
+          # count with "open". "N open specifications" is the HEAD catalog framing
+          # (open_specs); the implemented surface is IMPL_SPECS specs. Head only
+          # ever says "16 open", so a whole-file scan == a body scan in practice.
+          for f, s in blobs.items():
+              for m in re.finditer(r"(?i)\b(eleven|11)\s+open\b", s):
+                  fails.append(
+                      f"{f}: '{m.group(0)}': body must not pair a spec count with 'open'. "
+                      f"The {OPEN_SPECS}-open-spec catalog framing belongs to head meta only; "
+                      f"the implemented specs number {IMPL_SPECS}.")
+
+          # (2) Any "N producers" claim must equal canonical audit_stream.producer_repos.
+          WORDNUM = {"seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11, "twelve": 12}
+          for f, s in blobs.items():
+              for m in re.finditer(r"(?i)\b(\d{1,3}|seven|eight|nine|ten|eleven|twelve)\s+producers\b", s):
+                  tok = m.group(1).lower()
+                  val = int(tok) if tok.isdigit() else WORDNUM[tok]
+                  if val != PRODUCERS:
+                      fails.append(
+                          f"{f}: '{m.group(0)}' but canonical audit_stream.producer_repos = {PRODUCERS} "
+                          f"(write '{PRODUCERS} producers').")
+
+          # (3) Retired literals that must never reappear in committed HTML. These
+          # are hand-typed stale numbers the splice does not own; word-boundaried
+          # so e.g. 1265 / 5554 do not match.
+          RETIRED = {"126": "old tests-passing count", "555": "old public-repo count", "834": "old pulse universe size"}
+          for f, s in blobs.items():
+              for lit, what in RETIRED.items():
+                  if re.search(r"(?<!\d)" + lit + r"(?!\d)", s):
+                      fails.append(
+                          f"{f}: retired literal '{lit}' ({what}) present; it was replaced by a "
+                          f"canonical-spliced value; delete the hand-typed stale number.")
+
+          if fails:
+              print("STALE-LITERAL GUARD FAILED. Committed HTML drifted from canonical:")
+              for x in fails:
+                  print("  - " + x)
+              sys.exit(1)
+          print(f"OK: stale-literal guard passed (open_specs={OPEN_SPECS}, implemented_specs={IMPL_SPECS}, "
+                f"producer_repos={PRODUCERS}; no 'eleven/11 open', no off-count producers, no 126/555/834).")
+          PY
+
       # ---- SFTP via port 65002 (Hostinger's documented SSH port) ----
       # Bypasses the FTP-port-21 IP-reputation firewall that blocks GH-hosted
       # runners. Uses the SAME credentials as FTP — Hostinger's master user
