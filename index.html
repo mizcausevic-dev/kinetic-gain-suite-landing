@@ -63,7 +63,7 @@
         <span class="pill">v0.1 draft · eleven specs · eleven vertical 6-packs</span>
         <h1>Open governance protocols<br /><em>for the agent era.</em></h1>
         <p class="lede">
-          A family of <strong>eleven open JSON governance specs</strong> for declaring what an AI system is,
+          A family of <strong>eleven JSON governance specs the MCP server implements</strong>, for declaring what an AI system is,
           what it does, what it refuses, what evidence it carries, what regulatory class it falls under,
           and what happens when it fails. Plus <strong>eleven regulated-vertical 6-packs</strong> —
           HealthTech · EdTech · PropTech · InsurTech · HR&nbsp;Tech · FinTech · GovTech · LegalTech ·
@@ -412,9 +412,9 @@
 
     <section id="audit-stream" class="block">
       <div class="block-inner">
-        <h2>The audit-stream spine — one log, eleven producers, five runtimes</h2>
+        <h2>The audit-stream spine — one log, nine producers, five runtimes</h2>
         <p class="prose">
-          Every governance moment in the portfolio writes to the same hash-chained log. Decision Cards drafted, AEO watches drifted, policy bundles deployed, requests denied at runtime, MCP + Azure OpenAI tool invocations gated, Postgres rows changed, WordPress content published, data contracts broken in CI, signatures verified or tampered, AEO graphs ingested, incidents correlated to remediation plans — <strong>one tamper-evident narrative</strong> an auditor can replay end-to-end. Producers fail safely: if <code>audit-stream-py</code> is down, governance still happens, the event is just logged to stderr instead of the chain. Same opt-in env-var contract (<code>AUDIT_STREAM_URL</code>) across all eleven, spanning Python, Rust, PL/pgSQL, PHP, and Azure Functions.
+          Every governance moment in the portfolio writes to the same hash-chained log. Decision Cards drafted, AEO watches drifted, policy bundles deployed, requests denied at runtime, MCP + Azure OpenAI tool invocations gated, Postgres rows changed, WordPress content published, data contracts broken in CI, signatures verified or tampered, AEO graphs ingested, incidents correlated to remediation plans — <strong>one tamper-evident narrative</strong> an auditor can replay end-to-end. Producers fail safely: if <code>audit-stream-py</code> is down, governance still happens, the event is just logged to stderr instead of the chain. Same opt-in env-var contract (<code>AUDIT_STREAM_URL</code>) across all nine, spanning Python, Rust, PL/pgSQL, PHP, and Azure Functions.
         </p>
         <div class="mermaid-frame">
           <pre class="mermaid">
@@ -445,7 +445,7 @@ flowchart LR
           </pre>
         </div>
         <p class="prose" style="margin-top: 24px;">
-          <strong>20+ event kinds across 11 producers</strong>, all funneling into one verifiable chain. The Rust libraries ship behind a Cargo feature (<code>--features audit-stream</code>) so consumers who don't need emission can strip out the HTTP dep. The data-tier producers prove the reach: <code>pg-audit-stream-extension</code> catches direct DML the app path would miss, and <code>wp-kinetic-gain-audit</code> brings the same tamper-evident chain to any WordPress estate. Adding the next producer is a ~60-line module: copy the pattern, pick your event kinds, point at <code>AUDIT_STREAM_URL</code>.
+          <strong>20+ event kinds across 9 producers</strong>, all funneling into one verifiable chain. The Rust libraries ship behind a Cargo feature (<code>--features audit-stream</code>) so consumers who don't need emission can strip out the HTTP dep. The data-tier producers prove the reach: <code>pg-audit-stream-extension</code> catches direct DML the app path would miss, and <code>wp-kinetic-gain-audit</code> brings the same tamper-evident chain to any WordPress estate. Adding the next producer is a ~60-line module: copy the pattern, pick your event kinds, point at <code>AUDIT_STREAM_URL</code>.
         </p>
       </div>
     </section>
