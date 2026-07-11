@@ -312,6 +312,7 @@ jobs:
 
       - name: SFTP-Deploy to /suite/ via tar | ssh
         id: deploy
+        continue-on-error: true
         timeout-minutes: 10
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
@@ -334,3 +335,91 @@ jobs:
               "$FTP_USER@$HOST" \
               'cd domains/kineticgain.com/public_html/suite/ && tar -xzf - && echo "DEPLOY_EXTRACTED"'
           echo "SFTP deploy complete."
+
+      # 2026-07-11: port 65002 has been timing out on every push today
+      # ("ssh: connect to host *** port 65002: Connection timed out") — the
+      # hourly self-heal cron keeps hitting the same block. Same WAF-vs-runner-IP
+      # problem apex's deploy.yml solved with an FTPS fallback on port 21
+      # (apex commit history, ftps_fallback step) — port over the identical
+      # pattern rather than inventing a new one. Only runs when the SSH path
+      # failed; skipped entirely on a normal successful deploy.
+      - name: FTPS-Deploy fallback to /suite/ (port 21)
+        id: ftps_fallback
+        if: steps.deploy.outcome == 'failure'
+        continue-on-error: true
+        timeout-minutes: 8
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import ftplib
+          import os
+          import pathlib
+          import posixpath
+
+          local_root = pathlib.Path(".")
+          excludes = {".git", ".github", "node_modules", "CHANGELOG.md", "LICENSE", "README.md", "docs", ".DS_Store"}
+
+          host = os.environ["FTP_HOST"]
+          for prefix in ("ftp://", "ftps://", "sftp://"):
+              if host.startswith(prefix):
+                  host = host[len(prefix):]
+          host = host.rstrip("/")
+
+          user = os.environ["FTP_USER"]
+          password = os.environ["FTP_PASS"]
+
+          ftp = ftplib.FTP_TLS(timeout=60)
+          ftp.connect(host=host, port=21)
+          ftp.login(user=user, passwd=password)
+          ftp.prot_p()
+          ftp.set_pasv(True)
+
+          def ensure_remote_dir(remote_dir: str) -> None:
+              remote_dir = posixpath.normpath(remote_dir)
+              if remote_dir in {"", ".", "/"}:
+                  return
+              current = ""
+              for part in remote_dir.split("/"):
+                  if not part:
+                      continue
+                  current += "/" + part
+                  try:
+                      ftp.mkd(current)
+                  except ftplib.error_perm:
+                      pass
+
+          ftp.cwd("domains/kineticgain.com/public_html/suite")
+
+          uploaded = 0
+          for path in local_root.rglob("*"):
+              if path.is_dir():
+                  continue
+              rel = path.relative_to(local_root)
+              if excludes & set(rel.parts):
+                  continue
+              remote_path = posixpath.join(*rel.parts) if len(rel.parts) > 1 else rel.name
+              remote_dir = posixpath.dirname(remote_path)
+              if remote_dir:
+                  ensure_remote_dir(remote_dir)
+              with open(path, "rb") as fh:
+                  ftp.storbinary(f"STOR {remote_path}", fh)
+              uploaded += 1
+          ftp.quit()
+          print(f"OK: FTPS fallback uploaded {uploaded} files.")
+          PY
+
+      - name: Deploy result gate
+        if: always()
+        run: |
+          if [ "${{ steps.deploy.outcome }}" = "success" ]; then
+            echo "::notice::SFTP (port 65002) upload OK."
+          elif [ "${{ steps.ftps_fallback.outcome }}" = "success" ]; then
+            echo "::notice::SSH port 65002 blocked; FTPS (port 21) fallback upload OK."
+          else
+            echo "::error::Both SFTP (65002) and FTPS (21) deploy paths failed — likely Hostinger WAF blocking this runner's IP on both ports. Retry via the hourly self-heal cron, or deploy from a non-GitHub-Actions IP."
+            exit 1
+          fi
