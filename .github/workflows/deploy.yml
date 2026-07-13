@@ -4,12 +4,6 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  # Hourly self-heal: if a push deploy gets blocked by the Hostinger FTP
-  # auth throttle (530 Login incorrect, see memory entry "Hostinger FTP cap
-  # behavior"), the next cron tick redeploys HEAD without needing a new
-  # commit. Same pattern as apex deploy.yml line 68-69.
-  schedule:
-    - cron: "13 * * * *"
 
 permissions:
   contents: read
@@ -338,8 +332,9 @@ jobs:
 
       # 2026-07-11: port 65002 has been timing out on every push today
       # ("ssh: connect to host *** port 65002: Connection timed out") — the
-      # hourly self-heal cron keeps hitting the same block. Same WAF-vs-runner-IP
-      # problem apex's deploy.yml solved with an FTPS fallback on port 21
+      # Repeating a failed deployment does not repair invalid authentication.
+      # Keep the FTPS fallback for genuine port-65002/WAF failures, but surface
+      # both path results and require an explicit push or manual retry.
       # (apex commit history, ftps_fallback step) — port over the identical
       # pattern rather than inventing a new one. Only runs when the SSH path
       # failed; skipped entirely on a normal successful deploy.
@@ -420,6 +415,6 @@ jobs:
           elif [ "${{ steps.ftps_fallback.outcome }}" = "success" ]; then
             echo "::notice::SSH port 65002 blocked; FTPS (port 21) fallback upload OK."
           else
-            echo "::error::Both SFTP (65002) and FTPS (21) deploy paths failed — likely Hostinger WAF blocking this runner's IP on both ports. Retry via the hourly self-heal cron, or deploy from a non-GitHub-Actions IP."
+            echo "::error::Both SFTP (65002) and FTPS (21) deploy paths failed. Inspect the SFTP step for network/key errors and the FTPS step for 530 authentication errors; verify or rotate GitHub deploy secrets before retrying manually."
             exit 1
           fi
