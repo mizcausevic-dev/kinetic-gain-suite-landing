@@ -4,12 +4,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  # Hourly self-heal: if a push deploy gets blocked by the Hostinger FTP
-  # auth throttle (530 Login incorrect, see memory entry "Hostinger FTP cap
-  # behavior"), the next cron tick redeploys HEAD without needing a new
-  # commit. Same pattern as apex deploy.yml line 68-69.
-  schedule:
-    - cron: "13 * * * *"
+  # Hourly self-heal cron REMOVED 2026-07-13 (estate audit): it had failed on
+  # every run for days (530 Login incorrect incl. the FTPS fallback), burning
+  # ~24 Actions runs/day while deploying nothing. Re-add a schedule only after
+  # deploy auth is verified green via workflow_dispatch.
 
 permissions:
   contents: read
