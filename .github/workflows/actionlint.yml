@@ -17,12 +17,13 @@ name: actionlint
 on:
   push:
     branches: [main]
-    paths:
-      - ".github/**"
+  # NO paths filter. `lint` is a REQUIRED status check on main, so if this
+  # workflow is skipped the check never reports and the PR can never merge.
+  # A path filter here silently deadlocks every PR that does not touch
+  # .github/** (PR #10 sat unmergeable from 2026-07-05 for exactly this).
+  # actionlint is fast and passes trivially when no workflow changed.
   pull_request:
     branches: [main]
-    paths:
-      - ".github/**"
 
 permissions:
   contents: read
