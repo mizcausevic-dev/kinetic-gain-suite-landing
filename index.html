@@ -60,10 +60,10 @@
   <main>
     <section class="hero">
       <div class="hero-inner">
-        <span class="pill">v0.1 draft · eleven specs · eleven vertical 6-packs</span>
+        <span class="pill">v0.1 draft · twelve specs · eleven vertical 6-packs</span>
         <h1>Open governance protocols<br /><em>for the agent era.</em></h1>
         <p class="lede">
-          A family of <strong>eleven JSON governance specs the MCP server implements</strong>, for declaring what an AI system is,
+          A family of <strong>twelve JSON governance specs the MCP server implements</strong>, for declaring what an AI system is,
           what it does, what it refuses, what evidence it carries, what regulatory class it falls under,
           and what happens when it fails. Plus <strong>eleven regulated-vertical 6-packs</strong> —
           HealthTech · EdTech · PropTech · InsurTech · HR&nbsp;Tech · FinTech · GovTech · LegalTech ·
@@ -76,7 +76,7 @@
           <a class="btn btn-secondary" href="https://mizcausevic-dev.github.io/kinetic-gain-visualizer/" target="_blank" rel="noreferrer">Open the visualizer</a>
         </div>
         <div class="stats">
-          <div class="stat"><span class="stat-num">11</span><span class="stat-label">Specs</span></div>
+          <div class="stat"><span class="stat-num">12</span><span class="stat-label">Specs</span></div>
           <div class="stat"><span class="stat-num">11</span><span class="stat-label">Vertical 6-packs</span></div>
           <div class="stat"><span class="stat-num">71</span><span class="stat-label">MCP tools</span></div>
           <div class="stat"><span class="stat-num">24</span><span class="stat-label">Implementation repos</span></div>
@@ -90,7 +90,7 @@
         <p class="prose">
           Each spec carries a top-level <code>&lt;name&gt;_version</code> field. The unified visualizer
           auto-detects which spec a document is in by inspecting that field. The MCP server exposes
-          fetch / validate / inspect / cross-spec-join tools for all eleven specs.
+          fetch / validate / inspect / cross-spec-join tools for all twelve specs.
         </p>
 
         <div class="layers">
@@ -172,7 +172,7 @@
 
     <section id="specs" class="block block-tinted">
       <div class="block-inner">
-        <h2>All eleven specs</h2>
+        <h2>All twelve specs</h2>
         <div class="spec-table">
           <table>
             <thead>
@@ -250,6 +250,12 @@
                 <td><code>decision_card_version</code></td>
                 <td><code>/.well-known/decisions/&lt;id&gt;.json</code></td>
               </tr>
+              <tr>
+                <td><a href="https://github.com/mizcausevic-dev/ai-claims-decision-card-spec">AI Claims Decision Card</a> <span class="tag tag-x">InsurTech · insurer-side</span></td>
+                <td>Insurer/adjudicator record that an AI system decided an insurance claim · outcome · underwriting rules applied · content-hashed evidence bundle · human-in-loop · ed25519-signed, hash-chained</td>
+                <td><code>claims_card_version</code></td>
+                <td>— (document-embedded)</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -260,13 +266,13 @@
       <div class="block-inner">
         <h2>Two front doors</h2>
         <p class="prose">
-          The hosted validator is the <strong>buyer-side</strong> entry point — paste a vendor's JSON, get a procurement-grade report. The unified MCP server is the <strong>agent-side</strong> entry point — every spec becomes a callable tool. Eleven specs, two front doors.
+          The hosted validator is the <strong>buyer-side</strong> entry point — paste a vendor's JSON, get a procurement-grade report. The unified MCP server is the <strong>agent-side</strong> entry point — every spec becomes a callable tool. Twelve specs, two front doors.
         </p>
         <div class="grid grid-2">
           <a class="card-feature card-feature--blue" href="https://validator.kineticgain.com/" target="_blank" rel="noreferrer">
             <div class="card-feature-eyebrow">VALIDATOR · web</div>
             <h3>validator.kineticgain.com</h3>
-            <p>Paste any Suite JSON in the browser and get a procurement-grade validation report. Auto-detects which of the eleven specs the document belongs to via its <code>*_version</code> field, then validates against the canonical JSON Schema 2020-12. Errors surface as inline markers in a Monaco editor with line numbers.</p>
+            <p>Paste any Suite JSON in the browser and get a procurement-grade validation report. Auto-detects which of the twelve specs the document belongs to via its <code>*_version</code> field, then validates against the canonical JSON Schema 2020-12. Errors surface as inline markers in a Monaco editor with line numbers.</p>
             <pre style="background: rgba(0,0,0,.4); padding: 10px 14px; border-radius: 8px; margin: 12px 0; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>open https://validator.kineticgain.com</code></pre>
             <ul class="card-feature-list">
               <li><strong>10 schemas bundled</strong> — no network at validation time</li>
@@ -522,7 +528,7 @@ flowchart LR
     <section id="constellation" class="block block-tinted">
       <div class="block-inner">
         <h2>The full constellation</h2>
-        <p class="prose">Every live property in the Kinetic Gain Protocol Suite. The eleven spec surfaces declare and render the protocol; the tools validate, visualize, govern, and measure adoption across the open web.</p>
+        <p class="prose">Every live property in the Kinetic Gain Protocol Suite. The twelve spec surfaces declare and render the protocol; the tools validate, visualize, govern, and measure adoption across the open web.</p>
         <div class="constellation">
           <div>
             <h3>Specification surfaces</h3>
@@ -546,7 +552,7 @@ flowchart LR
               <li><a href="https://console.kineticgain.com">Operator Console</a><span class="sub">console.kineticgain.com</span></li>
               <li><a href="https://pulse.kineticgain.com">AI Procurement Pulse</a><span class="sub">pulse.kineticgain.com</span></li>
               <li><a href="https://validator.kineticgain.com">Suite JSON Validator</a><span class="sub">validator.kineticgain.com</span></li>
-              <li><a href="https://mizcausevic-dev.github.io/kinetic-gain-visualizer/">Unified Suite Visualizer</a><span class="sub">all eleven specs, one renderer</span></li>
+              <li><a href="https://mizcausevic-dev.github.io/kinetic-gain-visualizer/">Unified Suite Visualizer</a><span class="sub">all twelve specs, one renderer</span></li>
               <li><a href="https://gv.kineticgain.com">GitVisualizer</a><span class="sub">gv.kineticgain.com</span></li>
               <li><a href="https://mcp.kineticgain.com">MCP Sentinel</a><span class="sub">mcp.kineticgain.com</span></li>
               <li><a href="https://rag.kineticgain.com">RAG Sentinel</a><span class="sub">rag.kineticgain.com</span></li>
@@ -563,7 +569,7 @@ flowchart LR
       <div class="block-inner block-narrow">
         <h2>Author</h2>
         <p class="prose">
-          <strong>Miz Causevic</strong> — Boston Enterprise Technologist, Boston, MA. ~30 years across IBM, CyberArk, Alteryx, Digital.ai, Gryphon.ai. The entire suite is authored under <a href="https://github.com/mizcausevic-dev" target="_blank" rel="noreferrer">github.com/mizcausevic-dev</a> in the open. All eleven specs are MIT-licensed for maximum implementation freedom; reference implementations like the unified MCP server (<a href="https://github.com/mizcausevic-dev/mcp-kinetic-gain" target="_blank" rel="noreferrer">mcp-kinetic-gain</a>) are AGPL-3.0. Issues and pull requests welcome on any individual spec repo; cross-spec concerns happen on the <a href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite" target="_blank" rel="noreferrer">meta-repo</a>.
+          <strong>Miz Causevic</strong> — Boston Enterprise Technologist, Boston, MA. ~30 years across IBM, CyberArk, Alteryx, Digital.ai, Gryphon.ai. The entire suite is authored under <a href="https://github.com/mizcausevic-dev" target="_blank" rel="noreferrer">github.com/mizcausevic-dev</a> in the open. All twelve specs are MIT-licensed for maximum implementation freedom; reference implementations like the unified MCP server (<a href="https://github.com/mizcausevic-dev/mcp-kinetic-gain" target="_blank" rel="noreferrer">mcp-kinetic-gain</a>) are AGPL-3.0. Issues and pull requests welcome on any individual spec repo; cross-spec concerns happen on the <a href="https://github.com/mizcausevic-dev/kinetic-gain-protocol-suite" target="_blank" rel="noreferrer">meta-repo</a>.
         </p>
       </div>
     </section>
@@ -592,7 +598,7 @@ uses: mizcausevic-dev/agent-card-diff-action@v0.1.0    # exact pin</code></pre>
           <strong>🌐 MCP Registry.</strong>
           <code>mcp-kinetic-gain</code> is also published on the official <a href="https://registry.modelcontextprotocol.io" target="_blank" rel="noreferrer">MCP Registry</a>, on
           <a href="https://mcp.so" target="_blank" rel="noreferrer">mcp.so</a>, and indexed by the Cline marketplace.
-          One Claude Desktop / Cursor / MCP-client config entry covers all 11 specs.
+          One Claude Desktop / Cursor / MCP-client config entry covers all 12 specs.
         </p>
       </div>
     </section>

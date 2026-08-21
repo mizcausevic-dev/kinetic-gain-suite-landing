@@ -217,7 +217,7 @@ jobs:
           try:
               canon = json.load(open("/tmp/apex/kinetic-gain-canonical.json", encoding="utf-8"))
               OPEN_SPECS = canon["headline_stats"]["open_specs"]      # 17  published open-spec catalog
-              IMPL_SPECS = len(canon["mcp_server"]["specs_covered"])  # 11  specs the MCP server implements
+              IMPL_SPECS = len(canon["mcp_server"]["specs_covered"])  # 12  specs the MCP server implements
               PRODUCERS  = canon["audit_stream"]["producer_repos"]    # 9   audit-stream producer repos
           except Exception as e:
               print(f"::warning::Canonical missing expected keys ({e}); skipping guard (degraded mode).")
@@ -232,7 +232,7 @@ jobs:
           # (open_specs); the implemented surface is IMPL_SPECS specs. Head only
           # ever says "17 open", so a whole-file scan == a body scan in practice.
           for f, s in blobs.items():
-              for m in re.finditer(r"(?i)\b(eleven|11)\s+open\b", s):
+              for m in re.finditer(r"(?i)\b(twelve|12)\s+open\b", s):
                   fails.append(
                       f"{f}: '{m.group(0)}': body must not pair a spec count with 'open'. "
                       f"The {OPEN_SPECS}-open-spec catalog framing belongs to head meta only; "
